@@ -26,7 +26,12 @@ public class Drivetrain extends Subsystem {
     }
 
     public void tankDrive(double left, double right){
-
+        leftDrive.set(left);
+        rightDrive.set(right);
     }
 
+    public void stopMotors(){
+        leftDrive.stopMotor();
+        rightDrive.stopMotor();
+    }
 }
