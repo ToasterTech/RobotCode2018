@@ -19,6 +19,10 @@ public class Intake extends Subsystem {
 
     }
 
+    public void stopMotors(){
+
+    }
+
     public boolean cubeIsIn(){
         return limitSwitch.get();
     }
