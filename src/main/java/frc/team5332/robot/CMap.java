@@ -24,6 +24,9 @@ public class CMap {
     public static int rightMotor1 = 2;
     public static int rightMotor2 = 3;
 
+    public static int leftIntakeMotor = 4;
+    public static int rightIntakeMotor = 5;
+
     //DIO Ports
     public static int intakeLimitSwitch = 0;
 
