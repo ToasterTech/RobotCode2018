@@ -30,16 +30,13 @@ public class TimeDrive extends Command {
             timer.start();
             started = true;
         }
+
         CMap.drive.tankDrive(leftSpeed, rightSpeed);
     }
 
     @Override
     protected boolean isFinished() {
-        if(timer.get() >= goalSeconds) {
-            return true;
-        }
-
-        return false;
+        return timer.get() >= goalSeconds;
     }
 
     @Override
