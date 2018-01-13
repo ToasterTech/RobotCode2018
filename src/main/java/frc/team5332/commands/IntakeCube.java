@@ -7,7 +7,7 @@ import main.java.frc.team5332.subsystems.Intake;
 public class IntakeCube extends Command{
 
     public IntakeCube(){
-        //requires(CMap.drive);
+        requires(CMap.intake);
     }
 
     public void execute(){
@@ -21,7 +21,7 @@ public class IntakeCube extends Command{
 
     @Override
     protected void end() {
-     CMap.intake.stopMotors();
+        CMap.intake.stopMotors();
     }
 
 

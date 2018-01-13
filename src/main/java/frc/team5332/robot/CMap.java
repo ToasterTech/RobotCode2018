@@ -38,5 +38,6 @@ public class CMap {
 
     //Subsystems
     public static Drivetrain drive = new Drivetrain();
-    public static Intake     intake = new Intake();
+    public static Intake     intake;// = new Intake();
+
 }
