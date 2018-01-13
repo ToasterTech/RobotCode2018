@@ -7,4 +7,8 @@ public class Intake extends Subsystem {
     protected void initDefaultCommand(){
 
     }
+
+    public void intakeCube(){
+
+    }
 }
