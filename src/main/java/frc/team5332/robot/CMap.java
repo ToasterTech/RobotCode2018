@@ -10,9 +10,9 @@ public class CMap {
     public static Joystick gamepad = new Joystick(0);
 
     public static int leftXAxis = 0; //Left X-Axis
-    public static int leftYAXis = 0; //Left Y-Axis
-    public static int rightXAxis = 0; //Right X-Axis
-    public static int rightYAxis = 0; //Right Y-Axis
+    public static int leftYAXis = 1; //Left Y-Axis
+    public static int rightXAxis = 4; //Right X-Axis
+    public static int rightYAxis = 5; //Right Y-Axis
 
     //Input Devices - Joystick Buttons
 
