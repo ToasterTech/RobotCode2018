@@ -1,4 +1,4 @@
-package main.java.frc.team5332.commands;
+package main.java.frc.team5332.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
 import main.java.frc.team5332.robot.CMap;
