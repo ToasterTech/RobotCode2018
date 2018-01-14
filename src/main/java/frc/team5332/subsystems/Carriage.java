@@ -1,7 +1,6 @@
 package main.java.frc.team5332.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import main.java.frc.team5332.robot.CMap;
@@ -16,11 +15,11 @@ public class Carriage extends Subsystem {
 
 
     public Carriage(){
-        super("Intake");
+        super("Carriage");
         limitSwitch = new DigitalInput(CMap.intakeLimitSwitch);
 
-        leftMotor  = new VictorSP(CMap.leftIntakeMotor);
-        rightMotor = new VictorSP(CMap.rightIntakeMotor);
+        leftMotor  = new VictorSP(CMap.leftCarriageMotor);
+        rightMotor = new VictorSP(CMap.rightCarriageMotor);
     }
 
     protected void initDefaultCommand(){
