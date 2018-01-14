@@ -7,15 +7,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import main.java.frc.team5332.robot.CMap;
 
 /**
- * This subsystem represents the intake that moves up and down
+ * This subsystem represents the carriage that moves up and down
  * on the elevator.
  */
-public class Intake extends Subsystem {
+public class Carriage extends Subsystem {
     VictorSP leftMotor, rightMotor;
     DigitalInput limitSwitch;
 
 
-    public Intake(){
+    public Carriage(){
         super("Intake");
         limitSwitch = new DigitalInput(CMap.intakeLimitSwitch);
 

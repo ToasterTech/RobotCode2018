@@ -2,8 +2,8 @@ package main.java.frc.team5332.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.VictorSP;
+import main.java.frc.team5332.subsystems.Carriage;
 import main.java.frc.team5332.subsystems.Drivetrain;
-import main.java.frc.team5332.subsystems.Intake;
 
 public class CMap {
     //Input Devices - Joysticks
@@ -38,7 +38,7 @@ public class CMap {
 
     //Subsystems
     public static Drivetrain drive = new Drivetrain();
-    public static Intake     intake;// = new Intake();
+    public static Carriage carriage;// = new Intake();
 
     //Other Miscellaneous Objects
     public static String plateOwnership = "";
