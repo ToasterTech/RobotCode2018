@@ -6,41 +6,31 @@ import main.java.frc.team5332.commands.drive.JoystickDrive;
 
 public class Robot extends IterativeRobot {
     @Override
-    public void robotInit() { }
-
-    @Override
-    public void disabledInit() { }
-
-    @Override
-    public void autonomousInit() {
+    public void robotInit() {
 
     }
 
-    @Override
-    public void teleopInit() {
+    public void autonomousInit(){
 
+    }
+
+    public void autonomousPeriodic(){
+
+    }
+
+    public void teleopInit(){
         Scheduler.getInstance().add(new JoystickDrive());
-
     }
 
-    @Override
-    public void teleopPeriodic() {
-
+    public void teleopPeriodic(){
         Scheduler.getInstance().run();
+    }
+
+    public void testInit(){
 
     }
 
-    @Override
-    public void testInit() { }
+    public void testPeriodic(){
 
-
-    @Override
-    public void disabledPeriodic() { }
-    
-    @Override
-    public void autonomousPeriodic() { }
-
-
-    @Override
-    public void testPeriodic() { }
+    }
 }
