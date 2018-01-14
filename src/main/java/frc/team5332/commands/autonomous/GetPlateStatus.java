@@ -24,6 +24,6 @@ public class GetPlateStatus extends Command{
 
     @Override
     protected void end() {
-
+        System.out.println("Plate Status Received: " + CMap.plateOwnership);
     }
 }
