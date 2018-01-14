@@ -23,14 +23,14 @@ public class CMap {
 
     //Input Devices - Joystick Buttons
     private static int greenButton = 1;
-    private static int redButton;
+    private static int redButton = 2;
     private static int blueButton;
     private static int yellowButton;
 
 
 
     private static JoystickButton intakeButton = new JoystickButton(gamepad ,greenButton);
-    private static JoystickButton expelButton = new JoystickButton(gamepad, 1);
+    private static JoystickButton expelButton = new JoystickButton(gamepad, redButton);
 
     //Input Devices - Buttons
 
@@ -41,11 +41,11 @@ public class CMap {
     public static int rightMotor1 = 2;
     public static int rightMotor2 = 3;
 
-    public static int leftCarriageMotor = 4;
-    public static int rightCarriageMotor = 5;
+    public static int leftCarriageMotor = 5;
+    public static int rightCarriageMotor = 4;
 
-    public static int leftIntakeMotor = 6;
-    public static int rightIntakeMotor = 7;
+    public static int leftIntakeMotor = 4;
+    public static int rightIntakeMotor = 5;
 
     //DIO Ports
     public static int intakeLimitSwitch = 0;
