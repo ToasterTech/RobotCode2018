@@ -1,5 +1,6 @@
 package main.java.frc.team5332.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,9 +21,14 @@ public class Drivetrain extends Subsystem {
         leftDrive = new SpeedControllerGroup(new VictorSP(CMap.leftMotor1), new VictorSP(CMap.leftMotor2));
         rightDrive = new SpeedControllerGroup(new VictorSP(CMap.rightMotor1), new VictorSP(CMap.rightMotor2));
 
-        LiveWindow.add(leftDrive);
-        LiveWindow.add(rightDrive);
+        leftDrive.setInverted(false);
+        rightDrive.setInverted(true);
 
+
+        //LiveWindow.add(this);
+        //LiveWindow.addChild(this, leftDrive);
+        //LiveWindow.addChild(this, rightDrive);
+        //LiveWindow.add(this);
 
     }
 
@@ -43,6 +49,7 @@ public class Drivetrain extends Subsystem {
     public void tankDrive(double left, double right){
         leftDrive.set(left);
         rightDrive.set(right);
+
     }
 
     /**
