@@ -21,8 +21,8 @@ public class Drivetrain extends Subsystem {
         leftDrive = new SpeedControllerGroup(new VictorSP(CMap.leftMotor1), new VictorSP(CMap.leftMotor2));
         rightDrive = new SpeedControllerGroup(new VictorSP(CMap.rightMotor1), new VictorSP(CMap.rightMotor2));
 
-        leftDrive.setInverted(false);
-        rightDrive.setInverted(true);
+        leftDrive.setInverted(true);
+        rightDrive.setInverted(false);
 
 
         //LiveWindow.add(this);
