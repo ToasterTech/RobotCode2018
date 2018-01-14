@@ -40,4 +40,7 @@ public class CMap {
     public static Drivetrain drive = new Drivetrain();
     public static Intake     intake;// = new Intake();
 
+    //Other Miscellaneous Objects
+    public static String plateOwnership = "";
+
 }
