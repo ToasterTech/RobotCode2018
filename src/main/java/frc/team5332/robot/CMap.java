@@ -28,7 +28,6 @@ public class CMap {
     private static int yellowButton;
 
 
-
     private static JoystickButton intakeButton = new JoystickButton(gamepad ,greenButton);
     private static JoystickButton expelButton = new JoystickButton(gamepad, redButton);
 
@@ -64,6 +63,7 @@ public class CMap {
 
     //Other Miscellaneous Objects
     public static String plateOwnership = "";
+    public static String startingSpot = "";
 
 
     public static void setupJoystickButtons(){
