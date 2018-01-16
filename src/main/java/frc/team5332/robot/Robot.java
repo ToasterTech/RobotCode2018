@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import main.java.frc.team5332.commands.autonomous.GetPlateStatus;
 import main.java.frc.team5332.commands.drive.JoystickDrive;
 import main.java.frc.team5332.commands.drive.TimeDrive;
+import main.java.frc.team5332.commands.intake.SpinIntakeMotors;
 
 public class Robot extends IterativeRobot {
     @Override
@@ -24,6 +25,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit(){
         Scheduler.getInstance().add(new JoystickDrive());
+        Scheduler.getInstance().add(new SpinIntakeMotors());
     }
 
     public void teleopPeriodic(){

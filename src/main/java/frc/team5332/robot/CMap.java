@@ -4,8 +4,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import main.java.frc.team5332.commands.carriage.IntakeCubeIntoCarriage;
+import main.java.frc.team5332.commands.intake.CloseArms;
 import main.java.frc.team5332.commands.intake.ExpelBlockCommand;
 import main.java.frc.team5332.commands.intake.IntakeBlockCommand;
+import main.java.frc.team5332.commands.intake.OpenArms;
 import main.java.frc.team5332.subsystems.Carriage;
 import main.java.frc.team5332.subsystems.Drivetrain;
 import main.java.frc.team5332.subsystems.Intake;
@@ -20,17 +22,21 @@ public class CMap {
     public static int leftYAXis = 1; //Left Y-Axis
     public static int rightXAxis = 4; //Right X-Axis
     public static int rightYAxis = 5; //Right Y-Axis
+    public static int leftTriggerAxis = 2;
+    public static int rightTriggerAxis = 3;
 
     //Input Devices - Joystick Buttons
     private static int greenButton = 1;
     private static int redButton = 2;
-    private static int blueButton;
-    private static int yellowButton;
+    private static int blueButton = 3;
+    private static int yellowButton = 4;
+
+    private static int leftBumper  = 5;
+    private static int rightBumper = 6;
 
 
-    private static JoystickButton intakeButton = new JoystickButton(gamepad ,greenButton);
-    private static JoystickButton expelButton = new JoystickButton(gamepad, redButton);
-
+    private static JoystickButton intakeButton = new JoystickButton(gamepad ,leftBumper);
+    private static JoystickButton expelButton = new JoystickButton(gamepad, rightBumper);
     //Input Devices - Buttons
 
     //PWM Motor Ports
@@ -54,6 +60,11 @@ public class CMap {
 
     //Relay Ports
 
+    //Pnematic Ports
+    public static int leftSolenoid = 0;
+    public static int rightSolenoid = 1;
+
+
     //Subsystems
     public static Drivetrain drive = new Drivetrain();
     public static Intake intake = new Intake();
@@ -67,7 +78,8 @@ public class CMap {
 
 
     public static void setupJoystickButtons(){
-        intakeButton.whileHeld(new IntakeBlockCommand());
-        expelButton.whileHeld(new ExpelBlockCommand());
+        intakeButton.whileHeld(new OpenArms());
+        intakeButton.whenReleased(new CloseArms());
+        //expelButton.whileHeld(new ExpelBlockCommand());
     }
 }

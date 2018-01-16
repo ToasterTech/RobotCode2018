@@ -11,6 +11,7 @@ public class IntakeBlockCommand extends Command {
 
     public void execute(){
         CMap.intake.spinMotors(-1);
+
     }
 
     protected boolean isFinished(){

@@ -21,6 +21,4 @@ public class ExpelBlockCommand extends Command {
         CMap.intake.stopMotors();
     }
 
-
-
 }
