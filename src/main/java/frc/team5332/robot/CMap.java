@@ -36,7 +36,7 @@ public class CMap {
 
 
     private static JoystickButton intakeButton = new JoystickButton(gamepad ,leftBumper);
-    private static JoystickButton expelButton = new JoystickButton(gamepad, rightBumper);
+    private static JoystickButton closeArmsButton = new JoystickButton(gamepad, rightBumper);
     //Input Devices - Buttons
 
     //PWM Motor Ports
@@ -78,8 +78,8 @@ public class CMap {
 
 
     public static void setupJoystickButtons(){
-        intakeButton.whileHeld(new OpenArms());
-        intakeButton.whenReleased(new CloseArms());
+        intakeButton.whenPressed(new OpenArms());
+        closeArmsButton.whenPressed(new CloseArms());
         //expelButton.whileHeld(new ExpelBlockCommand());
     }
 }

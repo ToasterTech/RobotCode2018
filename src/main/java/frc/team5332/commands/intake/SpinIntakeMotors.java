@@ -12,6 +12,8 @@ public class SpinIntakeMotors extends Command {
 
     @Override
     protected void execute() {
+        System.out.println("I AM RUNNING. I SHOULKD BE READY TO SPIN");
+        System.out.println("LEFT TRIGGER: " + CMap.gamepad.getRawAxis(CMap.leftTriggerAxis));
         if(CMap.gamepad.getRawAxis(CMap.leftTriggerAxis) >= 0.75){
             CMap.intake.spinMotors(-1);
         } else if(CMap.gamepad.getRawAxis(CMap.rightTriggerAxis) >= 0.75){

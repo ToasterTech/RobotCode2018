@@ -18,6 +18,8 @@ public class Intake extends Subsystem{
         leftIntakeMotor = new VictorSP(CMap.leftIntakeMotor);
         rightIntakeMotor = new VictorSP(CMap.rightIntakeMotor);
 
+        leftIntakeMotor.setInverted(true);
+
         leftSolenoid = new Solenoid(CMap.leftSolenoid);
         rightSolenoid = new Solenoid(CMap.rightSolenoid);
 
