@@ -25,11 +25,14 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit(){
         Scheduler.getInstance().add(new JoystickDrive());
-        Scheduler.getInstance().add(new SpinIntakeMotors());
+        //Scheduler.getInstance().add(new SpinIntakeMotors());
     }
 
     public void teleopPeriodic(){
         Scheduler.getInstance().run();
+
+        CMap.intake.spinMotors(-1);
+        System.out.println(CMap.gamepad.getRawAxis(CMap.leftTriggerAxis));
     }
 
     VictorSP testMotor;

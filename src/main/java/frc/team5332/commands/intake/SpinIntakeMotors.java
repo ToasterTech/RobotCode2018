@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import main.java.frc.team5332.robot.CMap;
 
+import java.sql.Time;
+import java.util.Calendar;
+
 public class SpinIntakeMotors extends Command {
 
     public SpinIntakeMotors(){
@@ -12,8 +15,9 @@ public class SpinIntakeMotors extends Command {
 
     @Override
     protected void execute() {
+
         System.out.println("I AM RUNNING. I SHOULKD BE READY TO SPIN");
-        System.out.println("LEFT TRIGGER: " + CMap.gamepad.getRawAxis(CMap.leftTriggerAxis));
+        System.out.println("LEFT TRIGGER: " + CMap.gamepad.getRawAxis(CMap.leftTriggerAxis) +  " at " + Calendar.getInstance().get(Calendar.SECOND));
         if(CMap.gamepad.getRawAxis(CMap.leftTriggerAxis) >= 0.75){
             CMap.intake.spinMotors(-1);
         } else if(CMap.gamepad.getRawAxis(CMap.rightTriggerAxis) >= 0.75){
