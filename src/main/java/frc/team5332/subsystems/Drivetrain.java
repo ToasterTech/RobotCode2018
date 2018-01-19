@@ -1,8 +1,6 @@
 package main.java.frc.team5332.subsystems;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import main.java.frc.team5332.robot.CMap;
@@ -14,6 +12,7 @@ public class Drivetrain extends Subsystem {
     SpeedControllerGroup leftDrive;
     SpeedControllerGroup rightDrive;
 
+    ADXRS450_Gyro gyro;
 
     public Drivetrain() {
         super("Drive Train");
@@ -24,6 +23,8 @@ public class Drivetrain extends Subsystem {
         leftDrive.setInverted(true);
         rightDrive.setInverted(false);
 
+        gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+        gyro.calibrate();
 
         //LiveWindow.add(this);
         //LiveWindow.addChild(this, leftDrive);
@@ -49,6 +50,8 @@ public class Drivetrain extends Subsystem {
     public void tankDrive(double left, double right){
         leftDrive.set(left);
         rightDrive.set(right);
+
+        System.out.println(gyro.getAngle());
 
     }
 
