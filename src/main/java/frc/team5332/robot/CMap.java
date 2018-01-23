@@ -10,12 +10,13 @@ import main.java.frc.team5332.commands.intake.IntakeBlockCommand;
 import main.java.frc.team5332.commands.intake.OpenArms;
 import main.java.frc.team5332.subsystems.Carriage;
 import main.java.frc.team5332.subsystems.Drivetrain;
+import main.java.frc.team5332.subsystems.Elevator;
 import main.java.frc.team5332.subsystems.Intake;
 
 public class CMap {
     //Input Devices - Joysticks
-    public static Joystick gamepad = new Joystick(0);
-
+    public static Joystick gamepad          = new Joystick(0);
+    public static Joystick operatorJoystick = new Joystick(1);
 
 
     public static int leftXAxis = 0; //Left X-Axis
@@ -46,14 +47,25 @@ public class CMap {
     public static int rightMotor1 = 2;
     public static int rightMotor2 = 3;
 
-    public static int leftCarriageMotor = 7;
-    public static int rightCarriageMotor = 7;
+    public static int leftIntakeMotor = 4;
+    public static int rightIntakeMotor = 5;
 
-    public static int leftIntakeMotor = 5;
-    public static int rightIntakeMotor = 4;
+    public static int leftIntakeAxisMotor = 6;
+    public static int rightIntakeAxisMotor = 7;
+
+    public static int carriageMotor = 8;
+
+    public static int elevatorMotor = 9;
 
     //DIO Ports
     public static int intakeLimitSwitch = 0;
+
+    public static int leftDriveEncoderPortA  = 1;
+    public static int leftDriveEncoderPortB  = 2;
+    public static int rightDriveEncoderPortA = 3;
+    public static int rightDriveEncoderPortB = 4;
+    public static int elevatorEncoderPortA   = 5;
+    public static int elevatorEncoderPortB   = 6;
 
 
     //Analog Ports
@@ -68,14 +80,16 @@ public class CMap {
     //Subsystems
     public static Drivetrain drive = new Drivetrain();
     public static Intake intake = new Intake();
-
     public static Carriage carriage;// = new Intake();
+    public static Elevator elevator;
 
 
     //Other Miscellaneous Objects
     public static String plateOwnership = "";
     public static String startingSpot = "";
     public static String autoPreference = "";
+    public static double scaleHeight = 65;
+    public static double switchHeight = 36;
 
     public static void setupJoystickButtons(){
         intakeButton.whenPressed(new OpenArms());
