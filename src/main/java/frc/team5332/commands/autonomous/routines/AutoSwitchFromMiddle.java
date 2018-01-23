@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoSwitchFromMiddle extends CommandGroup {
 
-    public AutoSwitchFromMiddle(char switchPosition){
+    public AutoSwitchFromMiddle(){
 
     }
 

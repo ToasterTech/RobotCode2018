@@ -75,7 +75,7 @@ public class CMap {
     //Other Miscellaneous Objects
     public static String plateOwnership = "";
     public static String startingSpot = "";
-
+    public static String autoPreference = "";
 
     public static void setupJoystickButtons(){
         intakeButton.whenPressed(new OpenArms());

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoScaleSameSide extends CommandGroup {
 
-    public AutoScaleSameSide(String side){
+    public AutoScaleSameSide(){
 
     }
 

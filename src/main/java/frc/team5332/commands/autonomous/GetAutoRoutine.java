@@ -1,44 +1,82 @@
 package main.java.frc.team5332.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
-import main.java.frc.team5332.commands.autonomous.routines.AutoScaleOppositeSide;
-import main.java.frc.team5332.commands.autonomous.routines.AutoScaleSameSide;
-import main.java.frc.team5332.commands.autonomous.routines.AutoSwitchFromMiddle;
-import main.java.frc.team5332.commands.autonomous.routines.AutoSwitchSameSide;
+import main.java.frc.team5332.commands.autonomous.routines.*;
 import main.java.frc.team5332.robot.CMap;
 
 public class GetAutoRoutine {
 
     public GetAutoRoutine(){
 
+        if(CMap.autoPreference.equals("Normal")){
+            normalPreferenceSystem();
+        } else if(CMap.autoPreference.equals("Scale")){
+            scalePreferenceSystem();
+        } else if(CMap.autoPreference.equals("Switch")){
+            switchPreferenceSystem();
+        } else if(CMap.autoPreference.equals("Exchange")){
+
+        }
+
+    }
+
+    private void normalPreferenceSystem(){
         switch (CMap.startingSpot){
 
             case "L":
                 if(CMap.plateOwnership.charAt(1) == 'L'){ //Scale
-                    Scheduler.getInstance().add(new AutoScaleSameSide("L"));
+                    Scheduler.getInstance().add(new AutoScaleSameSide());
                 } else if(CMap.plateOwnership.charAt(0) == 'L') { //Switch
-                    Scheduler.getInstance().add(new AutoSwitchSameSide("L"));
+                    Scheduler.getInstance().add(new AutoSwitchSameSide());
                 } else {
-                    Scheduler.getInstance().add(new AutoScaleOppositeSide("R"));
+                    Scheduler.getInstance().add(new AutoScaleOppositeSide());
                 }
                 break;
 
             case "R":
                 if(CMap.plateOwnership.charAt(1) == 'R'){ //Scale
-                    Scheduler.getInstance().add(new AutoScaleSameSide("R"));
+                    Scheduler.getInstance().add(new AutoScaleSameSide());
                 } else if(CMap.plateOwnership.charAt(0) == 'R') { //Switch
-                    Scheduler.getInstance().add(new AutoSwitchSameSide("R"));
+                    Scheduler.getInstance().add(new AutoSwitchSameSide());
                 } else {
-                    Scheduler.getInstance().add(new AutoScaleOppositeSide("L"));
+                    Scheduler.getInstance().add(new AutoScaleOppositeSide());
                 }
                 break;
 
             case "M":
-                Scheduler.getInstance().add(new AutoSwitchFromMiddle(CMap.plateOwnership.charAt(1)));
+                Scheduler.getInstance().add(new AutoSwitchFromMiddle());
                 break;
 
         }
+    }
 
+    private void scalePreferenceSystem(){
+        if(Character.toString(CMap.plateOwnership.charAt(1)).equals(CMap.startingSpot)){
+            Scheduler.getInstance().add(new AutoScaleSameSide());
+        } else {
+            Scheduler.getInstance().add(new AutoScaleOppositeSide());
+        }
+    }
+
+    private void switchPreferenceSystem(){
+        if(Character.toString(CMap.plateOwnership.charAt(0)).equals(CMap.startingSpot)){
+            Scheduler.getInstance().add(new AutoSwitchSameSide());
+        } else {
+            if(CMap.startingSpot.equals("L") || CMap.startingSpot.equals("R")){
+                Scheduler.getInstance().add(new AutoSwitchOppositeSide());
+            } else {
+                //Middle Starting Spot
+                Scheduler.getInstance().add(new AutoSwitchFromMiddle());
+            }
+        }
+    }
+
+    private void exchangePreferenceSystem(){
+
+    }
+
+    private void autoRunPreferenceSystem(){
+        Scheduler.getInstance().add(new AutoRun());
     }
 
 

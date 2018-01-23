@@ -4,4 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoSwitchOppositeSide extends CommandGroup {
 
+    public AutoSwitchOppositeSide() {
+        super();
+    }
 }
