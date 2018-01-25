@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import main.java.frc.team5332.commands.autonomous.routines.*;
 import main.java.frc.team5332.robot.CMap;
 
+import java.awt.color.CMMException;
+
 public class GetAutoRoutine {
 
     public GetAutoRoutine(){
@@ -72,7 +74,13 @@ public class GetAutoRoutine {
     }
 
     private void exchangePreferenceSystem(){
-
+        if(CMap.startingSpot.equals("L")){
+            Scheduler.getInstance().add();
+        } else if(CMap.startingSpot.equals("R")){
+            Scheduler.getInstance()().add();
+        }else if(CMap.startingSpot.equals("M")){
+            Scheduler.getInstance().add();
+        }
     }
 
     private void autoRunPreferenceSystem(){
