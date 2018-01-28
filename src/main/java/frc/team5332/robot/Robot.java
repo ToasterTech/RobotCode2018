@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.java.frc.team5332.commands.autonomous.GetPlateStatus;
 import main.java.frc.team5332.commands.drive.JoystickDrive;
 import main.java.frc.team5332.commands.drive.TimeDrive;
+import main.java.frc.team5332.commands.intake.SpinIntakeMotors;
 
 public class Robot extends IterativeRobot {
     SendableChooser autoChooser, positionChooser;
@@ -62,7 +63,7 @@ public class Robot extends IterativeRobot {
 
     VictorSP testMotor;
     public void testInit(){
-        testMotor = new VictorSP(CMap.rightIntakeMotor);
+        testMotor = new VictorSP(CMap.rightIntakeRoller);
     }
 
     public void testPeriodic(){

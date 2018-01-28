@@ -1,17 +1,11 @@
 package main.java.frc.team5332.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import main.java.frc.team5332.commands.carriage.IntakeCubeIntoCarriage;
 import main.java.frc.team5332.commands.intake.CloseArms;
-import main.java.frc.team5332.commands.intake.ExpelBlockCommand;
-import main.java.frc.team5332.commands.intake.IntakeBlockCommand;
 import main.java.frc.team5332.commands.intake.OpenArms;
-import main.java.frc.team5332.subsystems.Carriage;
-import main.java.frc.team5332.subsystems.Drivetrain;
-import main.java.frc.team5332.subsystems.Elevator;
-import main.java.frc.team5332.subsystems.Intake;
+import main.java.frc.team5332.subsystems.*;
+import main.java.frc.team5332.subsystems.drive.DriveTrain;
 
 public class CMap {
     //Input Devices - Joysticks
@@ -47,8 +41,8 @@ public class CMap {
     public static int rightMotor1 = 2;
     public static int rightMotor2 = 3;
 
-    public static int leftIntakeMotor = 4;
-    public static int rightIntakeMotor = 5;
+    public static int leftIntakeRoller = 4;
+    public static int rightIntakeRoller = 5;
 
     public static int leftIntakeAxisMotor = 6;
     public static int rightIntakeAxisMotor = 7;
@@ -78,7 +72,8 @@ public class CMap {
 
 
     //Subsystems
-    public static Drivetrain drive = new Drivetrain();
+    public static DriveTrain drive = new DriveTrain();
+
     public static Intake intake = new Intake();
     public static Carriage carriage;// = new Intake();
     public static Elevator elevator;

@@ -1,6 +1,6 @@
 @echo off
 setlocal
-pushd C:\Users\Jonathan\.gradle\gradlerio\Shuffleboard
-java "-jar" "C:\Users\Jonathan\.gradle\caches\modules-2\files-2.1\edu.wpi.first.shuffleboard\Shuffleboard\0.3.0\a59b83f540a24768b61e4d5a94a79d41ba21eee0\Shuffleboard-0.3.0.jar"
+pushd C:\Users\HP\.gradle\gradlerio\Shuffleboard
+java "-jar" "C:\Users\HP\.gradle\caches\modules-2\files-2.1\edu.wpi.first.shuffleboard\app\1.0.0\adc0b59e08073c0ff9c352e282118bae68e10a2a\app-1.0.0.jar"
 popd
 endlocal
