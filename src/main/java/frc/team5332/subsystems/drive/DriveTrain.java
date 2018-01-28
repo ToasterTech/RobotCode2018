@@ -4,15 +4,15 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 /**
- * This is the drivetrain for the motor. The main objects are the leftDrive and rightDrive speedControllerGroups.
+ * This is the drive for the motor. The main objects are the leftDrive and rightDrive speedControllerGroups.
  */
-public class Drivetrain extends PIDSubsystem {
+public class DriveTrain extends PIDSubsystem {
     LeftDriveTrain leftDrive;
     RightDriveTrain rightDrive;
 
     ADXRS450_Gyro gyro;
 
-    public Drivetrain() {
+    public DriveTrain() {
         super("Drive Train", 1, 0, 0);
 
         leftDrive  = new LeftDriveTrain();
@@ -58,5 +58,27 @@ public class Drivetrain extends PIDSubsystem {
     @Override
     protected void usePIDOutput(double v) {
         tankDrive(-v, v);
+    }
+
+
+
+    public void enableEncoderPID(){
+        this.getPIDController().disable();
+        leftDrive.getPIDController().enable();
+        rightDrive.getPIDController().enable();
+    }
+
+    public void setSetpointEncoderDrivePID(double setpoint){
+        leftDrive.getPIDController().setSetpoint(setpoint);
+        rightDrive.getPIDController().setSetpoint(setpoint);
+    }
+
+    public boolean getEncoderPIDOnTarget(){
+        return leftDrive.onTarget() && rightDrive.onTarget();
+    }
+
+    public void disableEncoderPID(){
+        leftDrive.getPIDController().disable();
+        rightDrive.getPIDController().disable();
     }
 }

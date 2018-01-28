@@ -13,7 +13,7 @@ public class LeftDriveTrain extends PIDSubsystem {
     SpeedControllerGroup motors;
 
     public LeftDriveTrain(){
-        super("Left Drivetrain", 1, 0, 0);
+        super("Left DriveTrain", 1, 0, 0);
 
         encoder = new Encoder(CMap.leftDriveEncoderPortA, CMap.leftDriveEncoderPortB);
         motors = new SpeedControllerGroup(new VictorSP(CMap.leftMotor1), new VictorSP(CMap.leftMotor2));

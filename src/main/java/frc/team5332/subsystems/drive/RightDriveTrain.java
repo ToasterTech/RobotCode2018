@@ -12,7 +12,7 @@ public class RightDriveTrain extends PIDSubsystem {
     SpeedControllerGroup motors;
 
     public RightDriveTrain(){
-        super("Right Drivetrain", 1, 0, 0);
+        super("Right DriveTrain", 1, 0, 0);
 
         encoder = new Encoder(CMap.rightDriveEncoderPortA, CMap.rightDriveEncoderPortB);
         motors = new SpeedControllerGroup(new VictorSP(CMap.rightMotor1), new VictorSP(CMap.rightMotor2));
