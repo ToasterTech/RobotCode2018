@@ -16,6 +16,8 @@ public class Elevator extends PIDSubsystem {
         motor = new VictorSP(CMap.elevatorMotor);
         encoder = new Encoder(CMap.elevatorEncoderPortA, CMap.elevatorEncoderPortB);
 
+        getPIDController().setOutputRange(-0.5, 0.5);
+
     }
 
     @Override

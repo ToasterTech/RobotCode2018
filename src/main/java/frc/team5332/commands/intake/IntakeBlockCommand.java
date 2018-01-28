@@ -10,7 +10,7 @@ public class IntakeBlockCommand extends Command {
     }
 
     public void execute(){
-        CMap.intake.spinMotors(-1);
+        CMap.intake.spinRollers(-1);
 
     }
 
@@ -19,6 +19,6 @@ public class IntakeBlockCommand extends Command {
     }
 
     protected void end(){
-        CMap.intake.stopMotors();
+        CMap.intake.stopRollers();
     }
 }

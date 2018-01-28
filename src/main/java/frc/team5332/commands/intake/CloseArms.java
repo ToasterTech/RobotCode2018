@@ -1,6 +1,7 @@
 package main.java.frc.team5332.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import main.java.frc.team5332.robot.CMap;
 
 public class CloseArms extends Command {
@@ -11,16 +12,17 @@ public class CloseArms extends Command {
 
     @Override
     protected void execute() {
-        CMap.intake.changeStatus(false);
+        CMap.intake.spinIntakeAxisMotors(1);
     }
 
     @Override
     protected boolean isFinished() {
-        return !CMap.intake.getSolenoidStatus();
+        return false;
     }
 
     @Override
     protected void end() {
-        //Empty Because no real way to end it
+        CMap.intake.stopIntakeAxisMotors();
+        Scheduler.getInstance().add(new SpinIntakeMotors());
     }
 }

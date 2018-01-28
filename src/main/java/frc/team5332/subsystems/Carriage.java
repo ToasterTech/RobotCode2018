@@ -10,7 +10,7 @@ import main.java.frc.team5332.robot.CMap;
  * on the elevator.
  */
 public class Carriage extends Subsystem {
-    VictorSP leftMotor, rightMotor;
+    VictorSP carriageMotor;
     DigitalInput limitSwitch;
 
 
@@ -18,8 +18,7 @@ public class Carriage extends Subsystem {
         super("Carriage");
         limitSwitch = new DigitalInput(CMap.intakeLimitSwitch);
 
-        leftMotor  = new VictorSP(CMap.leftCarriageMotor);
-        rightMotor = new VictorSP(CMap.rightCarriageMotor);
+        carriageMotor  = new VictorSP(CMap.carriageMotor);
     }
 
     protected void initDefaultCommand(){
@@ -30,24 +29,21 @@ public class Carriage extends Subsystem {
      * This method takes in the cube.
      */
     public void intakeCube(){
-        leftMotor.set(-1);
-        rightMotor.set(-1);
+        carriageMotor.set(-1);
     }
 
     /**
      * This method removes the cube.
      */
     public void expelCube(){
-        leftMotor.set(1);
-        rightMotor.set(1);
+        carriageMotor.set(1);
     }
 
     /**
      * This method stops the motors from running.
      */
     public void stopMotors(){
-        leftMotor.stopMotor();
-        rightMotor.stopMotor();
+        carriageMotor.stopMotor();
     }
 
     /**
