@@ -6,17 +6,14 @@ import main.java.frc.team5332.robot.CMap;
 
 public class Intake extends Subsystem{
 
-    public VictorSP leftIntakeRoller, rightIntakeRoller, leftIntakeAxisMotor, rightIntakeAxisMotor;
+    public VictorSP intakeRollers, intakeAxesMotors;
 
     public Intake(){
         super("Intake");
 
-        leftIntakeRoller = new VictorSP(CMap.leftIntakeRoller);
-        rightIntakeRoller = new VictorSP(CMap.rightIntakeRoller);
-        leftIntakeAxisMotor  = new VictorSP(CMap.leftIntakeAxisMotor);
-        rightIntakeAxisMotor = new VictorSP(CMap.rightIntakeAxisMotor);
+        intakeRollers = new VictorSP(CMap.intakeRollers);
+        intakeAxesMotors = new VictorSP(CMap.intakeAxes);
 
-        leftIntakeRoller.setInverted(true);
     }
 
     protected void initDefaultCommand(){
@@ -24,23 +21,19 @@ public class Intake extends Subsystem{
     }
 
     public void spinRollers(double speed){
-        leftIntakeRoller.set(speed);
-        rightIntakeRoller.set(speed);
+        intakeRollers.set(speed);
     }
 
     public void stopRollers(){
-        leftIntakeRoller.stopMotor();
-        rightIntakeRoller.stopMotor();
+        intakeRollers.stopMotor();
     }
 
     public void spinIntakeAxisMotors(double speed){
-        leftIntakeAxisMotor.set(speed);
-        rightIntakeAxisMotor.set(speed);
+        intakeAxesMotors.set(speed);
     }
 
     public void stopIntakeAxisMotors(){
-        leftIntakeAxisMotor.stopMotor();
-        rightIntakeAxisMotor.stopMotor();
+        intakeAxesMotors.stopMotor();
     }
 
 }

@@ -26,5 +26,6 @@ public class EncoderDrive extends Command {
     @Override
     protected void end() {
         CMap.drive.disableEncoderPID();
+        CMap.drive.resetEncoders();
     }
 }

@@ -1,4 +1,4 @@
-package main.java.frc.team5332.commands.autonomous;
+package main.java.frc.team5332.commands.autonomous.preMatchActions;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 import main.java.frc.team5332.commands.autonomous.routines.*;
@@ -75,11 +75,11 @@ public class GetAutoRoutine {
 
     private void exchangePreferenceSystem(){
         if(CMap.startingSpot.equals("L")){
-            Scheduler.getInstance().add();
+            Scheduler.getInstance().add(null);
         } else if(CMap.startingSpot.equals("R")){
-            Scheduler.getInstance()().add();
+            Scheduler.getInstance().add(null);
         }else if(CMap.startingSpot.equals("M")){
-            Scheduler.getInstance().add();
+            Scheduler.getInstance().add(null);
         }
     }
 

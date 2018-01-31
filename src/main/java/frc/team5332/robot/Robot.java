@@ -1,11 +1,10 @@
 package main.java.frc.team5332.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import main.java.frc.team5332.commands.autonomous.GetPlateStatus;
+import main.java.frc.team5332.commands.autonomous.preMatchActions.GetPlateStatus;
 import main.java.frc.team5332.commands.drive.JoystickDrive;
 import main.java.frc.team5332.commands.drive.TimeDrive;
 import main.java.frc.team5332.commands.intake.SpinIntakeMotors;
@@ -58,15 +57,12 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic(){
         Scheduler.getInstance().run();
 
-        //System.out.println(CMap.gamepad.getRawAxis(CMap.leftTriggerAxis));
     }
 
-    VictorSP testMotor;
     public void testInit(){
-        testMotor = new VictorSP(CMap.rightIntakeRoller);
     }
 
     public void testPeriodic(){
-        testMotor.set(0.5);
+
     }
 }

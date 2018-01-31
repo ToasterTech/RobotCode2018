@@ -50,6 +50,11 @@ public class DriveTrain extends PIDSubsystem {
         rightDrive.stopMotors();
     }
 
+    public void resetEncoders(){
+        leftDrive.encoder.reset();
+        rightDrive.encoder.reset();
+    }
+
     @Override
     protected double returnPIDInput() {
         return gyro.getAngle();
@@ -59,8 +64,6 @@ public class DriveTrain extends PIDSubsystem {
     protected void usePIDOutput(double v) {
         tankDrive(-v, v);
     }
-
-
 
     public void enableEncoderPID(){
         this.getPIDController().disable();

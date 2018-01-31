@@ -35,21 +35,14 @@ public class CMap {
     //Input Devices - Buttons
 
     //PWM Motor Ports
-    public static int leftMotor1 = 0;
-    public static int leftMotor2 = 1;
+    public static int leftDriveMotors = 0;
+    public static int rightDriveMotors = 1;
 
-    public static int rightMotor1 = 2;
-    public static int rightMotor2 = 3;
+    public static int intakeRollers = 2;
+    public static int intakeAxes = 3;
 
-    public static int leftIntakeRoller = 4;
-    public static int rightIntakeRoller = 5;
-
-    public static int leftIntakeAxisMotor = 6;
-    public static int rightIntakeAxisMotor = 7;
-
-    public static int carriageMotor = 8;
-
-    public static int elevatorMotor = 9;
+    public static int carriageMotor = 4;
+    public static int elevatorMotor = 5;
 
     //DIO Ports
     public static int intakeLimitSwitch = 0;
@@ -66,25 +59,30 @@ public class CMap {
 
     //Relay Ports
 
-    //Pnematic Ports
-    public static int leftSolenoid = 0;
-    public static int rightSolenoid = 1;
 
 
     //Subsystems
     public static DriveTrain drive = new DriveTrain();
-
-    public static Intake intake = new Intake();
+    public static Intake intake;
     public static Carriage carriage;// = new Intake();
     public static Elevator elevator;
 
 
     //Other Miscellaneous Objects
     public static String plateOwnership = "";
-    public static String startingSpot = "";
+    public static char startingSpot = 'D';
     public static String autoPreference = "";
+
+    //Measurements in Inches
     public static double scaleHeight = 65;
-    public static double switchHeight = 36;
+    public static double switchHeight = 0;
+    public static double switchWidth = 48;
+    public static double switchLength = 36;
+
+    public static double distanceToSwitchFromWall = 20;
+    public static double distanceToBackOfSwitchFromWall = distanceToSwitchFromWall + 5;
+    public static double distanceAcrossBackOfSwitch = 30;
+    public static double distanceToScaleFromWall = 40;
 
     public static void setupJoystickButtons(){
         intakeButton.whenPressed(new OpenArms());
