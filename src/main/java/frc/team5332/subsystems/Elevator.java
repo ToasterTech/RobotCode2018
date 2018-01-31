@@ -43,4 +43,8 @@ public class Elevator extends PIDSubsystem {
     public void setMotorSpeed(double speed){ motor.setSpeed(speed); }
 
     public void stopMotor(){ motor.stopMotor(); }
+
+    public void resetEncoder(){
+        encoder.reset();
+    }
 }

@@ -29,5 +29,6 @@ public class SetElevatorHeightWithEncoder extends Command {
     @Override
     protected void end() {
         CMap.elevator.getPIDController().disable();
+        CMap.elevator.resetEncoder();
     }
 }
