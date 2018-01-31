@@ -83,8 +83,10 @@ public class CMap {
     //Measurements in Inches
     public static double scaleHeight = 65;
     public static double switchHeight = 0;
-    public static double switchWidth = 48;
+    public static double fenceWidth = 48;
     public static double switchLength = 36;
+    public static double distanceToAutoLine = 10;
+    public static double fenceLength = 40;
 
     public static double distanceToSwitchFromWall = 20;
     public static double distanceToBackOfSwitchFromWall = distanceToSwitchFromWall + 5;
