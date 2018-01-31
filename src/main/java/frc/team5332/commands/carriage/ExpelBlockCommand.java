@@ -1,4 +1,4 @@
-package main.java.frc.team5332.commands.intake;
+package main.java.frc.team5332.commands.carriage;
 
 import edu.wpi.first.wpilibj.command.Command;
 import main.java.frc.team5332.robot.CMap;
@@ -6,7 +6,7 @@ import main.java.frc.team5332.robot.CMap;
 public class ExpelBlockCommand extends Command {
 
     public ExpelBlockCommand(){
-        requires(CMap.intake);
+        requires(CMap.carriage);
     }
 
     public void execute(){

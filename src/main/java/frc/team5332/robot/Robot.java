@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import main.java.frc.team5332.commands.autonomous.preMatchActions.GetAutoRoutine;
 import main.java.frc.team5332.commands.autonomous.preMatchActions.GetPlateStatus;
 import main.java.frc.team5332.commands.drive.JoystickDrive;
 import main.java.frc.team5332.commands.drive.TimeDrive;
@@ -27,9 +28,9 @@ public class Robot extends IterativeRobot {
 
         positionChooser = new SendableChooser();
         positionChooser.setName("Starting Position");
-        positionChooser.addObject("Left", "L");
-        positionChooser.addObject("Middle", "M");
-        positionChooser.addObject("Right", "R");
+        positionChooser.addObject("Left", 'L');
+        positionChooser.addObject("Middle", 'M');
+        positionChooser.addObject("Right", 'R');
 
         SmartDashboard.putData(autoChooser);
         SmartDashboard.putData(positionChooser);
@@ -38,11 +39,11 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit(){
-        CMap.autoPreference = (String) autoChooser.getSelected();
-        CMap.startingSpot   = (String) positionChooser.getSelected();
+        CMap.autoPreference = (String) autoChooser.getSelected(); //Get the Auto Preference From the Driver
+        CMap.startingSpot   = (char)positionChooser.getSelected(); //Get the Starting Spot of the Robot
 
-        Scheduler.getInstance().add(new GetPlateStatus());
-        Scheduler.getInstance().add(new TimeDrive(5, .5, 0));
+        Scheduler.getInstance().add(new GetPlateStatus()); //Get the Game Specific Data String
+        Scheduler.getInstance().add(new GetAutoRoutine()); //Get the Autonomous Routine based on Placement and Switch Assignments
     }
 
     public void autonomousPeriodic(){

@@ -2,7 +2,9 @@ package main.java.frc.team5332.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import main.java.frc.team5332.commands.carriage.IntakeCubeIntoCarriage;
 import main.java.frc.team5332.commands.intake.CloseArms;
+import main.java.frc.team5332.commands.carriage.ExpelBlockCommand;
 import main.java.frc.team5332.commands.intake.OpenArms;
 import main.java.frc.team5332.subsystems.*;
 import main.java.frc.team5332.subsystems.drive.DriveTrain;
@@ -20,18 +22,23 @@ public class CMap {
     public static int leftTriggerAxis = 2;
     public static int rightTriggerAxis = 3;
 
-    //Input Devices - Joystick Buttons
+    //Input Devices - Joystick Buttons - Gamepad
     private static int greenButton = 1;
     private static int redButton = 2;
     private static int blueButton = 3;
     private static int yellowButton = 4;
-
     private static int leftBumper  = 5;
     private static int rightBumper = 6;
 
+    //Input Devices - Joystick Buttons - Operator Stick
+    private static int button1 = 1;
+    private static int button2 = 2;
 
-    private static JoystickButton intakeButton = new JoystickButton(gamepad ,leftBumper);
+    private static JoystickButton openArmsButton = new JoystickButton(gamepad ,leftBumper);
     private static JoystickButton closeArmsButton = new JoystickButton(gamepad, rightBumper);
+
+    private static JoystickButton intakeCubeButton = new JoystickButton(operatorJoystick, button1);
+    private static JoystickButton expelCubeButton = new JoystickButton(operatorJoystick, button2);
     //Input Devices - Buttons
 
     //PWM Motor Ports
@@ -85,8 +92,10 @@ public class CMap {
     public static double distanceToScaleFromWall = 40;
 
     public static void setupJoystickButtons(){
-        intakeButton.whenPressed(new OpenArms());
-        closeArmsButton.whenPressed(new CloseArms());
-        //expelButton.whileHeld(new ExpelBlockCommand());
+        openArmsButton.toggleWhenPressed(new OpenArms());
+        closeArmsButton.toggleWhenPressed(new CloseArms());
+
+        intakeCubeButton.toggleWhenPressed(new IntakeCubeIntoCarriage());
+        expelCubeButton.toggleWhenPressed(new ExpelBlockCommand());
     }
 }

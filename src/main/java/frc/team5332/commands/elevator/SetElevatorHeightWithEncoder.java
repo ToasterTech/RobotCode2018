@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import main.java.frc.team5332.robot.CMap;
 
 public class SetElevatorHeightWithEncoder extends Command {
-    double setpoint;
+    private double setpoint;
 
 
     public SetElevatorHeightWithEncoder(double targetPosition){

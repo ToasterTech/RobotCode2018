@@ -26,6 +26,7 @@ public class TurnToAngle extends Command {
     @Override
     protected void end() {
         CMap.drive.getPIDController().disable();
+        CMap.drive.resetGyro();
     }
 }
 

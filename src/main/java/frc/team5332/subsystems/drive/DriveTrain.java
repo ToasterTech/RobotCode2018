@@ -55,6 +55,10 @@ public class DriveTrain extends PIDSubsystem {
         rightDrive.encoder.reset();
     }
 
+    public void resetGyro(){
+        gyro.reset();
+    }
+
     @Override
     protected double returnPIDInput() {
         return gyro.getAngle();
