@@ -40,6 +40,11 @@ public class DriveTrain extends PIDSubsystem {
         leftDrive.setMotors(left);
         rightDrive.setMotors(right);
 
+        //System.out.println("LEFT: " + left);
+        //System.out.println("RIGHT: " + right);
+
+        System.out.println(gyro.getAngle());
+
     }
 
     /**
@@ -88,4 +93,6 @@ public class DriveTrain extends PIDSubsystem {
         leftDrive.getPIDController().disable();
         rightDrive.getPIDController().disable();
     }
+
+    public double getAngle(){return gyro.getAngle(); }
 }

@@ -16,7 +16,7 @@ public class Carriage extends Subsystem {
 
     public Carriage(){
         super("Carriage");
-        limitSwitch = new DigitalInput(CMap.intakeLimitSwitch);
+        //limitSwitch = new DigitalInput(CMap.intakeLimitSwitch);
 
         carriageMotor  = new VictorSP(CMap.carriageMotor);
     }
@@ -53,6 +53,6 @@ public class Carriage extends Subsystem {
      * @return
      */
     public boolean cubeIsIn(){
-        return limitSwitch.get();
+        return false;
     }
 }

@@ -13,15 +13,16 @@ public class GetAutoRoutine extends Command {
 
     public GetAutoRoutine(){
 
-        if(CMap.autoPreference.equals("Normal")){
+        if(CMap.autoChooser.getSelected().toString().equals("Normal")){
             normalPreferenceSystem();
-        } else if(CMap.autoPreference.equals("Scale")){
+        } else if(CMap.autoChooser.getSelected().toString().equals("Scale")){
             scalePreferenceSystem();
-        } else if(CMap.autoPreference.equals("Switch")){
+        } else if(CMap.autoChooser.getSelected().toString().equals("Switch")){
             switchPreferenceSystem();
-        } else if(CMap.autoPreference.equals("Exchange")){
+        } else if(CMap.autoChooser.getSelected().toString().equals("Exchange")){
         exchangePreferenceSystem();
         }
+
 
         routinePicked = true;
 
@@ -95,5 +96,10 @@ public class GetAutoRoutine extends Command {
     @Override
     protected boolean isFinished() {
         return routinePicked;
+    }
+
+    @Override
+    protected void end() {
+        System.out.println("Received Auto routine");
     }
 }

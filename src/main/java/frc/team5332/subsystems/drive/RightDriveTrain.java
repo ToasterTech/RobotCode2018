@@ -14,8 +14,9 @@ public class RightDriveTrain extends PIDSubsystem {
     public RightDriveTrain(){
         super("Right DriveTrain", 1, 0, 0);
 
-        encoder = new Encoder(CMap.rightDriveEncoderPortA, CMap.rightDriveEncoderPortB);
+        //encoder = new Encoder(CMap.rightDriveEncoderPortA, CMap.rightDriveEncoderPortB);
         motors = new VictorSP(CMap.rightDriveMotors);
+        motors.setInverted(true);
 
     }
 

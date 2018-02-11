@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import main.java.frc.team5332.robot.CMap;
 
 public class LeftDriveTrain extends PIDSubsystem {
@@ -15,7 +16,9 @@ public class LeftDriveTrain extends PIDSubsystem {
     public LeftDriveTrain(){
         super("Left DriveTrain", 1, 0, 0);
 
-        encoder = new Encoder(CMap.leftDriveEncoderPortA, CMap.leftDriveEncoderPortB);
+        encoder =new Encoder(CMap.rightDriveEncoderPortA, CMap.rightDriveEncoderPortB);
+
+
         motors = new VictorSP(CMap.leftDriveMotors);
 
     }

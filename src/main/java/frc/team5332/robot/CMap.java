@@ -2,6 +2,7 @@ package main.java.frc.team5332.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import main.java.frc.team5332.commands.carriage.IntakeCubeIntoCarriage;
 import main.java.frc.team5332.commands.intake.CloseArms;
 import main.java.frc.team5332.commands.carriage.ExpelBlockCommand;
@@ -42,22 +43,22 @@ public class CMap {
     //Input Devices - Buttons
 
     //PWM Motor Ports
-    public static int leftDriveMotors = 0;
-    public static int rightDriveMotors = 1;
+    public static int leftDriveMotors = 1;
+    public static int rightDriveMotors = 0;
 
     public static int intakeRollers = 2;
     public static int intakeAxes = 3;
 
-    public static int carriageMotor = 4;
-    public static int elevatorMotor = 5;
+    public static int carriageMotor = 5;
+    public static int elevatorMotor = 4;
 
     //DIO Ports
     public static int intakeLimitSwitch = 0;
 
-    public static int leftDriveEncoderPortA  = 1;
-    public static int leftDriveEncoderPortB  = 2;
-    public static int rightDriveEncoderPortA = 3;
-    public static int rightDriveEncoderPortB = 4;
+    public static int leftDriveEncoderPortA  = 0;
+    public static int leftDriveEncoderPortB  = 1;
+    public static int rightDriveEncoderPortA = 2;
+    public static int rightDriveEncoderPortB = 3;
     public static int elevatorEncoderPortA   = 5;
     public static int elevatorEncoderPortB   = 6;
 
@@ -70,15 +71,18 @@ public class CMap {
 
     //Subsystems
     public static DriveTrain drive = new DriveTrain();
-    public static Intake intake;
-    public static Carriage carriage;// = new Intake();
-    public static Elevator elevator;
+    public static Intake intake    = new Intake();
+    public static Carriage carriage = new Carriage();
+    public static Elevator elevator = new Elevator();
 
 
     //Other Miscellaneous Objects
     public static String plateOwnership = "";
     public static char startingSpot = 'D';
-    public static String autoPreference = "";
+    public static Object autoPreference = "";
+
+    public static SendableChooser autoChooser,
+                                  positionChooser;
 
     //Measurements in Inches
     public static double scaleHeight = 65;
