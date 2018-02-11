@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.java.frc.team5332.commands.autonomous.preMatchActions.GetAutoRoutine;
 import main.java.frc.team5332.commands.autonomous.preMatchActions.GetPlateStatus;
 import main.java.frc.team5332.commands.drive.JoystickDrive;
+import main.java.frc.team5332.commands.drive.TestMotorInput;
 import main.java.frc.team5332.commands.drive.TimeDrive;
 import main.java.frc.team5332.commands.elevator.JoystickElevator;
 import main.java.frc.team5332.commands.intake.SpinIntakeMotors;
@@ -59,9 +60,10 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit(){
-        Scheduler.getInstance().add(new JoystickDrive());
-        Scheduler.getInstance().add(new JoystickElevator());
-        Scheduler.getInstance().add(new SpinIntakeMotors());
+        //Scheduler.getInstance().add(new JoystickDrive());
+        //Scheduler.getInstance().add(new JoystickElevator());
+        //Scheduler.getInstance().add(new SpinIntakeMotors());
+        Scheduler.getInstance().add(new TestMotorInput(1));
     }
 
     public void teleopPeriodic(){
