@@ -16,7 +16,7 @@ public class LeftDriveTrain extends PIDSubsystem {
     public LeftDriveTrain(){
         super("Left DriveTrain", 1, 0, 0);
 
-        encoder =new Encoder(CMap.rightDriveEncoderPortA, CMap.rightDriveEncoderPortB);
+        encoder =new Encoder(CMap.leftDriveEncoderPortA, CMap.leftDriveEncoderPortB);
 
 
         motors = new VictorSP(CMap.leftDriveMotors);

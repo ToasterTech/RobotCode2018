@@ -60,10 +60,11 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit(){
-        //Scheduler.getInstance().add(new JoystickDrive());
-        //Scheduler.getInstance().add(new JoystickElevator());
-        //Scheduler.getInstance().add(new SpinIntakeMotors());
-        Scheduler.getInstance().add(new TestMotorInput(1));
+        CMap.setupJoystickButtons();
+        Scheduler.getInstance().add(new JoystickDrive());
+        Scheduler.getInstance().add(new JoystickElevator());
+        Scheduler.getInstance().add(new SpinIntakeMotors());
+        //Scheduler.getInstance().add(new TestMotorInput(5));
     }
 
     public void teleopPeriodic(){

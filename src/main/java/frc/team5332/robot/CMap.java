@@ -46,8 +46,9 @@ public class CMap {
     public static int leftDriveMotors = 1;
     public static int rightDriveMotors = 0;
 
-    public static int intakeRollers = 2;
-    public static int intakeAxes = 3;
+    public static int intakeRollerRight = 2;
+    public static int intakeRollerLeft = 5;
+    public static int intakeAxes = 6;
 
     public static int carriageMotor = 5;
     public static int elevatorMotor = 4;
@@ -71,8 +72,8 @@ public class CMap {
 
     //Subsystems
     public static DriveTrain drive = new DriveTrain();
-    public static Intake intake    = new Intake();
-    public static Carriage carriage = new Carriage();
+    public static Intake intake   = new Intake();
+    public static Carriage carriage;// = new Carriage();
     public static Elevator elevator = new Elevator();
 
 
@@ -97,11 +98,17 @@ public class CMap {
     public static double distanceAcrossBackOfSwitch = 30;
     public static double distanceToScaleFromWall = 40;
 
+    public static boolean leftTriggerPreviouslyPressed = false,
+            rightTriggerPreviouslyPressed = false,
+            motorsIntaking = false,
+            motorsExpelling = false;
     public static void setupJoystickButtons(){
-        openArmsButton.toggleWhenPressed(new OpenArms());
-        closeArmsButton.toggleWhenPressed(new CloseArms());
+        //openArmsButton.toggleWhenPressed(new OpenArms());
+        //closeArmsButton.toggleWhenPressed(new CloseArms());
 
-        intakeCubeButton.toggleWhenPressed(new IntakeCubeIntoCarriage());
-        expelCubeButton.toggleWhenPressed(new ExpelBlockCommand());
+        openArmsButton.whileHeld(new CloseArms());
+        openArmsButton.whenReleased(new OpenArms());
+            //intakeCubeButton.toggleWhenPressed(new IntakeCubeIntoCarriage());
+        //expelCubeButton.toggleWhenPressed(new ExpelBlockCommand());
     }
 }
