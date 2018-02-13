@@ -15,12 +15,14 @@ public class SpinIntakeMotors extends Command {
         //requires(CMap.intake);
     }
 
+
     @Override
     protected void execute() {
 
         //System.out.println("I AM RUNNING. I SHOULKD BE READY TO SPIN");
         //System.out.println("LEFT TRIGGER: " + CMap.gamepad.getRawAxis(CMap.leftTriggerAxis) +  " at " + Calendar.getInstance().get(Calendar.SECOND));
 
+        /*
         if(CMap.gamepad.getRawAxis(CMap.leftTriggerAxis) >= 0.75 && !CMap.motorsExpelling){
             if(!CMap.leftTriggerPreviouslyPressed){
                 if(!CMap.motorsIntaking){
@@ -34,7 +36,7 @@ public class SpinIntakeMotors extends Command {
             }
         } else {
             CMap.leftTriggerPreviouslyPressed = false;
-        }
+        }*/
 
         if(CMap.gamepad.getRawAxis(CMap.rightTriggerAxis) >= 0.75 && !CMap.motorsIntaking){
             if(!CMap.rightTriggerPreviouslyPressed){

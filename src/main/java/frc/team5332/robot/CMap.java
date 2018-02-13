@@ -6,7 +6,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import main.java.frc.team5332.commands.carriage.IntakeCubeIntoCarriage;
 import main.java.frc.team5332.commands.intake.CloseArms;
 import main.java.frc.team5332.commands.carriage.ExpelBlockCommand;
+import main.java.frc.team5332.commands.intake.IntakeCube;
 import main.java.frc.team5332.commands.intake.OpenArms;
+import main.java.frc.team5332.commands.intake.SpinIntakeRollers;
 import main.java.frc.team5332.subsystems.*;
 import main.java.frc.team5332.subsystems.drive.DriveTrain;
 
@@ -106,8 +108,8 @@ public class CMap {
         //openArmsButton.toggleWhenPressed(new OpenArms());
         //closeArmsButton.toggleWhenPressed(new CloseArms());
 
-        openArmsButton.whileHeld(new CloseArms());
-        openArmsButton.whenReleased(new OpenArms());
+        openArmsButton.whileHeld(new IntakeCube());
+        openArmsButton.whenReleased(new CloseArms());
             //intakeCubeButton.toggleWhenPressed(new IntakeCubeIntoCarriage());
         //expelCubeButton.toggleWhenPressed(new ExpelBlockCommand());
     }
