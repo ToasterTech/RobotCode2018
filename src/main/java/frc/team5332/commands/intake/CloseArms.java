@@ -12,7 +12,7 @@ public class CloseArms extends Command {
 
     @Override
     protected void execute() {
-        CMap.intake.spinIntakeAxisMotors(-1);
+        CMap.intake.spinIntakeAxisMotors(1);
     }
 
     @Override
