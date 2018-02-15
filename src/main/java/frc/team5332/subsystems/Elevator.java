@@ -1,19 +1,20 @@
 package main.java.frc.team5332.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import main.java.frc.team5332.robot.CMap;
 
 public class Elevator extends PIDSubsystem {
-    VictorSP motor;
+    SpeedControllerGroup motor;
     Encoder encoder;
 
     public Elevator(){
         super("Elevator", 1, 0, 0);
 
-        motor = new VictorSP(CMap.elevatorMotor);
+        motor = new SpeedControllerGroup(new VictorSP(CMap.elevatorMotor1), new VictorSP(CMap.elevatorMotor2));
         encoder = new Encoder(CMap.elevatorEncoderPortA, CMap.elevatorEncoderPortB);
 
         getPIDController().setOutputRange(-0.5, 0.5);
@@ -40,7 +41,7 @@ public class Elevator extends PIDSubsystem {
         return Math.abs(encoder.getDistance() - getSetpoint()) <= 0.5;
     }
 
-    public void setMotorSpeed(double speed){ motor.setSpeed(speed); }
+    public void setMotorSpeed(double speed){ motor.set(speed); }
 
     public void stopMotor(){ motor.stopMotor(); }
 

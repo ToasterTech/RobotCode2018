@@ -49,11 +49,12 @@ public class CMap {
     public static int rightDriveMotors = 0;
 
     public static int intakeRollerRight = 2;
-    public static int intakeRollerLeft = 5;
+    public static int intakeRollerLeft = 9;
     public static int intakeAxes = 6;
 
     public static int carriageMotor = 5;
-    public static int elevatorMotor = 4;
+    public static int elevatorMotor1 = 4;
+    public static int elevatorMotor2 = 5;
 
     //DIO Ports
     public static int intakeLimitSwitch = 0;
