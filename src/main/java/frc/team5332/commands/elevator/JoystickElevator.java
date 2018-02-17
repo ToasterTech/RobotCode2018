@@ -10,7 +10,7 @@ public class JoystickElevator extends Command {
     }
 
     public void execute(){
-        CMap.elevator.setMotorSpeed(CMap.operatorJoystick.getY());
+        CMap.elevator.setMotorSpeed(-CMap.operatorJoystick.getY());
     }
 
     @Override

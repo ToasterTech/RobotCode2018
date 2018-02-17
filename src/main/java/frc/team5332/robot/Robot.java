@@ -61,14 +61,16 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit(){
         CMap.setupJoystickButtons();
+
         Scheduler.getInstance().add(new JoystickDrive());
         Scheduler.getInstance().add(new JoystickElevator());
-        Scheduler.getInstance().add(new SpinIntakeMotors());
-        //Scheduler.getInstance().add(new TestMotorInput(5));
+        //Scheduler.getInstance().add(new SpinIntakeMotors());
+        //Scheduler.getInstance().add(new TestMotorInput(8));
     }
 
     public void teleopPeriodic(){
         Scheduler.getInstance().run();
+        //System.out.println("Arms Open: " + CMap.armsOpenTime);
 
     }
 

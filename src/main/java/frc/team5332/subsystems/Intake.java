@@ -1,5 +1,6 @@
 package main.java.frc.team5332.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -8,7 +9,7 @@ import main.java.frc.team5332.robot.CMap;
 public class Intake extends Subsystem{
 
     public SpeedControllerGroup intakeRollers;
-
+    public DigitalInput limitSwitchA, limitSwitchB;
     public VictorSP intakeAxesMotors;
 
     public Intake(){
@@ -16,6 +17,9 @@ public class Intake extends Subsystem{
 
         VictorSP leftIntakeRoller = new VictorSP(CMap.intakeRollerLeft);
         leftIntakeRoller.setInverted(true);
+
+        limitSwitchA = new DigitalInput(CMap.windowMotorLimitSwitchA);
+        limitSwitchB =  new DigitalInput(CMap.windowMotorLimitSwitchB);
 
         intakeRollers = new SpeedControllerGroup(new VictorSP(CMap.intakeRollerRight), leftIntakeRoller);
         intakeAxesMotors = new VictorSP(CMap.intakeAxes);

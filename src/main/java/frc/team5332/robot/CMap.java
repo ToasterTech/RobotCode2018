@@ -4,11 +4,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import main.java.frc.team5332.commands.carriage.IntakeCubeIntoCarriage;
-import main.java.frc.team5332.commands.intake.CloseArms;
+import main.java.frc.team5332.commands.intake.*;
 import main.java.frc.team5332.commands.carriage.ExpelBlockCommand;
-import main.java.frc.team5332.commands.intake.IntakeCube;
-import main.java.frc.team5332.commands.intake.OpenArms;
-import main.java.frc.team5332.commands.intake.SpinIntakeRollers;
 import main.java.frc.team5332.subsystems.*;
 import main.java.frc.team5332.subsystems.drive.DriveTrain;
 
@@ -17,6 +14,7 @@ public class CMap {
     public static Joystick gamepad          = new Joystick(0);
     public static Joystick operatorJoystick = new Joystick(1);
 
+    public static int armsOpenTime = 0;
 
     public static int leftXAxis = 0; //Left X-Axis
     public static int leftYAXis = 1; //Left Y-Axis
@@ -37,11 +35,11 @@ public class CMap {
     private static int button1 = 1;
     private static int button2 = 2;
 
-    private static JoystickButton openArmsButton = new JoystickButton(gamepad ,leftBumper);
-    private static JoystickButton closeArmsButton = new JoystickButton(gamepad, rightBumper);
+    //private static JoystickButton openArmsButton = new JoystickButton(gamepad ,leftBumper);
+    //private static JoystickButton closeArmsButton = new JoystickButton(gamepad, rightBumper);
 
-    private static JoystickButton intakeCubeButton = new JoystickButton(operatorJoystick, button1);
-    private static JoystickButton expelCubeButton = new JoystickButton(operatorJoystick, button2);
+    private static JoystickButton intakeCubeButton = new JoystickButton(gamepad, rightBumper);
+    private static JoystickButton expelCubeButton = new JoystickButton(operatorJoystick, 2);
     //Input Devices - Buttons
 
     //PWM Motor Ports
@@ -49,20 +47,21 @@ public class CMap {
     public static int rightDriveMotors = 0;
 
     public static int intakeRollerRight = 2;
-    public static int intakeRollerLeft = 9;
+    public static int intakeRollerLeft = 4;
     public static int intakeAxes = 6;
 
-    public static int carriageMotor = 5;
-    public static int elevatorMotor1 = 4;
+    public static int leftCarriageMotor = 9; //7
+    public static int rightCarriageMotor = 8;
+
+    public static int elevatorMotor1 = 3;
     public static int elevatorMotor2 = 5;
 
     //DIO Ports
-    public static int intakeLimitSwitch = 0;
+    public static int windowMotorLimitSwitchA = 2;
+    public static int windowMotorLimitSwitchB = 3;
 
     public static int leftDriveEncoderPortA  = 0;
     public static int leftDriveEncoderPortB  = 1;
-    public static int rightDriveEncoderPortA = 2;
-    public static int rightDriveEncoderPortB = 3;
     public static int elevatorEncoderPortA   = 5;
     public static int elevatorEncoderPortB   = 6;
 
@@ -75,8 +74,8 @@ public class CMap {
 
     //Subsystems
     public static DriveTrain drive = new DriveTrain();
-    public static Intake intake   = new Intake();
-    public static Carriage carriage;// = new Carriage();
+    public static Intake intake  = new Intake();
+    public static Carriage carriage = new Carriage();
     public static Elevator elevator = new Elevator();
 
 
@@ -109,9 +108,11 @@ public class CMap {
         //openArmsButton.toggleWhenPressed(new OpenArms());
         //closeArmsButton.toggleWhenPressed(new CloseArms());
 
-        openArmsButton.whileHeld(new IntakeCube());
-        openArmsButton.whenReleased(new CloseArms());
+        //openArmsButton.whileHeld(new OpenArms());
+        intakeCubeButton.whenReleased(new CloseArms());
+
+        intakeCubeButton.whileHeld(new IntakeCubeCommand());
             //intakeCubeButton.toggleWhenPressed(new IntakeCubeIntoCarriage());
-        //expelCubeButton.toggleWhenPressed(new ExpelBlockCommand());
+        expelCubeButton.whileHeld(new ExpelBlockCommand());
     }
 }

@@ -6,11 +6,12 @@ import main.java.frc.team5332.robot.CMap;
 public class ExpelBlockCommand extends Command {
 
     public ExpelBlockCommand(){
-        requires(CMap.carriage);
+
     }
 
     public void execute(){
-        CMap.intake.spinRollers(1);
+        System.out.println("YES IM EXPELLING");
+        CMap.carriage.expelCube();
     }
 
     protected boolean isFinished(){
@@ -18,7 +19,7 @@ public class ExpelBlockCommand extends Command {
     }
 
     protected void end(){
-        CMap.intake.stopRollers();
+        CMap.carriage.stopMotors();
     }
 
 }

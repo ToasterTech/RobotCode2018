@@ -11,11 +11,12 @@ public class IntakeCubeIntoCarriage extends Command{
 
     public void execute(){
         CMap.carriage.intakeCube();
+
     }
 
     @Override
     protected boolean isFinished() {
-        return CMap.carriage.cubeIsIn();
+        return false;
     }
 
     @Override

@@ -40,7 +40,7 @@ public class DriveTrain extends PIDSubsystem {
         leftDrive.setMotors(left);
         rightDrive.setMotors(right);
 
-        //System.out.println("LEFT: " + left);
+        System.out.println("LEFT: " + leftDrive.encoder.get());
         //System.out.println("RIGHT: " + right);
 
         System.out.println(gyro.getAngle());

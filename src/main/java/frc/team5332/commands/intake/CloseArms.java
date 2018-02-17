@@ -13,16 +13,22 @@ public class CloseArms extends Command {
     @Override
     protected void execute() {
         CMap.intake.spinIntakeAxisMotors(1);
+        CMap.armsOpenTime -= 1;
+        System.out.println("RUNNING");
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        System.out.println("LEFT: " + CMap.intake.limitSwitchA.get());
+        System.out.println("Right: " + CMap.intake.limitSwitchB.get());
+        return !CMap.intake.limitSwitchA.get() && !CMap.intake.limitSwitchB.get();
+        //return CMap.armsOpenTime <= 0;
     }
 
     @Override
     protected void end() {
         CMap.intake.stopIntakeAxisMotors();
+        System.out.println("DONE");
         //Scheduler.getInstance().add(new SpinIntakeMotors());
     }
 }

@@ -1,7 +1,6 @@
 package main.java.frc.team5332.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import main.java.frc.team5332.robot.CMap;
 
@@ -10,15 +9,19 @@ import main.java.frc.team5332.robot.CMap;
  * on the elevator.
  */
 public class Carriage extends Subsystem {
-    VictorSP carriageMotor;
+    SpeedControllerGroup carriageMotor;
     DigitalInput limitSwitch;
+
+
 
 
     public Carriage(){
         super("Carriage");
         //limitSwitch = new DigitalInput(CMap.intakeLimitSwitch);
-
-        carriageMotor  = new VictorSP(CMap.carriageMotor);
+        Spark invertedMotor = new Spark(CMap.rightCarriageMotor);
+        invertedMotor.setInverted(true);
+        carriageMotor = new SpeedControllerGroup(invertedMotor, new Talon(CMap.leftCarriageMotor));;
+        //carriageMotor  = new SpeedControllerGroup(new VictorSP(CMap.leftCarriageMotor), new VictorSP(CMap.rightCarriageMotor));
     }
 
     protected void initDefaultCommand(){
@@ -29,7 +32,7 @@ public class Carriage extends Subsystem {
      * This method takes in the cube.
      */
     public void intakeCube(){
-        carriageMotor.set(-1);
+        carriageMotor.set(-0.6);
     }
 
     /**
