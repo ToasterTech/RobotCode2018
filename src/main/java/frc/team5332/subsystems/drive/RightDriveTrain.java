@@ -28,6 +28,10 @@ public class RightDriveTrain extends PIDSubsystem {
         motors.set(speed);
     }
 
+    public double get(){
+        return motors.get();
+    }
+
     @Override
     protected void initDefaultCommand() {
 

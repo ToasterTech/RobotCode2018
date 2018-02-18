@@ -16,7 +16,6 @@ public class GetPlateStatus extends Command{
     protected void execute() {
         System.out.println("GETTING PLATE STATUS");
         CMap.plateOwnership = DriverStation.getInstance().getGameSpecificMessage();
-        //System.out.println(CMap.plateOwnership);
     }
 
     @Override

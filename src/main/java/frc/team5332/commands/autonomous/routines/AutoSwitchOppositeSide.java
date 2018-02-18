@@ -10,6 +10,8 @@ import main.java.frc.team5332.robot.CMap;
 public class AutoSwitchOppositeSide extends CommandGroup {
 
     public AutoSwitchOppositeSide() {
+        System.out.println("AUTO SWITCH OPPOSITE SIDE");
+        /*
         int angle = (CMap.startingSpot == 'L') ? -90 : 90;
 
         addParallel(new SetElevatorHeightWithEncoder(CMap.switchHeight));
@@ -18,6 +20,6 @@ public class AutoSwitchOppositeSide extends CommandGroup {
         addSequential(new TurnToAngle(angle));
         addSequential(new EncoderDrive(CMap.distanceAcrossBackOfSwitch));
         addSequential(new TurnToAngle(angle));
-        addSequential(new ExpelBlockCommand(), 5);
+        addSequential(new ExpelBlockCommand(), 5);*/
     }
 }

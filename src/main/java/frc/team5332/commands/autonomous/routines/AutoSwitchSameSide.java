@@ -10,6 +10,8 @@ import main.java.frc.team5332.robot.CMap;
 
 public class AutoSwitchSameSide extends CommandGroup {
     public AutoSwitchSameSide(){
+        System.out.println("AUTO SWITCH SAME SIDE");
+        /*
         int angle = (CMap.startingSpot == 'L') ? -90 : 90;
         System.out.println("Angle Set to " + angle);
         addParallel(new SetElevatorHeightWithEncoder(CMap.switchHeight)); //Raise Elevator
@@ -17,6 +19,6 @@ public class AutoSwitchSameSide extends CommandGroup {
         addSequential(new EncoderDrive(CMap.distanceToSwitchFromWall)); //Needs to be in Feet
         addSequential(new TurnToAngle(angle)); //Face Switch
         addSequential(new TimeDrive(2, 0.5, 0.5)); //Make sure Robot bumper is contacting fence
-        addSequential(new ExpelBlockCommand(), 5); //Tells the Robot that this command takes 5 seconds
+        addSequential(new ExpelBlockCommand(), 5); //Tells the Robot that this command takes 5 seconds*/
     }
 }

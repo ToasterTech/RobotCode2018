@@ -11,12 +11,14 @@ public class AutoScaleSameSide extends CommandGroup {
 
     public AutoScaleSameSide(){
 
-        int angle = (CMap.startingSpot == 'L') ? -90 : 90;
-        System.out.println("Angle Set to " + angle);
-        addParallel(new SetElevatorHeightWithEncoder(CMap.switchHeight)); //Raise Elevator
-        addSequential(new EncoderDrive(CMap.distanceToScaleFromWall)); //Needs to be in Feet
-        addSequential(new TurnToAngle(angle)); //Face Scale
-        addSequential(new ExpelBlockCommand(), 5); //Tells the Robot that this command takes 5 seconds
+        System.out.println("AUTO SCALE SAME SIDE");
+
+        //int angle = (CMap.startingSpot == 'L') ? -90 : 90;
+        //System.out.println("Angle Set to " + angle);
+        //addParallel(new SetElevatorHeightWithEncoder(CMap.switchHeight)); //Raise Elevator
+        //addSequential(new EncoderDrive(CMap.distanceToScaleFromWall)); //Needs to be in Feet
+        //addSequential(new TurnToAngle(angle)); //Face Scale
+        //addSequential(new ExpelBlockCommand(), 5); //Tells the Robot that this command takes 5 seconds
 
     }
 

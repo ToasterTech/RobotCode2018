@@ -2,6 +2,7 @@ package main.java.frc.team5332.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -45,8 +46,8 @@ public class Robot extends IterativeRobot {
         //CMap.autoPreference = CMap.autoChooser.getSelected(); //Get the Auto Preference From the Driver
         //CMap.startingSpot   = (char)CMap.positionChooser.getSelected(); //Get the Starting Spot of the Robot
 
-        //Scheduler.getInstance().add(new GetPlateStatus()); //Get the Game Specific Data String
-        //Scheduler.getInstance().add(new GetAutoRoutine()); //Get the Autonomous Routine based on Placement and Switch Assignments
+        Scheduler.getInstance().add(new GetPlateStatus()); //Get the Game Specific Data String
+        Scheduler.getInstance().add(new GetAutoRoutine()); //Get the Autonomous Routine based on Placement and Switch Assignments
 
         //Scheduler.getInstance().add(new TimeDrive(10, -.5, .5));
         //System.out.println(CMap.autoChooser.getSelected());
@@ -55,7 +56,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousPeriodic(){
-        System.out.println(CMap.drive.getAngle());
+        //System.out.println(CMap.drive.getAngle());
         Scheduler.getInstance().run();
     }
 

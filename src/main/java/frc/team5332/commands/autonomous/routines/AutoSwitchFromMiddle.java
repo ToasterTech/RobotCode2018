@@ -12,6 +12,8 @@ import main.java.frc.team5332.robot.CMap;
 public class AutoSwitchFromMiddle extends CommandGroup {
 
     public AutoSwitchFromMiddle(){
+        System.out.println("AUTO SWITCH MIDDLE");
+        /*
         int firstTurnAngle = (CMap.plateOwnership.charAt(0) == 'L') ? 90 : -90;
         int secondTurnAngle = -firstTurnAngle;
         addParallel(new SetElevatorHeightWithEncoder(CMap.switchHeight));
@@ -21,7 +23,7 @@ public class AutoSwitchFromMiddle extends CommandGroup {
         addSequential(new TurnToAngle(secondTurnAngle));
         addSequential(new TimeDrive(3, 0.5, 0.5));
         addSequential(new ExpelBlockCommand());
-        System.out.println("We should be good.");
+        System.out.println("We should be good.");*/
 
     }
 

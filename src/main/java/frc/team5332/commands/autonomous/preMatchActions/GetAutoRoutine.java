@@ -14,13 +14,20 @@ public class GetAutoRoutine extends Command {
     public GetAutoRoutine(){
 
         if(CMap.autoChooser.getSelected().toString().equals("Normal")){
+            System.out.println("NORMAL SELECTED");
             normalPreferenceSystem();
         } else if(CMap.autoChooser.getSelected().toString().equals("Scale")){
+            System.out.println("SCALE SELECTED");
             scalePreferenceSystem();
         } else if(CMap.autoChooser.getSelected().toString().equals("Switch")){
+            System.out.println("SWITCH SELECTED");
             switchPreferenceSystem();
         } else if(CMap.autoChooser.getSelected().toString().equals("Exchange")){
+            System.out.println("EXCHANGE SELECTED");
         exchangePreferenceSystem();
+        } else if(CMap.autoChooser.getSelected().toString().equals("Auto Run")){
+            System.out.println("AUTO RUN SELECTED");
+            Scheduler.getInstance().add(new AutoRun());
         }
 
 
