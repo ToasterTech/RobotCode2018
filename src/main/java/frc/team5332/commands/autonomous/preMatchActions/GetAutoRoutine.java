@@ -1,5 +1,6 @@
 package main.java.frc.team5332.commands.autonomous.preMatchActions;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -24,38 +25,21 @@ public class GetAutoRoutine extends Command {
     protected void execute() {
         super.execute();
 
-
-        /*
-        if(CMap.autoChooser.getSelected().toString().equals("Normal")){
-            System.out.println("NORMAL SELECTED");
-            normalPreferenceSystem();
-        } else if(CMap.autoChooser.getSelected().toString().equals("Scale")){
-            System.out.println("SCALE SELECTED");
-            scalePreferenceSystem();
-        } else if(CMap.autoChooser.getSelected().toString().equals("Switch")){
-            System.out.println("SWITCH SELECTED");
-            switchPreferenceSystem();
-        } else if(CMap.autoChooser.getSelected().toString().equals("Exchange")){
-            System.out.println("EXCHANGE SELECTED");
-            exchangePreferenceSystem();
-        } else if(CMap.autoChooser.getSelected().toString().equals("Auto Run")){
-            System.out.println("AUTO RUN SELECTED");
-            Scheduler.getInstance().add(new AutoRun());
-            routinePicked = true;
-        }*/
-
-        if(SmartDashboard.getBoolean("DB/Button 0", false)){
-            System.out.println("NORMAL PREFERENCE SYSTEM");
-            routinePicked = true;
-        } else if(SmartDashboard.getBoolean("DB/Button 1", false)){
-            System.out.println("SCALE SYSTEM");
-            routinePicked = true;
-        } else if(SmartDashboard.getBoolean("DB/Button 2", false)){
-            System.out.println("SWITCH SYSTEM");
-            routinePicked = true;
-        } else if(SmartDashboard.getBoolean("DB/Button 3", false)){
-            System.out.println("AUTO RUN");
-            routinePicked = true;
+        if(DriverStation.getInstance().getGameSpecificMessage().length() == 3) {
+            SmartDashboard.putString("DB/String 5", "Received Plates");
+            if (SmartDashboard.getBoolean("DB/Button 0", false)) {
+                System.out.println("NORMAL PREFERENCE SYSTEM");
+                routinePicked = true;
+            } else if (SmartDashboard.getBoolean("DB/Button 1", false)) {
+                System.out.println("SCALE SYSTEM");
+                routinePicked = true;
+            } else if (SmartDashboard.getBoolean("DB/Button 2", false)) {
+                System.out.println("SWITCH SYSTEM");
+                routinePicked = true;
+            } else if (SmartDashboard.getBoolean("DB/Button 3", false)) {
+                System.out.println("AUTO RUN");
+                routinePicked = true;
+            }
         }
 
     }
