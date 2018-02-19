@@ -10,7 +10,7 @@ import main.java.frc.team5332.robot.CMap;
 
 public class AutoSwitchFromMiddle extends CommandGroup {
 
-    public AutoSwitchFromMiddle(){
+    public AutoSwitchFromMiddle(char platePosition){
         System.out.println("AUTO SWITCH MIDDLE");
         /*
         int firstTurnAngle = (CMap.plateOwnership.charAt(0) == 'L') ? 90 : -90;

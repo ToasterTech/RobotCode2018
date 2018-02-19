@@ -8,7 +8,7 @@ import main.java.frc.team5332.robot.CMap;
 
 public class AutoScaleSameSide extends CommandGroup {
 
-    public AutoScaleSameSide(){
+    public AutoScaleSameSide(char robotPosition){
 
         System.out.println("AUTO SCALE SAME SIDE");
 

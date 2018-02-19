@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoScaleOppositeSide extends CommandGroup {
 
-    public AutoScaleOppositeSide(){
+    public AutoScaleOppositeSide(char robotPosition){
         System.out.println("AUTO SCALE OPPOSITE SIDE");
     }
 

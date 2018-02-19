@@ -1,6 +1,7 @@
 package main.java.frc.team5332.commands.autonomous.routines;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.java.frc.team5332.commands.drive.EncoderDrive;
 import main.java.frc.team5332.commands.drive.TurnToAngle;
 import main.java.frc.team5332.commands.carriage.ExpelBlockCommand;
@@ -8,8 +9,8 @@ import main.java.frc.team5332.robot.CMap;
 
 public class AutoSwitchOppositeSide extends CommandGroup {
 
-    public AutoSwitchOppositeSide() {
-        System.out.println("AUTO SWITCH OPPOSITE SIDE");
+    public AutoSwitchOppositeSide(char robotPosition) {
+        SmartDashboard.putString("DB/String 5", "Auto Switch Opposite Side Running");
         /*
         int angle = (CMap.startingSpot == 'L') ? -90 : 90;
 

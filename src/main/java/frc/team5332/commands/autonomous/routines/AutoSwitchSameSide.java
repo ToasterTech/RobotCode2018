@@ -1,6 +1,7 @@
 package main.java.frc.team5332.commands.autonomous.routines;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.java.frc.team5332.commands.drive.EncoderDrive;
 import main.java.frc.team5332.commands.drive.TimeDrive;
 import main.java.frc.team5332.commands.drive.TurnToAngle;
@@ -8,8 +9,9 @@ import main.java.frc.team5332.commands.carriage.ExpelBlockCommand;
 import main.java.frc.team5332.robot.CMap;
 
 public class AutoSwitchSameSide extends CommandGroup {
-    public AutoSwitchSameSide(){
-        System.out.println("AUTO SWITCH SAME SIDE");
+    public AutoSwitchSameSide(char robotPosition){
+        SmartDashboard.putString("DB/String 5", "Auto Switch Same Side Running");
+
         /*
         int angle = (CMap.startingSpot == 'L') ? -90 : 90;
         System.out.println("Angle Set to " + angle);

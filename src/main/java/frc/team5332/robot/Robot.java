@@ -40,6 +40,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putString("DB/String 2", "Switch");
         SmartDashboard.putString("DB/String 3", "Auto Run");
         SmartDashboard.putString("DB/String 4", "Waiting for Plates");
+        SmartDashboard.putString("DB/String 5", "'L', 'M', or 'R' below.");
 
     }
 
