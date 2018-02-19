@@ -23,13 +23,13 @@ public class Elevator extends Subsystem {
     }
 
     public void setMotorSpeed(double speed) {
-        if (speed > 0.6) {
-            motor.set(0.6);
-        } else if (speed < -0.6) {
+        /*
+        if (speed < -0.6) {
             motor.set(-0.6);
         } else {
             motor.set(speed);
-        }
+        }*/
+        motor.set(speed);
     }
 
     public void stopMotor(){ motor.stopMotor(); }

@@ -106,14 +106,9 @@ public class CMap {
             motorsIntaking = false,
             motorsExpelling = false;
     public static void setupJoystickButtons(){
-        //openArmsButton.toggleWhenPressed(new OpenArms());
-        //closeArmsButton.toggleWhenPressed(new CloseArms());
-
-        //openArmsButton.whileHeld(new OpenArms());
         intakeCubeButton.whenReleased(new CloseArms());
 
         intakeCubeButton.whileHeld(new IntakeCubeCommand());
-            //intakeCubeButton.toggleWhenPressed(new IntakeCubeIntoCarriage());
         expelCubeButton.whileHeld(new ExpelBlockCommand());
     }
 }

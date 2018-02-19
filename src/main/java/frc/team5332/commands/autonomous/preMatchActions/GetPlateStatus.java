@@ -15,16 +15,15 @@ public class GetPlateStatus extends Command{
     @Override
     protected void execute() {
         System.out.println("GETTING PLATE STATUS");
-        CMap.plateOwnership = DriverStation.getInstance().getGameSpecificMessage();
     }
 
     @Override
     protected boolean isFinished() {
-        return CMap.plateOwnership.length() == 3;
+        return DriverStation.getInstance().getGameSpecificMessage().length() == 3;
     }
 
     @Override
     protected void end() {
-        System.out.println("Plate Status Received: " + CMap.plateOwnership);
+        System.out.println("Plate Status Received: " + DriverStation.getInstance().getGameSpecificMessage());
     }
 }

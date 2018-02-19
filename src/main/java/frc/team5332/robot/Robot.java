@@ -19,8 +19,9 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void robotInit() {
-        //CMap.setupJoystickButtons();
+        CMap.setupJoystickButtons();
 
+        /*
         CMap.autoChooser = new SendableChooser();
         CMap.autoChooser.setName("Auto Preference System");
         CMap.autoChooser.addDefault("Normal Preference System", "Normal");
@@ -38,6 +39,12 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData(CMap.autoChooser);
         SmartDashboard.putData(CMap.positionChooser);
         System.out.println("THE CHOOSER SHOULD BE ON THE SCREEN");
+
+        */
+        SmartDashboard.putString("DB/String 0", "Normal");
+        SmartDashboard.putString("DB/String 1", "Scale");
+        SmartDashboard.putString("DB/String 2", "Switch");
+        SmartDashboard.putString("DB/String 3", "Auto Run");
 
     }
 
@@ -61,13 +68,15 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit(){
+        System.out.println("TeleopInit() started");
         Scheduler.getInstance().removeAll();
-        CMap.setupJoystickButtons();
 
         Scheduler.getInstance().add(new JoystickDrive());
         Scheduler.getInstance().add(new JoystickElevator());
         //Scheduler.getInstance().add(new SpinIntakeMotors());
         //Scheduler.getInstance().add(new TestMotorInput(8));
+
+        System.out.println("TeleopInit() finished");
     }
 
     public void teleopPeriodic(){

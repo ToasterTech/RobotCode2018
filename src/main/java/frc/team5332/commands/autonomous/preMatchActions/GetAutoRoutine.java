@@ -3,6 +3,7 @@ package main.java.frc.team5332.commands.autonomous.preMatchActions;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.java.frc.team5332.commands.autonomous.routines.*;
 import main.java.frc.team5332.robot.CMap;
 
@@ -23,7 +24,8 @@ public class GetAutoRoutine extends Command {
     protected void execute() {
         super.execute();
 
-        System.out.println(CMap.autoChooser.getSelected().toString());
+
+        /*
         if(CMap.autoChooser.getSelected().toString().equals("Normal")){
             System.out.println("NORMAL SELECTED");
             normalPreferenceSystem();
@@ -40,7 +42,22 @@ public class GetAutoRoutine extends Command {
             System.out.println("AUTO RUN SELECTED");
             Scheduler.getInstance().add(new AutoRun());
             routinePicked = true;
+        }*/
+
+        if(SmartDashboard.getBoolean("DB/Button 0", false)){
+            System.out.println("NORMAL PREFERENCE SYSTEM");
+            routinePicked = true;
+        } else if(SmartDashboard.getBoolean("DB/Button 1", false)){
+            System.out.println("SCALE SYSTEM");
+            routinePicked = true;
+        } else if(SmartDashboard.getBoolean("DB/Button 2", false)){
+            System.out.println("SWITCH SYSTEM");
+            routinePicked = true;
+        } else if(SmartDashboard.getBoolean("DB/Button 3", false)){
+            System.out.println("AUTO RUN");
+            routinePicked = true;
         }
+
     }
 
     private void normalPreferenceSystem(){
