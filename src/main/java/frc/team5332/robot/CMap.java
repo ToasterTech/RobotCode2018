@@ -62,8 +62,8 @@ public class CMap {
 
     public static int leftDriveEncoderPortA  = 0;
     public static int leftDriveEncoderPortB  = 1;
-    public static int elevatorEncoderPortA   = 5;
-    public static int elevatorEncoderPortB   = 6;
+    public static int rightDriveEncoderPortA   = 4;
+    public static int rightDriveEncoderPortB   = 5;
 
 
     //Analog Ports
@@ -94,6 +94,7 @@ public class CMap {
     public static double switchLength = 36;
     public static double distanceToAutoLine = 10;
     public static double fenceLength = 40;
+    public static double maxChange = 0.5;
 
     public static double distanceToSwitchFromWall = 20;
     public static double distanceToBackOfSwitchFromWall = distanceToSwitchFromWall + 5;

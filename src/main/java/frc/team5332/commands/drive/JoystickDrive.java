@@ -13,6 +13,7 @@ public class JoystickDrive extends Command {
     }
 
     public void execute(){
+        /*
         double leftValue, rightValue, leftChange, rightChange;
 
         leftChange = -CMap.gamepad.getRawAxis(CMap.leftYAXis) - CMap.drive.get()[0];
@@ -24,6 +25,8 @@ public class JoystickDrive extends Command {
         rightValue += CMap.drive.get()[1];
 
         CMap.drive.tankDrive(leftValue, rightValue);
+        */
+        CMap.drive.tankDrive(-CMap.gamepad.getRawAxis(CMap.leftYAXis), -CMap.gamepad.getRawAxis(CMap.rightYAxis));
     }
 
     @Override

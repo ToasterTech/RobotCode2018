@@ -41,7 +41,7 @@ public class DriveTrain extends PIDSubsystem {
         rightDrive.setMotors(right);
 
         System.out.println("LEFT: " + leftDrive.encoder.get());
-        //System.out.println("RIGHT: " + right);
+        System.out.println("RIGHT: " + rightDrive.encoder.get());
 
         System.out.println(gyro.getAngle());
 
@@ -92,6 +92,11 @@ public class DriveTrain extends PIDSubsystem {
     public void disableEncoderPID(){
         leftDrive.getPIDController().disable();
         rightDrive.getPIDController().disable();
+    }
+
+
+    public double[] get(){
+        return new double[]{leftDrive.get(), rightDrive.get()};
     }
 
     public double getAngle(){return gyro.getAngle(); }

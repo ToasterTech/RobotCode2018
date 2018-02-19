@@ -19,7 +19,7 @@ public class Carriage extends Subsystem {
         super("Carriage");
         //limitSwitch = new DigitalInput(CMap.intakeLimitSwitch);
         Spark invertedMotor = new Spark(CMap.rightCarriageMotor);
-        invertedMotor.setInverted(true);
+        invertedMotor.setInverted(false);
         carriageMotor = new SpeedControllerGroup(invertedMotor, new Talon(CMap.leftCarriageMotor));;
         //carriageMotor  = new SpeedControllerGroup(new VictorSP(CMap.leftCarriageMotor), new VictorSP(CMap.rightCarriageMotor));
     }
@@ -32,14 +32,14 @@ public class Carriage extends Subsystem {
      * This method takes in the cube.
      */
     public void intakeCube(){
-        carriageMotor.set(-0.6);
+        carriageMotor.set(0.6);
     }
 
     /**
      * This method removes the cube.
      */
     public void expelCube(){
-        carriageMotor.set(1);
+        carriageMotor.set(-1);
     }
 
     /**

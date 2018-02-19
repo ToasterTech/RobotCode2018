@@ -13,6 +13,17 @@ public class GetAutoRoutine extends Command {
 
     public GetAutoRoutine(){
 
+
+
+        routinePicked = false;
+
+    }
+
+    @Override
+    protected void execute() {
+        super.execute();
+
+        System.out.println(CMap.autoChooser.getSelected().toString());
         if(CMap.autoChooser.getSelected().toString().equals("Normal")){
             System.out.println("NORMAL SELECTED");
             normalPreferenceSystem();
@@ -24,15 +35,12 @@ public class GetAutoRoutine extends Command {
             switchPreferenceSystem();
         } else if(CMap.autoChooser.getSelected().toString().equals("Exchange")){
             System.out.println("EXCHANGE SELECTED");
-        exchangePreferenceSystem();
+            exchangePreferenceSystem();
         } else if(CMap.autoChooser.getSelected().toString().equals("Auto Run")){
             System.out.println("AUTO RUN SELECTED");
             Scheduler.getInstance().add(new AutoRun());
+            routinePicked = true;
         }
-
-
-        routinePicked = true;
-
     }
 
     private void normalPreferenceSystem(){
@@ -98,6 +106,7 @@ public class GetAutoRoutine extends Command {
 
     private void autoRunPreferenceSystem(){
         Scheduler.getInstance().add(new AutoRun());
+        routinePicked = true;
     }
 
     @Override

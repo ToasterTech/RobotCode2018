@@ -21,6 +21,8 @@ public class LeftDriveTrain extends PIDSubsystem {
 
         motors = new VictorSP(CMap.leftDriveMotors);
 
+        LiveWindow.addChild(encoder, "Drivetrain");
+
     }
 
     public void stopMotors(){

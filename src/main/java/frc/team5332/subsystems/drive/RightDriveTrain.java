@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import main.java.frc.team5332.robot.CMap;
 
 public class RightDriveTrain extends PIDSubsystem {
@@ -14,9 +15,11 @@ public class RightDriveTrain extends PIDSubsystem {
     public RightDriveTrain(){
         super("Right DriveTrain", 1, 0, 0);
 
-        //encoder = new Encoder(CMap.rightDriveEncoderPortA, CMap.rightDriveEncoderPortB);
+        encoder = new Encoder(CMap.rightDriveEncoderPortA, CMap.rightDriveEncoderPortB);
         motors = new VictorSP(CMap.rightDriveMotors);
         motors.setInverted(true);
+
+        LiveWindow.addChild(encoder, "Drivetrain");
 
     }
 

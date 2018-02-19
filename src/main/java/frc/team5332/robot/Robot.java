@@ -23,7 +23,7 @@ public class Robot extends IterativeRobot {
 
         CMap.autoChooser = new SendableChooser();
         CMap.autoChooser.setName("Auto Preference System");
-        CMap.autoChooser.addDefault("Normal Preference System", "Normal Preference");
+        CMap.autoChooser.addDefault("Normal Preference System", "Normal");
         CMap.autoChooser.addObject("Scale Only", "Scale");
         CMap.autoChooser.addObject("Switch Only", "Switch");
         CMap.autoChooser.addObject("Exchange", "Exchange");
@@ -61,6 +61,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit(){
+        Scheduler.getInstance().removeAll();
         CMap.setupJoystickButtons();
 
         Scheduler.getInstance().add(new JoystickDrive());
