@@ -32,14 +32,14 @@ public class Carriage extends Subsystem {
      * This method takes in the cube.
      */
     public void intakeCube(){
-        carriageMotor.set(0.6);
+        carriageMotor.set(-0.6);
     }
 
     /**
      * This method removes the cube.
      */
     public void expelCube(){
-        carriageMotor.set(-1);
+        carriageMotor.set(1);
     }
 
     public void expelCube(double speed){

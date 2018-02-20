@@ -109,12 +109,12 @@ public class CMap {
             motorsExpelling = false;
     public static void setupJoystickButtons(){
         intakeCubeButton.whenReleased(new CloseArms());
-        intakeCubeRightArmButton.whenReleased();
-        intakeCubeLeftArmButton.whenReleased();
+        //intakeCubeRightArmButton.whenReleased();
+        //intakeCubeLeftArmButton.whenReleased();
 
         intakeCubeButton.whileHeld(new IntakeCubeCommand());
         expelCubeButton.whileHeld(new ExpelBlockCommand());
-        intakeCubeRightArmButton.whileHeld();
-        intakeCubeLeftArmButton.whileHeld();
+        //intakeCubeRightArmButton.whileHeld();
+        //intakeCubeLeftArmButton.whileHeld();
     }
 }
