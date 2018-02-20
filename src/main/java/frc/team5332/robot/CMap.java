@@ -38,7 +38,9 @@ public class CMap {
     //private static JoystickButton openArmsButton = new JoystickButton(gamepad ,leftBumper);
     //private static JoystickButton closeArmsButton = new JoystickButton(gamepad, rightBumper);
 
-    private static JoystickButton intakeCubeButton = new JoystickButton(gamepad, rightBumper);
+    private static JoystickButton intakeCubeButton = new JoystickButton(gamepad, blueButton);
+    private static JoystickButton intakeCubeRightArmButton = new JoystickButton(gamepad, rightBumper);
+    private static JoystickButton intakeCubeLeftArmButton = new JoystickButton(gamepad, leftBumper);
     private static JoystickButton expelCubeButton = new JoystickButton(operatorJoystick, 2);
     //Input Devices - Buttons
 
@@ -107,8 +109,12 @@ public class CMap {
             motorsExpelling = false;
     public static void setupJoystickButtons(){
         intakeCubeButton.whenReleased(new CloseArms());
+        intakeCubeRightArmButton.whenReleased();
+        intakeCubeLeftArmButton.whenReleased();
 
         intakeCubeButton.whileHeld(new IntakeCubeCommand());
         expelCubeButton.whileHeld(new ExpelBlockCommand());
+        intakeCubeRightArmButton.whileHeld();
+        intakeCubeLeftArmButton.whileHeld();
     }
 }
