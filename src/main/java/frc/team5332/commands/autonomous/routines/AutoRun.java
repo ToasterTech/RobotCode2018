@@ -7,8 +7,15 @@ import main.java.frc.team5332.commands.drive.TimeDrive;
 public class AutoRun extends CommandGroup {
 
     public AutoRun(){
+        addSequential(new TimeDrive(2.5, 0.5, 0.5));
+
+
+    }
+
+    @Override
+    protected void execute() {
+        super.execute();
         SmartDashboard.putString("DB/String 5", "Auto Run Running");
-        addSequential(new TimeDrive(5, 0.5, 0.5));
     }
 
     @Override

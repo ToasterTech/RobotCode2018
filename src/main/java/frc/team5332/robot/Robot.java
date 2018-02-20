@@ -1,5 +1,7 @@
 package main.java.frc.team5332.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,6 +17,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         CMap.setupJoystickButtons();
 
+        CameraServer.getInstance().startAutomaticCapture();
         /*
         CMap.autoChooser = new SendableChooser();
         CMap.autoChooser.setName("Auto Preference System");

@@ -1,29 +1,27 @@
-package main.java.frc.team5332.commands.drive;
+package main.java.frc.team5332.commands.elevator;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.java.frc.team5332.robot.CMap;
 
 
-public class TimeDrive extends Command {
+public class TimeElevator extends Command {
     Timer timer;
     boolean started = false;
 
     private double goalSeconds;
 
-    private double leftSpeed, rightSpeed;
+    private double motorSpeed;
 
-    public TimeDrive(double secondsToDrive, double leftDrive, double rightDrive){
+    public TimeElevator(double secondsToDrive, double motorSpeed){
             super("Timed Drive");
 
             this.goalSeconds = secondsToDrive;
-            this.leftSpeed   = leftDrive;
-            this.rightSpeed  = rightDrive;
+            this.motorSpeed   = motorSpeed;
 
             timer = new Timer();
 
-            requires(CMap.drive);
+            requires(CMap.elevator);
     }
 
     public void execute(){
@@ -34,7 +32,7 @@ public class TimeDrive extends Command {
 
         System.out.println(timer.get());
 
-        CMap.drive.tankDrive(leftSpeed, rightSpeed);
+        CMap.elevator.setMotorSpeed(motorSpeed);
     }
 
     @Override
@@ -44,6 +42,6 @@ public class TimeDrive extends Command {
 
     @Override
     protected void end() {
-        CMap.drive.stopMotors();
+        CMap.elevator.stopMotor();
     }
 }

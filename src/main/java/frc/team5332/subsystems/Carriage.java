@@ -42,6 +42,10 @@ public class Carriage extends Subsystem {
         carriageMotor.set(-1);
     }
 
+    public void expelCube(double speed){
+        carriageMotor.set(speed);
+    }
+
     /**
      * This method stops the motors from running.
      */
