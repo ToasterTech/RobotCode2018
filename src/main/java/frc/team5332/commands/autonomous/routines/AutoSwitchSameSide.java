@@ -14,22 +14,15 @@ public class AutoSwitchSameSide extends CommandGroup {
     public AutoSwitchSameSide(char robotPosition){
         SmartDashboard.putString("DB/String 5", "Auto Switch Same Side Running");
 
+        int turnMultiplier = (robotPosition == 'L') ? 1 : -1;
+
         addParallel(new TimeElevator(2, -0.5));
         addSequential(new TimeDrive(2.5, 0.5, 0.5));
         addSequential(new TimeDrive(1, 0, 0));
-        addSequential(new TimeDrive(1, 0.3, -0.3));
+        addSequential(new TimeDrive(1, 0.3 * turnMultiplier, -0.3 * turnMultiplier));
         addSequential(new TimeDrive(2, 0.2, 0.2));
         addSequential(new TimeExpelBlockCommand(2));
 
-        /*
-        int angle = (CMap.startingSpot == 'L') ? -90 : 90;
-        System.out.println("Angle Set to " + angle);
-        addParallel(new SetElevatorHeightWithEncoder(CMap.switchHeight)); //Raise Elevator
-        //addSequential(new TimeDrive(10, 0.5, 0.5));
-        addSequential(new EncoderDrive(CMap.distanceToSwitchFromWall)); //Needs to be in Feet
-        addSequential(new TurnToAngle(angle)); //Face Switch
-        addSequential(new TimeDrive(2, 0.5, 0.5)); //Make sure Robot bumper is contacting fence
-        addSequential(new ExpelBlockCommand(), 5); //Tells the Robot that this command takes 5 seconds*/
     }
 
     @Override

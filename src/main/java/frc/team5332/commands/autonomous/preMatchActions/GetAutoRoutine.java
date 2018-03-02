@@ -39,6 +39,7 @@ public class GetAutoRoutine extends Command {
             SmartDashboard.putString("DB/String 5", "Received Plates");
             if (SmartDashboard.getBoolean("DB/Button 0", false)) {
                 System.out.println("NORMAL PREFERENCE SYSTEM");
+                normalPreferenceSystem();
                 routinePicked = true;
             } else if (SmartDashboard.getBoolean("DB/Button 1", false)) {
                 System.out.println("SCALE SYSTEM");
@@ -63,20 +64,16 @@ public class GetAutoRoutine extends Command {
             case 'L':
                 if(CMap.plateOwnership.charAt(1) == 'L'){ //Scale
                     Scheduler.getInstance().add(new AutoScaleSameSide(position));
-                } else if(CMap.plateOwnership.charAt(0) == 'L') { //Switch
-                    Scheduler.getInstance().add(new AutoSwitchSameSide(position));
                 } else {
-                    Scheduler.getInstance().add(new AutoScaleOppositeSide(position));
+                    Scheduler.getInstance().add(new AutoSwitchSameSide(position));
                 }
                 break;
 
             case 'R':
                 if(CMap.plateOwnership.charAt(1) == 'R'){ //Scale
                     Scheduler.getInstance().add(new AutoScaleSameSide(position));
-                } else if(CMap.plateOwnership.charAt(0) == 'R') { //Switch
-                    Scheduler.getInstance().add(new AutoSwitchSameSide(position));
                 } else {
-                    Scheduler.getInstance().add(new AutoScaleOppositeSide(position));
+                    Scheduler.getInstance().add(new AutoSwitchSameSide(position));
                 }
                 break;
 
@@ -91,7 +88,8 @@ public class GetAutoRoutine extends Command {
         if(message.charAt(1) == position){
             Scheduler.getInstance().add(new AutoScaleSameSide(position));
         } else {
-            Scheduler.getInstance().add(new AutoScaleOppositeSide(position));
+            //Scheduler.getInstance().add(new AutoScaleOppositeSide(position));
+            Scheduler.getInstance().add(new AutoRun());
         }
     }
 
@@ -100,7 +98,8 @@ public class GetAutoRoutine extends Command {
             Scheduler.getInstance().add(new AutoSwitchSameSide(position));
         } else {
             if(position == 'L' || position == 'R'){
-                Scheduler.getInstance().add(new AutoSwitchOppositeSide(position));
+                //Scheduler.getInstance().add(new AutoSwitchOppositeSide(position));
+                Scheduler.getInstance().add(new AutoRun());
             } else {
                 //Middle Starting Spot
                 Scheduler.getInstance().add(new AutoSwitchFromMiddle(message.charAt(0)));
@@ -119,8 +118,7 @@ public class GetAutoRoutine extends Command {
     }
 
     private void autoRunPreferenceSystem(){
-        autonmousRoutine = new AutoRun();
-        routinePicked = true;
+       Scheduler.getInstance().add(new AutoRun());
     }
 
     @Override
@@ -130,6 +128,5 @@ public class GetAutoRoutine extends Command {
 
     @Override
     protected void end() {
-        Scheduler.getInstance().add(autonmousRoutine);
     }
 }
