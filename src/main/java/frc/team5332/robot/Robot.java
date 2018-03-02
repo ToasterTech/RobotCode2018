@@ -1,6 +1,7 @@
 package main.java.frc.team5332.robot;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -17,7 +18,9 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         CMap.setupJoystickButtons();
 
-        CameraServer.getInstance().startAutomaticCapture();
+        UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+        camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 640, 360, 30);
+
         /*
         CMap.autoChooser = new SendableChooser();
         CMap.autoChooser.setName("Auto Preference System");

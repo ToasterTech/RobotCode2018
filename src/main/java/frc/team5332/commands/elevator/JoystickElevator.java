@@ -5,11 +5,11 @@ import main.java.frc.team5332.robot.CMap;
 
 public class JoystickElevator extends Command {
 
-    public JoystickElevator(){
+    public JoystickElevator() {
         requires(CMap.elevator);
     }
 
-    public void execute(){
+    public void execute() {
         CMap.elevator.setMotorSpeed(-CMap.operatorJoystick.getY());
     }
 
