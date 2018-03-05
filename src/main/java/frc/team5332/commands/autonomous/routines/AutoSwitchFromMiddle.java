@@ -14,45 +14,23 @@ import main.java.frc.team5332.robot.CMap;
 public class AutoSwitchFromMiddle extends CommandGroup {
 
     public AutoSwitchFromMiddle(char platePosition){
-        System.out.println("AUTO SWITCH MIDDLE");
-
-
         SmartDashboard.putString("DB/String 5", "Auto Switch From Middle");
-
         addParallel(new TimeElevator(2, -0.5)); //Raise Elevator
-        addSequential(new TimeDrive(1, 0.5, 0.5)); //Drive halfway to switch
-        addSequential(new TimeDrive(0.5, 0, 0)); //Stop to Reduce Bumpiness
-        if(platePosition == 'L') {
+
+        if(platePosition == 'R'){ //Plate is on the Right
+            addSequential(new TimeDrive(0.5, 0.8, 0.8)); //Drive Straight into Switch
+            addSequential(new TimeExpelBlockCommand(10));
+        } else { //Plate is on the Left
+            addSequential(new TimeDrive(1, 0.5, 0.5)); //Drive halfway to switch
+            addSequential(new TimeDrive(0.5, 0, 0)); //Stop to Reduce Bumpiness
             addSequential(new TimeDrive(0.85, -0.3, 0.3)); //Turn to Left Plate
-        } else {
-            addSequential(new TimeDrive(0.85, 0.3, -0.3)); //Turn to right Plate
-        }
-        addSequential(new TimeDrive(0.5, 0, 0)); //Stop again
-        addSequential(new TimeDrive(1, 0.5, 0.5)); //Drive Straight
-        addSequential(new TimeDrive(0.5, 0, 0)); //Stop
-        if(platePosition == 'L') {
+            addSequential(new TimeDrive(0.5, 0, 0)); //Stop again
+            addSequential(new TimeDrive(1, 0.5, 0.5)); //Drive Straight
+            addSequential(new TimeDrive(0.5, 0, 0)); //Stop
             addSequential(new TimeDrive(0.85, 0.3, -0.3)); //Turn Again
-        } else {
-            addSequential(new TimeDrive(0.85, -0.3, 0.3)); //Turn Again
+            addSequential(new TimeDrive(1, 0.3, 0.3)); //Drive into Switch
+            addSequential(new TimeExpelBlockCommand(3));
         }
-        addSequential(new TimeDrive(1, 0.3, 0.3)); //Drive into Switch
-        addSequential(new TimeExpelBlockCommand(3));
-        //addSequential(new TimeDrive(1, 0.3, -0.3));
-        //addSequential(new TimeDrive(2, 0.2, 0.2));
-        //addSequential(new TimeExpelBlockCommand(2));
-
-        /*
-        int firstTurnAngle = (CMap.plateOwnership.charAt(0) == 'L') ? 90 : -90;
-        int secondTurnAngle = -firstTurnAngle;
-        addParallel(new SetElevatorHeightWithEncoder(CMap.switchHeight));
-        addSequential(new EncoderDrive(CMap.distanceToAutoLine));
-        addSequential(new TurnToAngle(firstTurnAngle));
-        addSequential(new EncoderDrive(CMap.fenceLength/2));
-        addSequential(new TurnToAngle(secondTurnAngle));
-        addSequential(new TimeDrive(3, 0.5, 0.5));
-        addSequential(new ExpelBlockCommand());
-        System.out.println("We should be good.");*/
-
     }
 
     @Override
