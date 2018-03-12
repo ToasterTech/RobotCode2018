@@ -19,23 +19,23 @@ public class AutoSwitchFromMiddle extends CommandGroup {
 
         SmartDashboard.putString("DB/String 5", "Auto Switch From Middle");
 
-        addParallel(new TimeElevator(2, -0.5));
-        addSequential(new TimeDrive(1, 0.5, 0.5));
-        addSequential(new TimeDrive(0.5, 0, 0));
-        if(platePosition == 'L') {
-            addSequential(new TimeDrive(0.85, -0.3, 0.3));
+
+        if(platePosition == 'R'){
+            addParallel(new TimeElevator(2, -0.8));
+            addSequential(new TimeDrive(5, 0.5, 0.5));
+            addSequential(new TimeExpelBlockCommand(3));
         } else {
-            addSequential(new TimeDrive(0.85, 0.3, -0.3));
+            //addSequential(new AutoRun());
+
+
+            addSequential(new TimeDrive(0.8, 0.5, 0.5));
+            addSequential(new TimeDrive(.65, -0.5, 0.5));
+            addSequential(new TimeDrive(1.5, 0.5, 0.5));
+            addSequential(new TimeDrive(.65, 0.5, -0.5));
+            addParallel(new TimeElevator(2, -.75));
+            addSequential(new TimeDrive(3, 0.5, 0.5));
+            addSequential(new TimeExpelBlockCommand(3));
         }
-        addSequential(new TimeDrive(0.5, 0, 0));
-        addSequential(new TimeDrive(1, 0.5, 0.5));
-        addSequential(new TimeDrive(0.5, 0, 0));
-        if(platePosition == 'L') {
-            addSequential(new TimeDrive(0.85, 0.3, -0.3));
-        } else {
-            addSequential(new TimeDrive(0.85, -0.3, 0.3));
-        }
-        addSequential(new TimeDrive(1, 0.3, 0.3));
         //addSequential(new TimeDrive(1, 0.3, -0.3));
         //addSequential(new TimeDrive(2, 0.2, 0.2));
         //addSequential(new TimeExpelBlockCommand(2));

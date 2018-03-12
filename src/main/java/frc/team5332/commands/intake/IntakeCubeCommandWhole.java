@@ -1,22 +1,22 @@
 package main.java.frc.team5332.commands.intake;
 
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 import main.java.frc.team5332.robot.CMap;
 
-public class OpenArms extends Command {
+public class IntakeCubeCommandWhole extends Command {
 
-    public OpenArms(){
-        requires(CMap.intake);
+    public IntakeCubeCommandWhole(){
+
     }
 
     @Override
     protected void execute() {
+        System.out.println("COMMAND IS RUNNING");
         CMap.intake.spinIntakeAxisMotors(-1);
+        CMap.intake.spinRollers(1);
+        CMap.carriage.intakeCube();
+
         CMap.armsOpenTime += 1;
-
-
     }
 
     @Override
@@ -26,8 +26,8 @@ public class OpenArms extends Command {
 
     @Override
     protected void end() {
-        CMap.armsOpenTime += 2000;
         CMap.intake.stopIntakeAxisMotors();
-        //Scheduler.getInstance().add(new SpinIntakeMotors());
+        CMap.intake.stopRollers();
+        CMap.carriage.stopMotors();
     }
 }

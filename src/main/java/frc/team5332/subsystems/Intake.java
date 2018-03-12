@@ -11,19 +11,22 @@ import main.java.frc.team5332.robot.CMap;
 public class Intake extends Subsystem{
 
     public SpeedControllerGroup intakeRollers;
+
+    VictorSP leftIntakeRoller, rightIntakeRoller;
     public DigitalInput limitSwitchA, limitSwitchB;
     public VictorSP intakeAxesMotors;
 
     public Intake(){
         super("Intake");
 
-        VictorSP leftIntakeRoller = new VictorSP(CMap.intakeRollerLeft);
+        leftIntakeRoller = new VictorSP(CMap.intakeRollerLeft);
         leftIntakeRoller.setInverted(true);
+
+        rightIntakeRoller = new VictorSP(CMap.intakeRollerRight);
 
         limitSwitchA = new DigitalInput(CMap.windowMotorLimitSwitchA);
         limitSwitchB =  new DigitalInput(CMap.windowMotorLimitSwitchB);
 
-        intakeRollers = new SpeedControllerGroup(new VictorSP(CMap.intakeRollerRight), leftIntakeRoller);
         intakeAxesMotors = new VictorSP(CMap.intakeAxes);
 
     }
@@ -33,11 +36,13 @@ public class Intake extends Subsystem{
     }
 
     public void spinRollers(double speed){
-        intakeRollers.set(speed);
+        leftIntakeRoller.set(speed);
+        rightIntakeRoller.set(speed);
     }
 
     public void stopRollers(){
-        intakeRollers.stopMotor();
+        leftIntakeRoller.stopMotor();
+        rightIntakeRoller.stopMotor();
     }
 
     public void spinIntakeAxisMotors(double speed){

@@ -1,19 +1,20 @@
 package main.java.frc.team5332.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import main.java.frc.team5332.commands.carriage.IntakeCubeIntoCarriage;
 import main.java.frc.team5332.commands.intake.*;
 import main.java.frc.team5332.commands.carriage.ExpelBlockCommand;
 import main.java.frc.team5332.subsystems.*;
 import main.java.frc.team5332.subsystems.drive.DriveTrain;
 
 public class CMap {
+    public static Timer closeArmsTimer;
+
     //Input Devices - Joysticks
     public static Joystick gamepad          = new Joystick(0);
     public static Joystick operatorJoystick = new Joystick(1);
-
     public static int armsOpenTime = 0;
 
     public static int leftXAxis = 0; //Left X-Axis
@@ -38,9 +39,8 @@ public class CMap {
     //private static JoystickButton openArmsButton = new JoystickButton(gamepad ,leftBumper);
     //private static JoystickButton closeArmsButton = new JoystickButton(gamepad, rightBumper);
 
-    private static JoystickButton intakeCubeButton = new JoystickButton(gamepad, blueButton);
-    private static JoystickButton intakeCubeRightArmButton = new JoystickButton(gamepad, rightBumper);
-    private static JoystickButton intakeCubeLeftArmButton = new JoystickButton(gamepad, leftBumper);
+    private static JoystickButton intakeCubeButtonComplete = new JoystickButton(gamepad, rightBumper);
+    private static JoystickButton intakeCubeButtonCarriage = new JoystickButton(gamepad, leftBumper);
     private static JoystickButton expelCubeButton = new JoystickButton(operatorJoystick, 2);
     //Input Devices - Buttons
 
@@ -108,12 +108,14 @@ public class CMap {
             motorsIntaking = false,
             motorsExpelling = false;
     public static void setupJoystickButtons(){
-        intakeCubeButton.whenReleased(new CloseArms());
+        intakeCubeButtonComplete.whenReleased(new CloseArms());
         //intakeCubeRightArmButton.whenReleased();
         //intakeCubeLeftArmButton.whenReleased();
 
-        intakeCubeButton.whileHeld(new IntakeCubeCommand());
+        intakeCubeButtonComplete.whileHeld(new IntakeCubeCommandWhole());
         expelCubeButton.whileHeld(new ExpelBlockCommand());
+
+        intakeCubeButtonCarriage.whileHeld(new IntakeCubeWithCarriage());
         //intakeCubeRightArmButton.whileHeld();
         //intakeCubeLeftArmButton.whileHeld();
     }

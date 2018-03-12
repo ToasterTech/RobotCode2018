@@ -19,7 +19,7 @@ public class TimeExpelBlockCommand extends Command {
             timer.start();
         }
         System.out.println("YES IM EXPELLING");
-        CMap.carriage.expelCube(0.7);
+        CMap.carriage.expelCube(-0.7);
     }
 
     protected boolean isFinished(){

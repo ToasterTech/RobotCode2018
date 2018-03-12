@@ -14,12 +14,21 @@ public class AutoSwitchSameSide extends CommandGroup {
     public AutoSwitchSameSide(char robotPosition){
         SmartDashboard.putString("DB/String 5", "Auto Switch Same Side Running");
 
-        addParallel(new TimeElevator(2, -0.5));
-        addSequential(new TimeDrive(2.5, 0.5, 0.5));
-        addSequential(new TimeDrive(1, 0, 0));
-        addSequential(new TimeDrive(1, 0.3, -0.3));
-        addSequential(new TimeDrive(2, 0.2, 0.2));
-        addSequential(new TimeExpelBlockCommand(2));
+        if(robotPosition == 'L') {
+            addParallel(new TimeElevator(5, -0.5));
+            addSequential(new TimeDrive(2.5, 0.5, 0.5));
+            addSequential(new TimeDrive(1, 0, 0));
+            addSequential(new TimeDrive(1, 0.3, -0.3));
+            addSequential(new TimeDrive(2, 0.2, 0.2));
+            addSequential(new TimeExpelBlockCommand(2));
+        } else {
+            addParallel(new TimeElevator(5, -0.5));
+            addSequential(new TimeDrive(2.5, 0.5, 0.5));
+            addSequential(new TimeDrive(1, 0, 0));
+            addSequential(new TimeDrive(1, -0.3, 0.3));
+            addSequential(new TimeDrive(2, 0.2, 0.2));
+            addSequential(new TimeExpelBlockCommand(2));
+        }
 
         /*
         int angle = (CMap.startingSpot == 'L') ? -90 : 90;

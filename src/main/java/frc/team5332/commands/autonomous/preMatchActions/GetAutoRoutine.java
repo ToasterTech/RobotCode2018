@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.java.frc.team5332.commands.autonomous.routines.*;
+import main.java.frc.team5332.commands.drive.TimeDrive;
 import main.java.frc.team5332.robot.CMap;
 
 import java.awt.color.CMMException;
@@ -32,27 +33,32 @@ public class GetAutoRoutine extends Command {
             SmartDashboard.putString("DB/String 5", "Saving Message");
 
             message = DriverStation.getInstance().getGameSpecificMessage();
-            position = SmartDashboard.getString("DB/String 6", "M").charAt(0);
+            try {
+                position = SmartDashboard.getString("DB/String 6", "M").charAt(0);
+            }catch(Exception e){
+                position = 'M';
+            }
 
             System.out.println(position);
 
             SmartDashboard.putString("DB/String 5", "Received Plates");
-            if (SmartDashboard.getBoolean("DB/Button 0", false)) {
-                System.out.println("NORMAL PREFERENCE SYSTEM");
+
+            if(SmartDashboard.getBoolean("DB/Button 0", false)){
+                normalPreferenceSystem();
                 routinePicked = true;
-            } else if (SmartDashboard.getBoolean("DB/Button 1", false)) {
-                System.out.println("SCALE SYSTEM");
+            } else if(SmartDashboard.getBoolean("DB/Button 1", false)){
                 scalePreferenceSystem();
                 routinePicked = true;
-            } else if (SmartDashboard.getBoolean("DB/Button 2", false)) {
-                System.out.println("SWITCH SYSTEM");
+            } else if(SmartDashboard.getBoolean("DB/Button 2", false)) {
                 switchPreferenceSystem();
                 routinePicked = true;
-            } else if (SmartDashboard.getBoolean("DB/Button 3", false)) {
-                System.out.println("AUTO RUN");
+            } else {
                 autoRunPreferenceSystem();
                 routinePicked = true;
             }
+            //switchPreferenceSystem();
+            //Scheduler.getInstance().add(new TimeDrive(.65, 0.3, -0.3));
+            routinePicked = true;
         }
 
     }
