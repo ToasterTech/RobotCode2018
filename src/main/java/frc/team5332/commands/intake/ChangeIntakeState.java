@@ -3,17 +3,16 @@ package main.java.frc.team5332.commands.intake;
 import edu.wpi.first.wpilibj.command.Command;
 import main.java.frc.team5332.robot.CMap;
 
-public class IntakeCubeWithCarriage extends Command {
+public class ChangeIntakeState extends Command {
+    boolean state;
 
-    public IntakeCubeWithCarriage(){
-
+    public ChangeIntakeState(boolean newState){
+        state = newState;
     }
 
     @Override
     protected void execute() {
-        System.out.println("COMMAND IS RUNNING");
-        CMap.carriage.intakeCube();
-
+        CMap.intake.changeIntakeArmState(state);
     }
 
     @Override
@@ -23,6 +22,6 @@ public class IntakeCubeWithCarriage extends Command {
 
     @Override
     protected void end() {
-        CMap.carriage.stopMotors();
+        super.end();
     }
 }

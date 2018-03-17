@@ -10,7 +10,6 @@ public class ExpelBlockCommand extends Command {
     }
 
     public void execute(){
-        System.out.println("YES IM EXPELLING");
         CMap.carriage.expelCube();
     }
 

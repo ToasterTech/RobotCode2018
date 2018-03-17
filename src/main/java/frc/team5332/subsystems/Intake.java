@@ -1,33 +1,29 @@
 package main.java.frc.team5332.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.PWMTalonSRX;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import main.java.frc.team5332.robot.CMap;
 
 public class Intake extends Subsystem{
 
-    public SpeedControllerGroup intakeRollers;
 
     VictorSP leftIntakeRoller, rightIntakeRoller;
+    Solenoid intakeSolenoids;
+
     public DigitalInput limitSwitchA, limitSwitchB;
-    public VictorSP intakeAxesMotors;
 
     public Intake(){
         super("Intake");
+
+        intakeSolenoids = new Solenoid(CMap.intakeSolenoid);
 
         leftIntakeRoller = new VictorSP(CMap.intakeRollerLeft);
         leftIntakeRoller.setInverted(true);
 
         rightIntakeRoller = new VictorSP(CMap.intakeRollerRight);
 
-        limitSwitchA = new DigitalInput(CMap.windowMotorLimitSwitchA);
-        limitSwitchB =  new DigitalInput(CMap.windowMotorLimitSwitchB);
 
-        intakeAxesMotors = new VictorSP(CMap.intakeAxes);
 
     }
 
@@ -45,12 +41,8 @@ public class Intake extends Subsystem{
         rightIntakeRoller.stopMotor();
     }
 
-    public void spinIntakeAxisMotors(double speed){
-        intakeAxesMotors.set(speed);
-    }
-
-    public void stopIntakeAxisMotors(){
-        intakeAxesMotors.stopMotor();
+    public void changeIntakeArmState(boolean newState){
+        intakeSolenoids.set(newState);
     }
 
 }

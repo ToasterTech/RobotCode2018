@@ -10,6 +10,7 @@ import main.java.frc.team5332.commands.carriage.ExpelBlockCommand;
 import main.java.frc.team5332.commands.elevator.TimeElevator;
 import main.java.frc.team5332.robot.CMap;
 
+
 public class AutoScaleSameSide extends CommandGroup {
 
     public AutoScaleSameSide(char robotPosition){
@@ -18,12 +19,15 @@ public class AutoScaleSameSide extends CommandGroup {
 
         int turnMultiplier = (robotPosition == 'L') ? 1 : -1;
 
-        addParallel(new TimeElevator(4, -0.5));
-        addSequential(new TimeDrive(3.5, 0.5, 0.5));
-        addSequential(new TimeDrive(1, 0, 0));
+        //addParallel(new TimeElevator(4, -0.5));
+        addSequential(new TimeDrive(1.5, 1, 1));
+        addSequential(new TimeDrive(0.5, 0, 0));
+        addSequential(new TimeElevator(2, -1));
         addSequential(new TimeDrive(1, 0.3 * turnMultiplier, -0.3 * turnMultiplier));
         addSequential(new TimeDrive(2, 0.2, 0.2));
         addSequential(new TimeExpelBlockCommand(2));
+
+
         //int angle = (CMap.startingSpot == 'L') ? -90 : 90;
         //System.out.println("Angle Set to " + angle);
         //addParallel(new SetElevatorHeightWithEncoder(CMap.switchHeight)); //Raise Elevator
@@ -32,5 +36,7 @@ public class AutoScaleSameSide extends CommandGroup {
         //addSequential(new ExpelBlockCommand(), 5); //Tells the Robot that this command takes 5 seconds
 
     }
+
+
 
 }

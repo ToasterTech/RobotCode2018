@@ -3,6 +3,7 @@ package main.java.frc.team5332.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,16 +22,25 @@ public class Robot extends IterativeRobot {
         UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
         camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 640, 360, 30);
 
-        SmartDashboard.putString("DB/String 0", "Normal");
-        SmartDashboard.putString("DB/String 1", "Scale");
-        SmartDashboard.putString("DB/String 2", "Switch");
-        SmartDashboard.putString("DB/String 3", "Auto Run");
-        SmartDashboard.putString("DB/String 4", "Waiting for Plates");
-        SmartDashboard.putString("DB/String 5", "'L', 'M', or 'R' below.");
+        CMap.compressor.setClosedLoopControl(true);
+
 
     }
 
+    @Override
+    public void disabledPeriodic() {
+        if(DriverStation.getInstance().isFMSAttached() && !CMap.autoRan){
+            SmartDashboard.putString("DB/String 0", "Normal");
+            SmartDashboard.putString("DB/String 1", "Scale");
+            SmartDashboard.putString("DB/String 2", "Switch");
+            SmartDashboard.putString("DB/String 3", "Auto Run");
+            SmartDashboard.putString("DB/String 4", "Waiting for Plates");
+            SmartDashboard.putString("DB/String 5", "'L', 'M', or 'R' below.");
+        }
+    }
+
     public void autonomousInit(){
+        CMap.autoRan = true;
         Scheduler.getInstance().add(new GetAutoRoutine()); //Get the Autonomous Routine based on Placement and Switch Assignments
     }
 
@@ -51,13 +61,4 @@ public class Robot extends IterativeRobot {
 
     }
 
-    public void testInit(){
-        System.out.println("TestInit() ran");
-        Scheduler.getInstance().add(new TimeDrive(10, .5, .5));
-    }
-
-    public void testPeriodic(){
-        System.out.println("TestPeriodic() ran");
-        Scheduler.getInstance().run();
-    }
 }

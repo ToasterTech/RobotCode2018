@@ -15,10 +15,15 @@ public class AutoSwitchFromMiddle extends CommandGroup {
 
     public AutoSwitchFromMiddle(char platePosition){
         System.out.println("AUTO SWITCH MIDDLE");
-
-
         SmartDashboard.putString("DB/String 5", "Auto Switch From Middle");
 
+        if(platePosition == 'R'){
+
+        } else{
+
+        }
+
+        /*
 
         if(platePosition == 'R'){
             addParallel(new TimeElevator(2, -0.8));
@@ -28,6 +33,7 @@ public class AutoSwitchFromMiddle extends CommandGroup {
             //addSequential(new AutoRun());
 
 
+
             addSequential(new TimeDrive(0.8, 0.5, 0.5));
             addSequential(new TimeDrive(.65, -0.5, 0.5));
             addSequential(new TimeDrive(1.5, 0.5, 0.5));
@@ -35,7 +41,7 @@ public class AutoSwitchFromMiddle extends CommandGroup {
             addParallel(new TimeElevator(2, -.75));
             addSequential(new TimeDrive(3, 0.5, 0.5));
             addSequential(new TimeExpelBlockCommand(3));
-        }
+        }*/
         //addSequential(new TimeDrive(1, 0.3, -0.3));
         //addSequential(new TimeDrive(2, 0.2, 0.2));
         //addSequential(new TimeExpelBlockCommand(2));

@@ -11,7 +11,6 @@ public class IntakeCubeIntoCarriage extends Command{
 
     public void execute(){
         CMap.carriage.intakeCube();
-
     }
 
     @Override
