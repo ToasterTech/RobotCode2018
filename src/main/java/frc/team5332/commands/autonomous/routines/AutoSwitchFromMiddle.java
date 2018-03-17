@@ -17,46 +17,18 @@ public class AutoSwitchFromMiddle extends CommandGroup {
         System.out.println("AUTO SWITCH MIDDLE");
         SmartDashboard.putString("DB/String 5", "Auto Switch From Middle");
 
-        if(platePosition == 'R'){
-
-        } else{
-
-        }
-
-        /*
-
-        if(platePosition == 'R'){
-            addParallel(new TimeElevator(2, -0.8));
-            addSequential(new TimeDrive(5, 0.5, 0.5));
-            addSequential(new TimeExpelBlockCommand(3));
-        } else {
-            //addSequential(new AutoRun());
+        double turnAngle = (platePosition == 'L') ? 45 : -45;
 
 
+        addSequential(new TimeDrive(0.5, .5, .5));
+        addSequential(new TurnToAngle(turnAngle));
+        addSequential(new TimeDrive(0.5, 1, 1));
+        addSequential(new TurnToAngle(0));
+        addParallel(new TimeElevator(2, -1));
+        addParallel(new TimeDrive(3, 0.7, 0.7));
+        addSequential(new TimeExpelBlockCommand(5));
 
-            addSequential(new TimeDrive(0.8, 0.5, 0.5));
-            addSequential(new TimeDrive(.65, -0.5, 0.5));
-            addSequential(new TimeDrive(1.5, 0.5, 0.5));
-            addSequential(new TimeDrive(.65, 0.5, -0.5));
-            addParallel(new TimeElevator(2, -.75));
-            addSequential(new TimeDrive(3, 0.5, 0.5));
-            addSequential(new TimeExpelBlockCommand(3));
-        }*/
-        //addSequential(new TimeDrive(1, 0.3, -0.3));
-        //addSequential(new TimeDrive(2, 0.2, 0.2));
-        //addSequential(new TimeExpelBlockCommand(2));
-
-        /*
-        int firstTurnAngle = (CMap.plateOwnership.charAt(0) == 'L') ? 90 : -90;
-        int secondTurnAngle = -firstTurnAngle;
-        addParallel(new SetElevatorHeightWithEncoder(CMap.switchHeight));
-        addSequential(new EncoderDrive(CMap.distanceToAutoLine));
-        addSequential(new TurnToAngle(firstTurnAngle));
-        addSequential(new EncoderDrive(CMap.fenceLength/2));
-        addSequential(new TurnToAngle(secondTurnAngle));
-        addSequential(new TimeDrive(3, 0.5, 0.5));
-        addSequential(new ExpelBlockCommand());
-        System.out.println("We should be good.");*/
+        
 
     }
 
