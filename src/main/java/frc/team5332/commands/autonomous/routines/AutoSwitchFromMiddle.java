@@ -28,7 +28,7 @@ public class AutoSwitchFromMiddle extends CommandGroup {
         addParallel(new TimeDrive(3, 0.7, 0.7));
         addSequential(new TimeExpelBlockCommand(5));
 
-        
+
 
     }
 
@@ -36,6 +36,7 @@ public class AutoSwitchFromMiddle extends CommandGroup {
     protected void end() {
         super.end();
 
+        System.out.println("AUTO FINISHED");
         SmartDashboard.putString("DB/String 5", "Auto Finished");
     }
 }

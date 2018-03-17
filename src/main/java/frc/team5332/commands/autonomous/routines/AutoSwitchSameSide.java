@@ -15,31 +15,15 @@ public class AutoSwitchSameSide extends CommandGroup {
     public AutoSwitchSameSide(char robotPosition){
         SmartDashboard.putString("DB/String 5", "Auto Switch Same Side Running");
 
-        if(robotPosition == 'L') {
-            addParallel(new TimeElevator(5, -0.5));
-            addSequential(new TimeDrive(2.5, 0.5, 0.5));
-            addSequential(new TimeDrive(1, 0, 0));
-            addSequential(new TimeDrive(1, 0.3, -0.3));
-            addSequential(new TimeDrive(2, 0.2, 0.2));
-            addSequential(new TimeExpelBlockCommand(2));
-        } else {
-            addParallel(new TimeElevator(5, -0.5));
-            addSequential(new TimeDrive(2.5, 0.5, 0.5));
-            addSequential(new TimeDrive(1, 0, 0));
-            addSequential(new TimeDrive(1, -0.3, 0.3));
-            addSequential(new TimeDrive(2, 0.2, 0.2));
-            addSequential(new TimeExpelBlockCommand(2));
-        }
+        double turnAngle = (robotPosition == 'R') ? 90 : -90;
 
-        /*
-        int angle = (CMap.startingSpot == 'L') ? -90 : 90;
-        System.out.println("Angle Set to " + angle);
-        addParallel(new SetElevatorHeightWithEncoder(CMap.switchHeight)); //Raise Elevator
-        //addSequential(new TimeDrive(10, 0.5, 0.5));
-        addSequential(new EncoderDrive(CMap.distanceToSwitchFromWall)); //Needs to be in Feet
-        addSequential(new TurnToAngle(angle)); //Face Switch
-        addSequential(new TimeDrive(2, 0.5, 0.5)); //Make sure Robot bumper is contacting fence
-        addSequential(new ExpelBlockCommand(), 5); //Tells the Robot that this command takes 5 seconds*/
+
+        addSequential(new TimeDrive(1, 1, 1));
+        addSequential(new TurnToAngle(turnAngle));
+        addParallel(new TimeDrive(0.5, 0.5, 0.5));
+        addParallel(new TimeElevator(2, -1));
+        addSequential(new TimeExpelBlockCommand(5));
+
     }
 
     @Override
