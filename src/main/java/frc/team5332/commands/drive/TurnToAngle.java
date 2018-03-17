@@ -12,7 +12,6 @@ public class TurnToAngle extends Command {
     }
 
     public void execute(){
-        CMap.drive.disableEncoderPID();
 
         CMap.drive.getPIDController().enable();
         CMap.drive.getPIDController().setSetpoint(setpoint);

@@ -1,21 +1,24 @@
 package main.java.frc.team5332.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import main.java.frc.team5332.commands.carriage.IntakeCubeIntoCarriage;
 import main.java.frc.team5332.commands.intake.*;
 import main.java.frc.team5332.commands.carriage.ExpelBlockCommand;
+import main.java.frc.team5332.commands.teleopCommandGroups.bothIntakeCube;
 import main.java.frc.team5332.subsystems.*;
 import main.java.frc.team5332.subsystems.drive.DriveTrain;
 
 public class CMap {
-    public static Timer closeArmsTimer;
+    public static boolean autoRan = false;
 
     //Input Devices - Joysticks
     public static Joystick gamepad          = new Joystick(0);
     public static Joystick operatorJoystick = new Joystick(1);
-    public static int armsOpenTime = 0;
 
     public static int leftXAxis = 0; //Left X-Axis
     public static int leftYAXis = 1; //Left Y-Axis
@@ -39,8 +42,8 @@ public class CMap {
     //private static JoystickButton openArmsButton = new JoystickButton(gamepad ,leftBumper);
     //private static JoystickButton closeArmsButton = new JoystickButton(gamepad, rightBumper);
 
-    private static JoystickButton intakeCubeButtonComplete = new JoystickButton(gamepad, rightBumper);
-    private static JoystickButton intakeCubeButtonCarriage = new JoystickButton(gamepad, leftBumper);
+    private static JoystickButton carriageIntakeCubeButton = new JoystickButton(gamepad, leftBumper);
+    private static JoystickButton normalIntakeCubeButton = new JoystickButton(gamepad, rightBumper);
     private static JoystickButton expelCubeButton = new JoystickButton(operatorJoystick, 2);
     //Input Devices - Buttons
 
@@ -50,7 +53,6 @@ public class CMap {
 
     public static int intakeRollerRight = 2;
     public static int intakeRollerLeft = 4;
-    public static int intakeAxes = 6;
 
     public static int leftCarriageMotor = 9; //7
     public static int rightCarriageMotor = 8;
@@ -73,6 +75,9 @@ public class CMap {
     //Relay Ports
 
 
+    //Pnematics
+    public static Compressor compressor = new Compressor();
+    public static int intakeSolenoid = 0;
 
     //Subsystems
     public static DriveTrain drive = new DriveTrain();
@@ -108,15 +113,11 @@ public class CMap {
             motorsIntaking = false,
             motorsExpelling = false;
     public static void setupJoystickButtons(){
-        intakeCubeButtonComplete.whenReleased(new CloseArms());
-        //intakeCubeRightArmButton.whenReleased();
-        //intakeCubeLeftArmButton.whenReleased();
+        normalIntakeCubeButton.whileHeld(new bothIntakeCube());
+        normalIntakeCubeButton.whenReleased(new ChangeIntakeState(false));
 
-        intakeCubeButtonComplete.whileHeld(new IntakeCubeCommandWhole());
+        carriageIntakeCubeButton.whileHeld(new IntakeCubeIntoCarriage());
+
         expelCubeButton.whileHeld(new ExpelBlockCommand());
-
-        intakeCubeButtonCarriage.whileHeld(new IntakeCubeWithCarriage());
-        //intakeCubeRightArmButton.whileHeld();
-        //intakeCubeLeftArmButton.whileHeld();
     }
 }

@@ -30,6 +30,7 @@ public class GetAutoRoutine extends Command {
         super.execute();
 
         if(DriverStation.getInstance().getGameSpecificMessage().length() == 3) {
+            System.out.println("GOT GAME SPECIFIC MESSAGE");
             SmartDashboard.putString("DB/String 5", "Saving Message");
 
             message = DriverStation.getInstance().getGameSpecificMessage();

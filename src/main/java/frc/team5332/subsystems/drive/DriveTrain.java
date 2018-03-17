@@ -13,10 +13,13 @@ public class DriveTrain extends PIDSubsystem {
     ADXRS450_Gyro gyro;
 
     public DriveTrain() {
-        super("Drive Train", 1, 0, 0);
+        super("Drive Train", 0.5, 0, 0);
 
         leftDrive  = new LeftDriveTrain();
         rightDrive = new RightDriveTrain();
+
+        setOutputRange(-0.5, 0.5);
+        setAbsoluteTolerance(0.5);
 
         gyro = new ADXRS450_Gyro();
         gyro.calibrate();

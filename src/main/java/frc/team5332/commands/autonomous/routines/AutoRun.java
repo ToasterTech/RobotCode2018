@@ -21,6 +21,7 @@ public class AutoRun extends CommandGroup {
     @Override
     protected void end() {
         super.end();
+        System.out.println("AUTONOMOUS FINISHED");
         SmartDashboard.putString("DB/String 5", "Autonomous Finished");
     }
 }
