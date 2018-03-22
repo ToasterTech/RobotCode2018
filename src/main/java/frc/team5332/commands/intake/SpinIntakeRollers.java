@@ -7,7 +7,7 @@ import java.util.Calendar;
 import main.java.frc.team5332.robot.CMap;
 
 public class SpinIntakeRollers extends Command {
-
+    boolean timeBased;
 
     double motorSpeed;
 

@@ -6,13 +6,13 @@ import main.java.frc.team5332.robot.CMap;
 public class ChangeIntakeState extends Command {
     boolean state;
 
-    public ChangeIntakeState(boolean newState){
-        state = newState;
+    public ChangeIntakeState(){
+
     }
 
     @Override
     protected void execute() {
-        CMap.intake.changeIntakeArmState(state);
+        CMap.intake.changeIntakeArmState();
     }
 
     @Override

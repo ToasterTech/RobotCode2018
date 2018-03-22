@@ -17,13 +17,12 @@ public class Intake extends Subsystem{
         super("Intake");
 
         intakeSolenoids = new Solenoid(CMap.intakeSolenoid);
+        intakeSolenoids.set(false);
 
         leftIntakeRoller = new VictorSP(CMap.intakeRollerLeft);
         leftIntakeRoller.setInverted(true);
 
         rightIntakeRoller = new VictorSP(CMap.intakeRollerRight);
-
-
 
     }
 
@@ -43,6 +42,14 @@ public class Intake extends Subsystem{
 
     public void changeIntakeArmState(boolean newState){
         intakeSolenoids.set(newState);
+    }
+
+    public void changeIntakeArmState(){
+        intakeSolenoids.set(!intakeSolenoids.get());
+    }
+
+    public boolean getIntakeArmState(){
+        return intakeSolenoids.get();
     }
 
 }

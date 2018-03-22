@@ -11,6 +11,7 @@ import main.java.frc.team5332.commands.autonomous.preMatchActions.GetAutoRoutine
 import main.java.frc.team5332.commands.drive.JoystickDrive;
 import main.java.frc.team5332.commands.drive.TimeDrive;
 import main.java.frc.team5332.commands.elevator.JoystickElevator;
+import main.java.frc.team5332.commands.intake.ChangeIntakeState;
 
 public class Robot extends IterativeRobot {
 
@@ -41,6 +42,8 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit(){
         CMap.autoRan = true;
+
+        Scheduler.getInstance().add(new ChangeIntakeState());
         Scheduler.getInstance().add(new GetAutoRoutine()); //Get the Autonomous Routine based on Placement and Switch Assignments
     }
 

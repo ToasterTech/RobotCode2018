@@ -2,14 +2,11 @@ package main.java.frc.team5332.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import main.java.frc.team5332.commands.carriage.IntakeCubeIntoCarriage;
 import main.java.frc.team5332.commands.intake.*;
 import main.java.frc.team5332.commands.carriage.ExpelBlockCommand;
-import main.java.frc.team5332.commands.teleopCommandGroups.bothIntakeCube;
+import main.java.frc.team5332.commands.teleopCommandGroups.NormalIntakeCube;
 import main.java.frc.team5332.subsystems.*;
 import main.java.frc.team5332.subsystems.drive.DriveTrain;
 
@@ -39,11 +36,9 @@ public class CMap {
     private static int button1 = 1;
     private static int button2 = 2;
 
-    //private static JoystickButton openArmsButton = new JoystickButton(gamepad ,leftBumper);
-    //private static JoystickButton closeArmsButton = new JoystickButton(gamepad, rightBumper);
-
     private static JoystickButton carriageIntakeCubeButton = new JoystickButton(gamepad, leftBumper);
     private static JoystickButton normalIntakeCubeButton = new JoystickButton(gamepad, rightBumper);
+    private static JoystickButton changeArmsButton = new JoystickButton(gamepad, blueButton);
     private static JoystickButton expelCubeButton = new JoystickButton(operatorJoystick, 2);
     //Input Devices - Buttons
 
@@ -88,11 +83,6 @@ public class CMap {
 
     //Other Miscellaneous Objects
     public static String plateOwnership = "";
-    public static char startingSpot = 'D';
-    public static Object autoPreference = "";
-
-    public static SendableChooser autoChooser,
-                                  positionChooser;
 
     //Measurements in Inches
     public static double scaleHeight = 65;
@@ -113,8 +103,9 @@ public class CMap {
             motorsIntaking = false,
             motorsExpelling = false;
     public static void setupJoystickButtons(){
-        normalIntakeCubeButton.whileHeld(new bothIntakeCube());
-        normalIntakeCubeButton.whenReleased(new ChangeIntakeState(false));
+        normalIntakeCubeButton.whileHeld(new NormalIntakeCube());
+
+        changeArmsButton.whenPressed(new ChangeIntakeState()); //It makes it the opposite
 
         carriageIntakeCubeButton.whileHeld(new IntakeCubeIntoCarriage());
 
