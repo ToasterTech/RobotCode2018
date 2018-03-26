@@ -55,7 +55,9 @@ public class Robot extends IterativeRobot {
     public void teleopInit(){
         Scheduler.getInstance().removeAll();
 
-        Scheduler.getInstance().add(new TurnToAngle(90));
+        //Scheduler.getInstance().add(new TurnToAngle(90));
+        Scheduler.getInstance().add(new JoystickDrive());
+        Scheduler.getInstance().add(new JoystickElevator());
 
     }
 
