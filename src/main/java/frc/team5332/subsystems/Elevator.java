@@ -2,6 +2,7 @@ package main.java.frc.team5332.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,7 +14,7 @@ public class Elevator extends Subsystem {
 
     public Elevator(){
         super("Elevator");
-        motor = new SpeedControllerGroup(new VictorSP(CMap.elevatorMotor1), new VictorSP(CMap.elevatorMotor2));
+        motor = new SpeedControllerGroup(new VictorSP(CMap.elevatorMotor1), new VictorSP(CMap.elevatorMotor2), new Victor(CMap.elevatorMotor3));
 
     }
 
