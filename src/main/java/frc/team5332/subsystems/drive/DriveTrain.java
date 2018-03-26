@@ -69,6 +69,9 @@ public class DriveTrain extends PIDSubsystem {
 
     @Override
     protected void usePIDOutput(double v) {
+        System.out.println("Current Angle: " + gyro.getAngle());
+        System.out.println("Output: " + v);
+        System.out.println();
         tankDrive(-v, v);
     }
 
