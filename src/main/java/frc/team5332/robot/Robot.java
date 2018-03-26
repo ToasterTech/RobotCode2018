@@ -26,20 +26,20 @@ public class Robot extends IterativeRobot {
 
         CMap.compressor.setClosedLoopControl(true);
 
-
-    }
-
-    @Override
-    public void disabledPeriodic() {
-        if(DriverStation.getInstance().isFMSAttached() && !CMap.autoRan){
-            SmartDashboard.putString("DB/String 0", "Normal");
-            SmartDashboard.putString("DB/String 1", "Scale");
-            SmartDashboard.putString("DB/String 2", "Switch");
-            SmartDashboard.putString("DB/String 3", "Auto Run");
-            SmartDashboard.putString("DB/String 4", "Waiting for Plates");
-            SmartDashboard.putString("DB/String 5", "'L', 'M', or 'R' below.");
+        while(!DriverStation.getInstance().isDSAttached()){
+            //Wait for DS to Connect
         }
+
+        SmartDashboard.putString("DB/String 0", "Normal");
+        SmartDashboard.putString("DB/String 1", "Scale");
+        SmartDashboard.putString("DB/String 2", "Switch");
+        SmartDashboard.putString("DB/String 3", "Auto Run");
+        SmartDashboard.putString("DB/String 4", "Waiting for Plates");
+        SmartDashboard.putString("DB/String 5", "'L', 'M', or 'R' below.");
+
+
     }
+
 
     public void autonomousInit(){
         CMap.autoRan = true;

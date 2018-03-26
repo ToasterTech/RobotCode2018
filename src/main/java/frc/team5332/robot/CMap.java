@@ -54,6 +54,7 @@ public class CMap {
 
     public static int elevatorMotor1 = 3;
     public static int elevatorMotor2 = 5;
+    public static int elevatorMotor3 = 6;
 
     //DIO Ports
     public static int windowMotorLimitSwitchA = 2;
