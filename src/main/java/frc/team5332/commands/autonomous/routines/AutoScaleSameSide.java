@@ -15,19 +15,20 @@ public class AutoScaleSameSide extends CommandGroup {
         SmartDashboard.putString("DB/String 5", "Auto Scale Same Side Running");
         System.out.println("Auto Scale Same Side Running");
 
-        double turnAngle = (robotPosition == 'R') ? 45 : -45;
+        double turnAngle = (robotPosition == 'R') ? 1 : -1;
 
 
-        addSequential(new TimeDrive(2, 1, 1));
-        addSequential(new TimeElevator(2, -1));
-        addSequential(new TurnToAngle(turnAngle));
-        addSequential(new TimeExpelBlockCommand(3));
+        addSequential(new TimeDrive(3, 1, 1));
+        //addSequential(new TimeElevator(2, -1));
+        //addSequential(new TurnToAngle(turnAngle));
+        //addSequential(new TimeDrive(1, 0.5*turnAngle, -0.5*turnAngle));
+        //addSequential(new TimeExpelBlockCommand(3));
 
         //Stuff to get the second cube
-        addSequential(new TimeDrive(0.5, -0.5, -0.5));
-        addSequential(new TimeElevator(1.5, -2));
-        addSequential(new TurnToAngle((robotPosition == 'R') ? 135 : -135));
-        addSequential(new TimeIntakeCube(1.5));
+        //addSequential(new TimeDrive(0.5, -0.5, -0.5));
+        //addSequential(new TimeElevator(1.5, -2));
+        //addSequential(new TurnToAngle((robotPosition == 'R') ? 135 : -135));
+        //addSequential(new TimeIntakeCube(1.5));
 
     }
 
