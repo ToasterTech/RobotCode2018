@@ -17,16 +17,32 @@ public class AutoSwitchFromMiddle extends CommandGroup {
         System.out.println("AUTO SWITCH MIDDLE");
         SmartDashboard.putString("DB/String 5", "Auto Switch From Middle");
 
-        double turnAngle = (platePosition == 'L') ? 45 : -45;
+        double turnAngle = (platePosition == 'L') ? 1 : -1;
+
+        System.out.println(platePosition);
+        if(platePosition == 'R'){
 
 
-        addSequential(new TimeDrive(0.5, .5, .5));
-        addSequential(new TurnToAngle(turnAngle));
-        addSequential(new TimeDrive(0.5, 1, 1));
-        addSequential(new TurnToAngle(0));
-        addParallel(new TimeElevator(2, -1));
-        addParallel(new TimeDrive(3, 0.7, 0.7));
-        addSequential(new TimeExpelBlockCommand(5));
+            addParallel(new TimeElevator(.75, 1));
+            addSequential(new TimeDrive(1.5, 1, 1));
+            addSequential(new TimeDrive(3, 0.3, 0.3));
+            addSequential(new TimeExpelBlockCommand(5));
+        } else {
+            addSequential(new AutoRun());
+            /*
+            addSequential(new TimeDrive(0.5, 0 ,0.5));
+            addSequential(new TimeDrive(1.5, .7, .7));
+            addSequential(new TimeDrive(1, 0.3, 0));
+            addParallel(new TimeElevator(.75, 1));
+            addSequential();*/
+            /*addSequential(new TimeDrive(1, -.3, .3));
+            addSequential(new TimeDrive(2, .3, .3));
+            addSequential(new TurnToAngle(0));
+            addSequential(new TimeElevator(2, -1));
+            addSequential(new TimeDrive(3, 0.2, 0.2));
+            addSequential(new TimeExpelBlockCommand(5));*/
+        }
+
 
 
 

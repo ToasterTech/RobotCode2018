@@ -20,9 +20,10 @@ public class Intake extends Subsystem{
         intakeSolenoids.set(false);
 
         leftIntakeRoller = new VictorSP(CMap.intakeRollerLeft);
-        leftIntakeRoller.setInverted(true);
+        leftIntakeRoller.setInverted(false);
 
         rightIntakeRoller = new VictorSP(CMap.intakeRollerRight);
+        rightIntakeRoller.setInverted(true);
 
     }
 
@@ -33,6 +34,14 @@ public class Intake extends Subsystem{
     public void spinRollers(double speed){
         leftIntakeRoller.set(speed);
         rightIntakeRoller.set(speed);
+    }
+
+    public void spinLeftRoller(double speed){
+        leftIntakeRoller.setSpeed(speed);
+    }
+
+    public void spinRightRoller(double speed){
+        rightIntakeRoller.setSpeed(speed);
     }
 
     public void stopRollers(){

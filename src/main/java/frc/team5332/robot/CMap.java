@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import main.java.frc.team5332.commands.carriage.IntakeCubeIntoCarriage;
+import main.java.frc.team5332.commands.carriage.SlowExpelBlockCommand;
 import main.java.frc.team5332.commands.intake.*;
 import main.java.frc.team5332.commands.carriage.ExpelBlockCommand;
 import main.java.frc.team5332.commands.teleopCommandGroups.NormalIntakeCube;
@@ -37,6 +38,7 @@ public class CMap {
     private static int button2 = 2;
 
     private static JoystickButton carriageIntakeCubeButton = new JoystickButton(gamepad, leftBumper);
+    public static JoystickButton slowOutakeButton = new JoystickButton(gamepad, yellowButton);
     private static JoystickButton normalIntakeCubeButton = new JoystickButton(gamepad, rightBumper);
     private static JoystickButton changeArmsButton = new JoystickButton(gamepad, blueButton);
     private static JoystickButton expelCubeButton = new JoystickButton(operatorJoystick, 2);
@@ -108,8 +110,10 @@ public class CMap {
 
         changeArmsButton.whenPressed(new ChangeIntakeState()); //It makes it the opposite
 
-        carriageIntakeCubeButton.whileHeld(new IntakeCubeIntoCarriage());
+        carriageIntakeCubeButton.whileHeld(new ExpelBlockCommand());
 
         expelCubeButton.whileHeld(new ExpelBlockCommand());
+
+        slowOutakeButton.whileHeld(new SlowExpelBlockCommand());
     }
 }

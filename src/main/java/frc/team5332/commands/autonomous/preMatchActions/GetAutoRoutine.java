@@ -34,6 +34,7 @@ public class GetAutoRoutine extends Command {
             SmartDashboard.putString("DB/String 5", "Saving Message");
 
             message = DriverStation.getInstance().getGameSpecificMessage();
+            CMap.plateOwnership = message;
             try {
                 position = SmartDashboard.getString("DB/String 6", "M").charAt(0);
             }catch(Exception e){
@@ -45,15 +46,19 @@ public class GetAutoRoutine extends Command {
             SmartDashboard.putString("DB/String 5", "Received Plates");
 
             if(SmartDashboard.getBoolean("DB/Button 0", false)){
+                System.out.println("NORMAL");
                 normalPreferenceSystem();
                 routinePicked = true;
             } else if(SmartDashboard.getBoolean("DB/Button 1", false)){
+                System.out.println("SCALE");
                 scalePreferenceSystem();
                 routinePicked = true;
             } else if(SmartDashboard.getBoolean("DB/Button 2", false)) {
+                System.out.println("SWITCH");
                 switchPreferenceSystem();
                 routinePicked = true;
             } else {
+                System.out.println("AUTO RUN");
                 autoRunPreferenceSystem();
                 routinePicked = true;
             }
@@ -69,26 +74,26 @@ public class GetAutoRoutine extends Command {
 
             case 'L':
                 if(CMap.plateOwnership.charAt(1) == 'L'){ //Scale
-                    Scheduler.getInstance().add(new AutoScaleSameSide(position));
+                    Scheduler.getInstance().add(new AutoRun());
                 } else if(CMap.plateOwnership.charAt(0) == 'L') { //Switch
                     Scheduler.getInstance().add(new AutoSwitchSameSide(position));
                 } else {
-                    Scheduler.getInstance().add(new AutoScaleOppositeSide(position));
+                    Scheduler.getInstance().add(new AutoRun());
                 }
                 break;
 
             case 'R':
                 if(CMap.plateOwnership.charAt(1) == 'R'){ //Scale
-                    Scheduler.getInstance().add(new AutoScaleSameSide(position));
+                    Scheduler.getInstance().add(new AutoRun());
                 } else if(CMap.plateOwnership.charAt(0) == 'R') { //Switch
                     Scheduler.getInstance().add(new AutoSwitchSameSide(position));
                 } else {
-                    Scheduler.getInstance().add(new AutoScaleOppositeSide(position));
+                    Scheduler.getInstance().add(new AutoRun());
                 }
                 break;
 
             case 'M':
-                Scheduler.getInstance().add(new AutoSwitchFromMiddle(position));
+                Scheduler.getInstance().add(new AutoSwitchFromMiddle(message.charAt(0)));
                 break;
 
         }
@@ -98,7 +103,7 @@ public class GetAutoRoutine extends Command {
         if(message.charAt(1) == position){
             Scheduler.getInstance().add(new AutoScaleSameSide(position));
         } else {
-            Scheduler.getInstance().add(new AutoScaleOppositeSide(position));
+            Scheduler.getInstance().add(new AutoRun());
         }
     }
 
@@ -107,7 +112,7 @@ public class GetAutoRoutine extends Command {
             Scheduler.getInstance().add(new AutoSwitchSameSide(position));
         } else {
             if(position == 'L' || position == 'R'){
-                Scheduler.getInstance().add(new AutoSwitchOppositeSide(position));
+                Scheduler.getInstance().add(new AutoRun());
             } else {
                 //Middle Starting Spot
                 Scheduler.getInstance().add(new AutoSwitchFromMiddle(message.charAt(0)));

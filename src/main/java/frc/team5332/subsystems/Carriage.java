@@ -12,14 +12,16 @@ public class Carriage extends Subsystem {
     SpeedControllerGroup carriageMotor;
     DigitalInput limitSwitch;
 
+    Spark invertedMotor;
+    Talon normalMotor;
 
 
 
     public Carriage(){
         super("Carriage");
         //limitSwitch = new DigitalInput(CMap.intakeLimitSwitch);
-        Spark invertedMotor = new Spark(CMap.rightCarriageMotor);
-        Talon normalMotor = new Talon(CMap.leftCarriageMotor);
+        invertedMotor = new Spark(CMap.rightCarriageMotor);
+        normalMotor = new Talon(CMap.leftCarriageMotor);
         carriageMotor = new SpeedControllerGroup(invertedMotor, normalMotor);;
         //carriageMotor  = new SpeedControllerGroup(new VictorSP(CMap.leftCarriageMotor), new VictorSP(CMap.rightCarriageMotor));
     }
@@ -51,6 +53,14 @@ public class Carriage extends Subsystem {
      */
     public void stopMotors(){
         carriageMotor.stopMotor();
+    }
+
+    public void spinLeftMotor(double speed){
+        invertedMotor.set(speed);
+    }
+
+    public void spinRightMotor(double speed){
+        normalMotor.set(speed);
     }
 
     /**

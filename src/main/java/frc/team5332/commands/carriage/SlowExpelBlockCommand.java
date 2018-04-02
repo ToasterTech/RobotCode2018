@@ -5,15 +5,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import main.java.frc.team5332.commands.intake.TriggerSpinCubeInIntake;
 import main.java.frc.team5332.robot.CMap;
 
-public class ExpelBlockCommand extends Command {
+public class SlowExpelBlockCommand extends Command {
 
-    public ExpelBlockCommand(){
+    public SlowExpelBlockCommand(){
         requires(CMap.intake);
     }
 
     public void execute(){
-        CMap.carriage.expelCube();
-        CMap.intake.spinRollers(1);
+        CMap.carriage.expelCube(0.4);
+        CMap.intake.spinRollers(.4);
     }
 
     protected boolean isFinished(){

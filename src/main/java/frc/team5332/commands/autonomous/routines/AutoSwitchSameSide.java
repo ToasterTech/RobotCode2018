@@ -15,15 +15,22 @@ public class AutoSwitchSameSide extends CommandGroup {
     public AutoSwitchSameSide(char robotPosition){
         SmartDashboard.putString("DB/String 5", "Auto Switch Same Side Running");
 
-        double turnAngle = (robotPosition == 'R') ? 90 : -90;
+        //double turnAngle = (robotPosition == 'R') ? -1 : 1;
 
+        addSequential(new TimeDrive(3, 0, 0));
 
-        addSequential(new TimeDrive(1, 1, 1));
-        addSequential(new TurnToAngle(turnAngle));
-        addParallel(new TimeDrive(0.5, 0.5, 0.5));
-        addParallel(new TimeElevator(2, -1));
-        addSequential(new TimeExpelBlockCommand(5));
+        addSequential(new TimeDrive(3, 0.5, 0.5));
+        addParallel(new TimeElevator(.75, 1));
+        if (robotPosition == 'R'){
+            addSequential(new TimeDrive(.5, 0, 1));
+        } else {
+            addSequential(new TimeDrive(.5, 1, 0));
+        }
+        addSequential(new TimeDrive(1.5, 0.3, 0.3));
+        addSequential(new TimeExpelBlockCommand(3));
 
+        addSequential(new TimeDrive(1, -0.3, -0.3));
+        addSequential(new TimeElevator(.75, -.5));
     }
 
     @Override

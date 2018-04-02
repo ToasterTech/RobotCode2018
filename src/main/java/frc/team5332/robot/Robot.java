@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.java.frc.team5332.commands.autonomous.preMatchActions.GetAutoRoutine;
 import main.java.frc.team5332.commands.drive.JoystickDrive;
-import main.java.frc.team5332.commands.drive.TimeDrive;
-import main.java.frc.team5332.commands.drive.TurnToAngle;
 import main.java.frc.team5332.commands.elevator.JoystickElevator;
+import main.java.frc.team5332.commands.elevator.TimeElevator;
 import main.java.frc.team5332.commands.intake.ChangeIntakeState;
+import main.java.frc.team5332.commands.intake.TriggerSpinCubeInIntake;
 
 public class Robot extends IterativeRobot {
 
@@ -45,6 +45,7 @@ public class Robot extends IterativeRobot {
         CMap.autoRan = true;
 
         Scheduler.getInstance().add(new ChangeIntakeState());
+        //Scheduler.getInstance().add(new TimeElevator(2, 1));
         Scheduler.getInstance().add(new GetAutoRoutine()); //Get the Autonomous Routine based on Placement and Switch Assignments
     }
 
@@ -54,11 +55,14 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit(){
         Scheduler.getInstance().removeAll();
+        Scheduler.getInstance().removeAll();
+
+
 
         //Scheduler.getInstance().add(new TurnToAngle(90));
         Scheduler.getInstance().add(new JoystickDrive());
         Scheduler.getInstance().add(new JoystickElevator());
-
+        Scheduler.getInstance().add(new TriggerSpinCubeInIntake());
     }
 
     public void teleopPeriodic(){

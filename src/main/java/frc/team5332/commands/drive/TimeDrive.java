@@ -32,7 +32,9 @@ public class TimeDrive extends Command {
             started = true;
         }
 
-        System.out.println(timer.get());
+        //System.out.println(timer.get());
+        //System.out.println(goalSeconds);
+        //System.out.println();
 
         CMap.drive.tankDrive(leftSpeed, rightSpeed);
     }
