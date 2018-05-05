@@ -13,6 +13,7 @@ import main.java.frc.team5332.commands.elevator.JoystickElevator;
 import main.java.frc.team5332.commands.elevator.TimeElevator;
 import main.java.frc.team5332.commands.intake.ChangeIntakeState;
 import main.java.frc.team5332.commands.intake.TriggerSpinCubeInIntake;
+import main.java.frc.team5332.util.RecordCommand;
 
 public class Robot extends IterativeRobot {
 
@@ -20,9 +21,10 @@ public class Robot extends IterativeRobot {
     @Override
     public void robotInit() {
         CMap.setupJoystickButtons();
+        CMap.setupPathDirectories();
 
-        UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-        camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 640, 360, 30);
+        //UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+        //camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 640, 360, 30);
 
         CMap.compressor.setClosedLoopControl(true);
 
@@ -63,6 +65,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().add(new JoystickDrive());
         Scheduler.getInstance().add(new JoystickElevator());
         Scheduler.getInstance().add(new TriggerSpinCubeInIntake());
+        //Scheduler.getInstance().add(new RecordCommand());
     }
 
     public void teleopPeriodic(){
