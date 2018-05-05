@@ -10,11 +10,14 @@ public class Intake extends Subsystem{
 
     VictorSP leftIntakeRoller, rightIntakeRoller;
     Solenoid intakeSolenoids;
+    DoubleSolenoid openCloseSolenoid;
 
     public DigitalInput limitSwitchA, limitSwitchB;
 
     public Intake(){
         super("Intake");
+
+        openCloseSolenoid = new DoubleSolenoid(CMap.openCloseSolenoidA, CMap.openCloseSolenoidB);
 
         intakeSolenoids = new Solenoid(CMap.intakeSolenoid);
         intakeSolenoids.set(false);
@@ -55,6 +58,14 @@ public class Intake extends Subsystem{
 
     public void changeIntakeArmState(){
         intakeSolenoids.set(!intakeSolenoids.get());
+    }
+
+    public void changeOpenCloseIntakeState(){
+        if(openCloseSolenoid.get() == DoubleSolenoid.Value.kForward || openCloseSolenoid.get() == DoubleSolenoid.Value.kOff){
+            openCloseSolenoid.set(DoubleSolenoid.Value.kReverse);
+        } else {
+            openCloseSolenoid.set(DoubleSolenoid.Value.kForward);
+        }
     }
 
     public boolean getIntakeArmState(){

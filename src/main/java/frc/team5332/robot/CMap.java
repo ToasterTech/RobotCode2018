@@ -41,7 +41,8 @@ public class CMap {
     public static JoystickButton slowOutakeButton = new JoystickButton(gamepad, yellowButton);
     private static JoystickButton normalIntakeCubeButton = new JoystickButton(gamepad, rightBumper);
     private static JoystickButton changeArmsButton = new JoystickButton(gamepad, blueButton);
-    private static JoystickButton expelCubeButton = new JoystickButton(operatorJoystick, 2);
+    public static JoystickButton openCloseIntakeArmsButton = new JoystickButton(gamepad, redButton);
+    private static JoystickButton expelCubeButton = new JoystickButton(operatorJoystick, 1);
     //Input Devices - Buttons
 
     //PWM Motor Ports
@@ -76,6 +77,8 @@ public class CMap {
     //Pnematics
     public static Compressor compressor = new Compressor();
     public static int intakeSolenoid = 0;
+    public static int openCloseSolenoidA = 1;
+    public static int openCloseSolenoidB = 2;
 
     //Subsystems
     public static DriveTrain drive = new DriveTrain();
@@ -109,8 +112,8 @@ public class CMap {
         normalIntakeCubeButton.whileHeld(new NormalIntakeCube());
 
         changeArmsButton.whenPressed(new ChangeIntakeState()); //It makes it the opposite
-
-        carriageIntakeCubeButton.whileHeld(new ExpelBlockCommand());
+        openCloseIntakeArmsButton.whileHeld(new ExpelBlockCommand());
+        carriageIntakeCubeButton.whenPressed(new OpenCloseIntakeArms());
 
         expelCubeButton.whileHeld(new ExpelBlockCommand());
 

@@ -9,6 +9,8 @@ import main.java.frc.team5332.commands.drive.EncoderDrive;
 import main.java.frc.team5332.commands.drive.TimeDrive;
 import main.java.frc.team5332.commands.drive.TurnToAngle;
 import main.java.frc.team5332.commands.elevator.TimeElevator;
+import main.java.frc.team5332.commands.intake.ChangeIntakeState;
+import main.java.frc.team5332.commands.intake.OpenCloseIntakeArms;
 import main.java.frc.team5332.robot.CMap;
 
 public class AutoSwitchFromMiddle extends CommandGroup {
@@ -24,17 +26,27 @@ public class AutoSwitchFromMiddle extends CommandGroup {
 
 
             addParallel(new TimeElevator(.75, 1));
-            addSequential(new TimeDrive(1.5, 1, 1));
+            addSequential(new TimeDrive(1.5,  0.8, 0.8));
+            addSequential(new ChangeIntakeState());
             addSequential(new TimeDrive(3, 0.3, 0.3));
             addSequential(new TimeExpelBlockCommand(5));
         } else {
-            addSequential(new AutoRun());
-            /*
-            addSequential(new TimeDrive(0.5, 0 ,0.5));
-            addSequential(new TimeDrive(1.5, .7, .7));
-            addSequential(new TimeDrive(1, 0.3, 0));
-            addParallel(new TimeElevator(.75, 1));
-            addSequential();*/
+            //addSequential(new AutoRun());
+
+            //addSequential(new TimeDrive(0.5, 0 ,0.5));
+
+            addSequential(new TimeDrive(0.7, .5, .5));
+            addSequential(new TimeDrive(1, 0, 0.5));
+            addSequential(new TimeDrive(1.4, 0.5, 0.5));
+            addSequential(new TimeDrive(1.15, 0.4, 0));
+            addSequential(new TimeElevator(.75, .75));
+            addSequential(new ChangeIntakeState());
+            addSequential(new TimeDrive(0.75, 0, 0));
+            addSequential(new TimeDrive(1, 0.4, 0.4));
+            addSequential(new TimeExpelBlockCommand(3 ));
+
+
+            //addParallel(new TimeElevator(.75, 1));
             /*addSequential(new TimeDrive(1, -.3, .3));
             addSequential(new TimeDrive(2, .3, .3));
             addSequential(new TurnToAngle(0));

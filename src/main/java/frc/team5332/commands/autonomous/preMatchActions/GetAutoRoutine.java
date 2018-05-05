@@ -74,7 +74,7 @@ public class GetAutoRoutine extends Command {
 
             case 'L':
                 if(CMap.plateOwnership.charAt(1) == 'L'){ //Scale
-                    Scheduler.getInstance().add(new AutoRun());
+                    Scheduler.getInstance().add(new AutoScaleSameSide(position));
                 } else if(CMap.plateOwnership.charAt(0) == 'L') { //Switch
                     Scheduler.getInstance().add(new AutoSwitchSameSide(position));
                 } else {
@@ -84,7 +84,7 @@ public class GetAutoRoutine extends Command {
 
             case 'R':
                 if(CMap.plateOwnership.charAt(1) == 'R'){ //Scale
-                    Scheduler.getInstance().add(new AutoRun());
+                    Scheduler.getInstance().add(new AutoScaleSameSide(position));
                 } else if(CMap.plateOwnership.charAt(0) == 'R') { //Switch
                     Scheduler.getInstance().add(new AutoSwitchSameSide(position));
                 } else {

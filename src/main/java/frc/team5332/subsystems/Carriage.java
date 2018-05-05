@@ -41,7 +41,7 @@ public class Carriage extends Subsystem {
      * This method removes the cube.
      */
     public void expelCube(){
-        carriageMotor.set(-0.6);
+        carriageMotor.set(-1);
     }
 
     public void expelCube(double speed){
