@@ -10,6 +10,7 @@ import main.java.frc.team5332.commands.teleopCommandGroups.NormalIntakeCube;
 import main.java.frc.team5332.subsystems.*;
 import main.java.frc.team5332.subsystems.drive.DriveTrain;
 import main.java.frc.team5332.util.Cycle;
+import main.java.frc.team5332.util.ToasterDVR;
 import org.supercsv.cellprocessor.ParseDouble;
 import org.supercsv.cellprocessor.ParseInt;
 import org.supercsv.cellprocessor.ift.CellProcessor;
@@ -27,10 +28,9 @@ import java.util.ArrayList;
 public class CMap {
     public static boolean autoRan = false;
 
-    public static File pathsDir, path;
-    public static String[] variableNames = {"cycleIndex", "leftJoystickValue", "rightJoystickValue"};
-    public static CellProcessor[] cellProcessors = {new ParseInt(), new ParseDouble(), new ParseDouble()};
 
+
+    //public static ToasterDVR toasterDVR = new ToasterDVR();
     //Input Devices - Joysticks
     public static Joystick gamepad          = new Joystick(0);
     public static Joystick operatorJoystick = new Joystick(1);
@@ -137,42 +137,6 @@ public class CMap {
         slowOutakeButton.whileHeld(new SlowExpelBlockCommand());
     }
 
-    public static void setupPathDirectories(){
-        pathsDir = new File(System.getProperty("user.dir"), "Recordings");
-        path  = new File(pathsDir, "TestPath.csv");
 
 
-    }
-
-    public static void writePath(ArrayList<Cycle> cycles) throws Exception{
-        pathsDir = new File("/home/lvuser", "Recordings");
-        path  = new File(pathsDir, "TestPath.csv");
-
-        System.out.println(pathsDir.mkdirs());
-        System.out.println(pathsDir.exists());
-
-        System.out.println(pathsDir.getPath());
-        ICsvBeanWriter writer = new CsvBeanWriter(new FileWriter(path, false), CsvPreference.STANDARD_PREFERENCE);
-
-
-        for(Cycle cycle : cycles){
-            writer.write(cycle, variableNames, cellProcessors);
-        }
-
-        writer.close();
-    }
-
-    public static ArrayList<Cycle> readPath() throws Exception{
-        ArrayList<Cycle> cycles = new ArrayList<>();
-
-        ICsvBeanReader reader = new CsvBeanReader(new FileReader(path), CsvPreference.STANDARD_PREFERENCE);
-
-        Cycle currentCycle;
-        while((currentCycle = reader.read(Cycle.class, variableNames, cellProcessors)) != null){
-            cycles.add(currentCycle);
-        }
-        reader.close();
-
-        return cycles;
-    }
 }

@@ -3,17 +3,20 @@ package main.java.frc.team5332.util;
 import edu.wpi.first.wpilibj.command.Command;
 import main.java.frc.team5332.robot.CMap;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class PlayRecording extends Command {
     int cycle;
+    ToasterDVR dvr;
     ArrayList<Cycle> cycles = new ArrayList<Cycle>();
 
-    public PlayRecording(){
+    public PlayRecording(ToasterDVR callingDVR, File playbackFile){
         cycle = 0;
+        dvr = callingDVR;
 
         try {
-            cycles = CMap.readPath();
+            cycles = dvr.readPath(playbackFile);
         }catch (Exception e){
             System.out.println();
         }
@@ -33,6 +36,6 @@ public class PlayRecording extends Command {
     @Override
     protected void end() {
         System.out.println("Finishing Recording");
-        
+
     }
 }

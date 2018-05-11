@@ -21,7 +21,6 @@ public class Robot extends IterativeRobot {
     @Override
     public void robotInit() {
         CMap.setupJoystickButtons();
-        CMap.setupPathDirectories();
 
         //UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
         //camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 640, 360, 30);
@@ -32,12 +31,14 @@ public class Robot extends IterativeRobot {
             //Wait for DS to Connect
         }
 
+
         SmartDashboard.putString("DB/String 0", "Normal");
         SmartDashboard.putString("DB/String 1", "Scale");
         SmartDashboard.putString("DB/String 2", "Switch");
         SmartDashboard.putString("DB/String 3", "Auto Run");
         SmartDashboard.putString("DB/String 4", "Waiting for Plates");
         SmartDashboard.putString("DB/String 5", "'L', 'M', or 'R' below.");
+
 
 
     }
@@ -71,6 +72,10 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic(){
         Scheduler.getInstance().run();
 
+    }
+
+    public void disabledInit(){
+        super.disabledInit();
     }
 
 }
