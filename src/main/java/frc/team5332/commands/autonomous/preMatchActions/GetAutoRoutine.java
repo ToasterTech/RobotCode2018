@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.java.frc.team5332.commands.autonomous.routines.*;
 import main.java.frc.team5332.commands.drive.TimeDrive;
@@ -14,12 +15,17 @@ import java.awt.color.CMMException;
 public class GetAutoRoutine extends Command {
     boolean routinePicked = false;
     Command autonmousRoutine;
+
+    private int positionSelected, routineSelected;
+
     String message;
     char position;
 
+    private SendableChooser<Integer> positionSendable, routineSendable;
+
     public GetAutoRoutine(){
-
-
+        positionSendable = (SendableChooser<Integer>)SmartDashboard.getData("Position Chooser");
+        routineSendable = (SendableChooser<Integer>)SmartDashboard.getData("Auto Chooser");
 
         routinePicked = false;
 
@@ -36,7 +42,20 @@ public class GetAutoRoutine extends Command {
             message = DriverStation.getInstance().getGameSpecificMessage();
             CMap.plateOwnership = message;
             try {
-                position = SmartDashboard.getString("DB/String 6", "M").charAt(0);
+                //position = SmartDashboard.getString("DB/String 6", "M").charAt(0);
+                positionSelected = positionSendable.getSelected();
+                if(positionSelected == CMap.leftPos){
+                    position = 'L';
+                } else if(positionSelected == CMap.rightPos){
+                    position = 'R';
+                } else {
+                    position = 'M';
+                }
+
+                SmartDashboard.putString("Translated Position", String.valueOf(position));
+                routineSelected = routineSendable.getSelected();
+
+
             }catch(Exception e){
                 position = 'M';
             }
@@ -45,21 +64,21 @@ public class GetAutoRoutine extends Command {
 
             SmartDashboard.putString("DB/String 5", "Received Plates");
 
-            if(SmartDashboard.getBoolean("DB/Button 0", false)){
+            if(routineSelected == CMap.normal){
                 System.out.println("NORMAL");
-                normalPreferenceSystem();
+                //normalPreferenceSystem();
                 routinePicked = true;
-            } else if(SmartDashboard.getBoolean("DB/Button 1", false)){
+            } else if(routineSelected == CMap.scaleOnly){
                 System.out.println("SCALE");
-                scalePreferenceSystem();
+                //scalePreferenceSystem();
                 routinePicked = true;
-            } else if(SmartDashboard.getBoolean("DB/Button 2", false)) {
+            } else if(routineSelected == CMap.switchOnly) {
                 System.out.println("SWITCH");
-                switchPreferenceSystem();
+                //switchPreferenceSystem();
                 routinePicked = true;
             } else {
                 System.out.println("AUTO RUN");
-                autoRunPreferenceSystem();
+                // autoRunPreferenceSystem();
                 routinePicked = true;
             }
             //switchPreferenceSystem();

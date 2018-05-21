@@ -3,6 +3,7 @@ package main.java.frc.team5332.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import main.java.frc.team5332.commands.carriage.SlowExpelBlockCommand;
 import main.java.frc.team5332.commands.intake.*;
 import main.java.frc.team5332.commands.carriage.ExpelBlockCommand;
@@ -10,6 +11,8 @@ import main.java.frc.team5332.commands.teleopCommandGroups.NormalIntakeCube;
 import main.java.frc.team5332.subsystems.*;
 import main.java.frc.team5332.subsystems.drive.DriveTrain;
 import main.java.frc.team5332.util.Cycle;
+import main.java.frc.team5332.util.PlaybackRecording;
+import main.java.frc.team5332.util.RecordPath;
 import main.java.frc.team5332.util.ToasterDVR;
 import org.supercsv.cellprocessor.ParseDouble;
 import org.supercsv.cellprocessor.ParseInt;
@@ -26,9 +29,19 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class CMap {
-    public static boolean autoRan = false;
+    //Sendable Choosers
+    public SendableChooser<Integer> autoChooser, positionChooser;
+    public static ToasterDVR mainDVR = new ToasterDVR();
 
+    //Autonomous
+    public static int leftPos   = 0,
+                      centerPos = 1,
+                      rightPos  = 2;
 
+    public static int autoRun    = 0,
+                      switchOnly = 1,
+                      scaleOnly  = 2,
+                      normal     = 3;
 
     //public static ToasterDVR toasterDVR = new ToasterDVR();
     //Input Devices - Joysticks
@@ -60,6 +73,10 @@ public class CMap {
     private static JoystickButton changeArmsButton = new JoystickButton(gamepad, blueButton);
     public static JoystickButton openCloseIntakeArmsButton = new JoystickButton(gamepad, redButton);
     private static JoystickButton expelCubeButton = new JoystickButton(operatorJoystick, 1);
+
+    //Toaster DVR Controls
+    private static JoystickButton recordingToggle = new JoystickButton(operatorJoystick, 5);
+    private static JoystickButton playbackToggle = new JoystickButton(operatorJoystick, 6);
     //Input Devices - Buttons
 
     //PWM Motor Ports
@@ -125,6 +142,7 @@ public class CMap {
             rightTriggerPreviouslyPressed = false,
             motorsIntaking = false,
             motorsExpelling = false;
+
     public static void setupJoystickButtons(){
         normalIntakeCubeButton.whileHeld(new NormalIntakeCube());
 
@@ -135,7 +153,12 @@ public class CMap {
         expelCubeButton.whileHeld(new ExpelBlockCommand());
 
         slowOutakeButton.whileHeld(new SlowExpelBlockCommand());
+
+
+        recordingToggle.toggleWhenPressed(new RecordPath("VictorySpins.csv"));
+        playbackToggle.toggleWhenPressed(new PlaybackRecording("VictorySpins.csv"));
     }
+
 
 
 
