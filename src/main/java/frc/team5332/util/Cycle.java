@@ -4,15 +4,17 @@ public class Cycle {
 
     double leftJoystickValue;
     double rightJoystickValue;
+    double elevatorJoystickValue;
 
     public Cycle(){
         leftJoystickValue = 0.0;
         rightJoystickValue = 0.0;
     }
 
-    public Cycle(double leftJoystickValue, double rightJoystickValue) {
+    public Cycle(double leftJoystickValue, double rightJoystickValue, double elevatorValue) {
         this.leftJoystickValue = leftJoystickValue;
         this.rightJoystickValue = rightJoystickValue;
+        this.elevatorJoystickValue = elevatorValue;
     }
 
 
@@ -30,5 +32,13 @@ public class Cycle {
 
     public void setRightJoystickValue(double rightJoystickValue) {
         this.rightJoystickValue = rightJoystickValue;
+    }
+
+    public double getElevatorJoystickValue() {
+        return elevatorJoystickValue;
+    }
+
+    public void setElevatorJoystickValue(double elevatorJoystickValue) {
+        this.elevatorJoystickValue = elevatorJoystickValue;
     }
 }

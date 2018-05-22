@@ -22,8 +22,8 @@ public class ToasterDVR {
     private int currentState;
     private File recordingsDir;
 
-    public String[] variableNames = {"leftJoystickValue", "rightJoystickValue"};
-    public CellProcessor[] cellProcessors = {new ParseDouble(), new ParseDouble()};
+    public String[] variableNames = {"leftJoystickValue", "rightJoystickValue", "elevatorJoystickValue"};
+    public CellProcessor[] cellProcessors = {new ParseDouble(), new ParseDouble(), new ParseDouble()};
 
     //DVR States
     public static int IDLE = 1;

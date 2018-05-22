@@ -1,6 +1,5 @@
 package main.java.frc.team5332.util;
 
-import com.ctre.phoenix.drive.DriveMode;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import main.java.frc.team5332.robot.CMap;
@@ -18,7 +17,7 @@ public class RecordPath extends Command{
 
     @Override
     protected void execute() {
-        recordingCycles.add(new Cycle(CMap.gamepad.getRawAxis(CMap.leftYAXis), CMap.gamepad.getRawAxis(CMap.rightYAxis)));
+        recordingCycles.add(new Cycle(-CMap.gamepad.getRawAxis(CMap.leftYAXis), -CMap.gamepad.getRawAxis(CMap.rightYAxis), CMap.operatorJoystick.getY()));
     }
 
     @Override

@@ -1,6 +1,5 @@
 package main.java.frc.team5332.util;
 
-import com.ctre.phoenix.drive.DriveMode;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import main.java.frc.team5332.robot.CMap;
@@ -8,7 +7,7 @@ import main.java.frc.team5332.robot.CMap;
 import java.util.ArrayList;
 
 public class PlaybackRecording extends Command{
-    ArrayList<Cycle> playbackCycles;
+    ArrayList<Cycle> playbackCycles = new ArrayList<>();
     int cycleIndex;
     String fileName;
 
@@ -29,9 +28,17 @@ public class PlaybackRecording extends Command{
 
     @Override
     protected void execute() {
+        if(playbackCycles.size() == 0){
+            try{
+                playbackCycles = CMap.mainDVR.readPath(fileName);
+            } catch (Exception e){
+                DriverStation.reportError("Unable to Get Cycles", e.getStackTrace());
+            }
+        }
 
         Cycle currentCycle = playbackCycles.get(cycleIndex);
         CMap.drive.tankDrive(currentCycle.leftJoystickValue, currentCycle.rightJoystickValue);
+        CMap.elevator.setMotorSpeed(-currentCycle.getElevatorJoystickValue());
         cycleIndex += 1;
 
     }
@@ -43,7 +50,10 @@ public class PlaybackRecording extends Command{
 
     @Override
     protected void end() {
+        cycleIndex = 0;
+        playbackCycles = new ArrayList<>();
         CMap.drive.tankDrive(0, 0);
+        CMap.elevator.setMotorSpeed(0);
         System.out.println("Finished Playback");
 
     }
