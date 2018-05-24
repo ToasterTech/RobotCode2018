@@ -27,17 +27,17 @@ public class ToasterDVR {
 
 
 
-    private File recordingsDir = new File("/home/lvuser", "Recordings");;
+    private static File recordingsDir = new File("/home/lvuser", "Recordings");;
 
-    private String[] variableNames = {"leftJoystickValue", "rightJoystickValue", "elevatorJoystickValue"};
-    private CellProcessor[] cellProcessors = {new ParseDouble(), new ParseDouble(), new ParseDouble()};
+    private static String[] variableNames = {"leftJoystickValue", "rightJoystickValue", "elevatorJoystickValue"};
+    private static CellProcessor[] cellProcessors = {new ParseDouble(), new ParseDouble(), new ParseDouble()};
 
     private ToasterDVR(){
 
 
     }
 
-    public void writePath(ArrayList<Cycle> cycles, String recordingName) throws Exception{
+    public static void writePath(ArrayList<Cycle> cycles, String recordingName) throws Exception{
         if(!recordingName.contains(".csv")){
             recordingName = recordingName + ".csv";
         }
@@ -54,7 +54,7 @@ public class ToasterDVR {
         DriverStation.reportWarning("Recording Successful and saved at " + path.getAbsolutePath(), false);
     }
 
-    public ArrayList<Cycle> readPath(String recordingName) throws Exception{
+    public static ArrayList<Cycle> readPath(String recordingName) throws Exception{
         if(!recordingName.contains(".csv")){
             recordingName = recordingName + ".csv";
         }

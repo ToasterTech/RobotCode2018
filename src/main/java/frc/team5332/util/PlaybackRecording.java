@@ -16,7 +16,7 @@ public class PlaybackRecording extends Command{
         cycleIndex = 0;
         fileName = file;
         try{
-            playbackCycles = CMap.mainDVR.readPath(fileName);
+            playbackCycles = ToasterDVR.readPath(fileName);
         } catch (Exception e){
             DriverStation.reportError("Unable to Get Cycles", e.getStackTrace());
         }
@@ -35,7 +35,7 @@ public class PlaybackRecording extends Command{
         }
         if(playbackCycles.size() == 0){
             try{
-                playbackCycles = CMap.mainDVR.readPath(fileName);
+                playbackCycles = ToasterDVR.readPath(fileName);
             } catch (Exception e){
                 DriverStation.reportError("Unable to Get Cycles", e.getStackTrace());
             }

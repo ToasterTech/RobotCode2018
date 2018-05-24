@@ -35,7 +35,7 @@ public class RecordPath extends Command{
     protected void end() {
         warningIssued = false;
         try {
-            CMap.mainDVR.writePath(recordingCycles, fileName);
+            ToasterDVR.writePath(recordingCycles, fileName);
         } catch (Exception e){
             DriverStation.reportError("Recording Saving Failed", e.getStackTrace());
         }
