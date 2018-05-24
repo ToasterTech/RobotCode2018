@@ -34,14 +34,14 @@ public class CMap {
     public static ToasterDVR mainDVR = new ToasterDVR();
 
     //Autonomous
-    public static int leftPos   = 0,
-                      centerPos = 1,
-                      rightPos  = 2;
+    public static final String leftPos   = "Left",
+                      centerPos = "Middle",
+                      rightPos  = "Right";
 
-    public static int autoRun    = 0,
-                      switchOnly = 1,
-                      scaleOnly  = 2,
-                      normal     = 3;
+    public static final String autoRun    = "Auto Run",
+                      switchOnly = "Switch",
+                      scaleOnly  = "Scale",
+                      normal     = "Normal";
 
     //public static ToasterDVR toasterDVR = new ToasterDVR();
     //Input Devices - Joysticks

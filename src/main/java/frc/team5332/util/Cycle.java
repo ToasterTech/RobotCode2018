@@ -11,7 +11,7 @@ public class Cycle {
         rightJoystickValue = 0.0;
     }
 
-    public Cycle(double leftJoystickValue, double rightJoystickValue, double elevatorValue) {
+    public Cycle(double leftJoystickValue, double rightJoystickValue, double elevatorValue){
         this.leftJoystickValue = leftJoystickValue;
         this.rightJoystickValue = rightJoystickValue;
         this.elevatorJoystickValue = elevatorValue;

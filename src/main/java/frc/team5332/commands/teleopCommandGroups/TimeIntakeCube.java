@@ -12,6 +12,5 @@ public class TimeIntakeCube extends CommandGroup {
     public TimeIntakeCube(double time){
         addParallel(new TimeSpinIntakeRollers(-1, time));
         addParallel(new TimeIntakeCubeIntoCarriage(time));
-        addParallel(new TimeDrive(time, 0.1, 0.1));
     }
 }

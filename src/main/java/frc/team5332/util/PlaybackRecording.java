@@ -7,6 +7,7 @@ import main.java.frc.team5332.robot.CMap;
 import java.util.ArrayList;
 
 public class PlaybackRecording extends Command{
+    boolean warningIssued = false;
     ArrayList<Cycle> playbackCycles = new ArrayList<>();
     int cycleIndex;
     String fileName;
@@ -28,6 +29,10 @@ public class PlaybackRecording extends Command{
 
     @Override
     protected void execute() {
+        if(!warningIssued){
+            warningIssued = true;
+            DriverStation.reportWarning("Playback Starting", false);
+        }
         if(playbackCycles.size() == 0){
             try{
                 playbackCycles = CMap.mainDVR.readPath(fileName);
@@ -37,8 +42,8 @@ public class PlaybackRecording extends Command{
         }
 
         Cycle currentCycle = playbackCycles.get(cycleIndex);
-        CMap.drive.tankDrive(currentCycle.leftJoystickValue, currentCycle.rightJoystickValue);
-        CMap.elevator.setMotorSpeed(-currentCycle.getElevatorJoystickValue());
+        CMap.drive.tankDrive(-currentCycle.leftJoystickValue, -currentCycle.rightJoystickValue);
+        CMap.elevator.setMotorSpeed(currentCycle.elevatorJoystickValue);
         cycleIndex += 1;
 
     }

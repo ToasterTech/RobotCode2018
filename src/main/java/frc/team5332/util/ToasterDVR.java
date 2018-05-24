@@ -1,8 +1,6 @@
 package main.java.frc.team5332.util;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.supercsv.cellprocessor.ParseDouble;
 import org.supercsv.cellprocessor.ParseInt;
 import org.supercsv.cellprocessor.ift.CellProcessor;
@@ -15,39 +13,18 @@ import org.supercsv.prefs.CsvPreference;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.sql.Driver;
 import java.util.ArrayList;
 
 public class ToasterDVR {
-    private int currentState;
     private File recordingsDir;
 
-    public String[] variableNames = {"leftJoystickValue", "rightJoystickValue", "elevatorJoystickValue"};
-    public CellProcessor[] cellProcessors = {new ParseDouble(), new ParseDouble(), new ParseDouble()};
-
-    //DVR States
-    public static int IDLE = 1;
-    public static int RECORDING = 2;
-    public static int PLAYBACK = 3;
+    private String[] variableNames = {"leftJoystickValue", "rightJoystickValue", "elevatorJoystickValue"};
+    private CellProcessor[] cellProcessors = {new ParseDouble(), new ParseDouble(), new ParseDouble()};
 
     public ToasterDVR(){
         recordingsDir = new File("/home/lvuser", "Recordings");
-        currentState = IDLE;
 
     }
-
-    public void setupSmartDashboard(){
-
-    }
-
-    public int getCurrentState(){
-        return currentState;
-    }
-
-    public String[] getRecordings(){
-        return recordingsDir.list();
-    }
-
 
     public void writePath(ArrayList<Cycle> cycles, String recordingName) throws Exception{
         if(!recordingName.contains(".csv")){

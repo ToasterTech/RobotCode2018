@@ -16,16 +16,15 @@ public class GetAutoRoutine extends Command {
     boolean routinePicked = false;
     Command autonmousRoutine;
 
-    private int positionSelected, routineSelected;
+    private String positionSelected, routineSelected;
 
     String message;
-    char position;
 
-    private SendableChooser<Integer> positionSendable, routineSendable;
+    private SendableChooser<String> positionSendable, routineSendable;
 
     public GetAutoRoutine(){
-        positionSendable = (SendableChooser<Integer>)SmartDashboard.getData("Position Chooser");
-        routineSendable = (SendableChooser<Integer>)SmartDashboard.getData("Auto Chooser");
+        positionSendable = (SendableChooser<String>)SmartDashboard.getData("Position Chooser");
+        routineSendable = (SendableChooser<String>)SmartDashboard.getData("Auto Chooser");
 
         routinePicked = false;
 
@@ -36,6 +35,7 @@ public class GetAutoRoutine extends Command {
         super.execute();
 
         if(DriverStation.getInstance().getGameSpecificMessage().length() == 3) {
+
             System.out.println("GOT GAME SPECIFIC MESSAGE");
             SmartDashboard.putString("DB/String 5", "Saving Message");
 
@@ -44,35 +44,27 @@ public class GetAutoRoutine extends Command {
             try {
                 //position = SmartDashboard.getString("DB/String 6", "M").charAt(0);
                 positionSelected = positionSendable.getSelected();
-                if(positionSelected == CMap.leftPos){
-                    position = 'L';
-                } else if(positionSelected == CMap.rightPos){
-                    position = 'R';
-                } else {
-                    position = 'M';
-                }
 
-                SmartDashboard.putString("Translated Position", String.valueOf(position));
+                SmartDashboard.putString("Translated Position", String.valueOf(positionSelected));
                 routineSelected = routineSendable.getSelected();
 
 
-            }catch(Exception e){
-                position = 'M';
+            } catch(Exception e){
+                DriverStation.reportError("Error Getting Selected Position", e.getStackTrace());
+                positionSelected = CMap.centerPos;
             }
-
-            System.out.println(position);
 
             SmartDashboard.putString("DB/String 5", "Received Plates");
 
-            if(routineSelected == CMap.normal){
+            if(routineSelected.equals(CMap.normal)){
                 System.out.println("NORMAL");
                 //normalPreferenceSystem();
                 routinePicked = true;
-            } else if(routineSelected == CMap.scaleOnly){
+            } else if(routineSelected.equals(CMap.scaleOnly)){
                 System.out.println("SCALE");
                 //scalePreferenceSystem();
                 routinePicked = true;
-            } else if(routineSelected == CMap.switchOnly) {
+            } else if(routineSelected.equals(CMap.switchOnly)) {
                 System.out.println("SWITCH");
                 //switchPreferenceSystem();
                 routinePicked = true;
@@ -89,29 +81,29 @@ public class GetAutoRoutine extends Command {
     }
 
     private void normalPreferenceSystem(){
-        switch (position){
+        switch (positionSelected){
 
-            case 'L':
+            case CMap.leftPos:
                 if(CMap.plateOwnership.charAt(1) == 'L'){ //Scale
-                    Scheduler.getInstance().add(new AutoScaleSameSide(position));
+                    Scheduler.getInstance().add(new AutoScaleSameSide(CMap.leftPos.charAt(0)));
                 } else if(CMap.plateOwnership.charAt(0) == 'L') { //Switch
-                    Scheduler.getInstance().add(new AutoSwitchSameSide(position));
+                    Scheduler.getInstance().add(new AutoSwitchSameSide(CMap.leftPos.charAt(0)));
                 } else {
                     Scheduler.getInstance().add(new AutoRun());
                 }
                 break;
 
-            case 'R':
+            case CMap.rightPos:
                 if(CMap.plateOwnership.charAt(1) == 'R'){ //Scale
-                    Scheduler.getInstance().add(new AutoScaleSameSide(position));
+                    Scheduler.getInstance().add(new AutoScaleSameSide(CMap.rightPos.charAt(0)));
                 } else if(CMap.plateOwnership.charAt(0) == 'R') { //Switch
-                    Scheduler.getInstance().add(new AutoSwitchSameSide(position));
+                    Scheduler.getInstance().add(new AutoSwitchSameSide(CMap.rightPos.charAt(0)));
                 } else {
                     Scheduler.getInstance().add(new AutoRun());
                 }
                 break;
 
-            case 'M':
+            case CMap.centerPos:
                 Scheduler.getInstance().add(new AutoSwitchFromMiddle(message.charAt(0)));
                 break;
 
@@ -119,35 +111,25 @@ public class GetAutoRoutine extends Command {
     }
 
     private void scalePreferenceSystem(){
-        if(message.charAt(1) == position){
-            Scheduler.getInstance().add(new AutoScaleSameSide(position));
+        if(message.charAt(1) == positionSelected.charAt(0)){
+            Scheduler.getInstance().add(new AutoScaleSameSide(positionSelected.charAt(0)));
         } else {
             Scheduler.getInstance().add(new AutoRun());
         }
     }
 
     private void switchPreferenceSystem(){
-        if(message.charAt(0) == position){
-            Scheduler.getInstance().add(new AutoSwitchSameSide(position));
+        if(message.charAt(0) == positionSelected.charAt(0)){
+            Scheduler.getInstance().add(new AutoSwitchSameSide(positionSelected.charAt(0)));
         } else {
-            if(position == 'L' || position == 'R'){
-                Scheduler.getInstance().add(new AutoRun());
-            } else {
-                //Middle Starting Spot
+            if(positionSelected.charAt(0) == CMap.centerPos.charAt(0)){
                 Scheduler.getInstance().add(new AutoSwitchFromMiddle(message.charAt(0)));
+            } else {
+                Scheduler.getInstance().add(new AutoRun());
             }
         }
     }
 
-    private void exchangePreferenceSystem(){
-        if(position == 'L'){
-            Scheduler.getInstance().add(null);
-        } else if(position == 'R'){
-            Scheduler.getInstance().add(null);
-        }else if(position == 'M'){
-            Scheduler.getInstance().add(null);
-        }
-    }
 
     private void autoRunPreferenceSystem(){
         autonmousRoutine = new AutoRun();

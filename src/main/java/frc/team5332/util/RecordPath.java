@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class RecordPath extends Command{
     ArrayList<Cycle> recordingCycles = new ArrayList<>();
     String fileName;
+    boolean warningIssued = false;
 
     public RecordPath(String file){
         fileName = file;
@@ -17,7 +18,12 @@ public class RecordPath extends Command{
 
     @Override
     protected void execute() {
-        recordingCycles.add(new Cycle(-CMap.gamepad.getRawAxis(CMap.leftYAXis), -CMap.gamepad.getRawAxis(CMap.rightYAxis), CMap.operatorJoystick.getY()));
+        if(!warningIssued){
+            DriverStation.reportWarning("Recording Starting", false);
+            warningIssued = true;
+        }
+        recordingCycles.add(new Cycle(CMap.gamepad.getRawAxis(CMap.leftYAXis), CMap.gamepad.getRawAxis(CMap.rightYAxis), CMap.operatorJoystick.getY()));
+
     }
 
     @Override
@@ -27,6 +33,7 @@ public class RecordPath extends Command{
 
     @Override
     protected void end() {
+        warningIssued = false;
         try {
             CMap.mainDVR.writePath(recordingCycles, fileName);
         } catch (Exception e){

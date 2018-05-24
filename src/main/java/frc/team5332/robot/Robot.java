@@ -10,7 +10,7 @@ import main.java.frc.team5332.commands.elevator.JoystickElevator;
 import main.java.frc.team5332.commands.intake.TriggerSpinCubeInIntake;
 
 public class Robot extends IterativeRobot {
-    SendableChooser<Integer> autoChooser, positionChooser;
+    SendableChooser<String> autoChooser, positionChooser;
 
     @Override
     public void robotInit() {
