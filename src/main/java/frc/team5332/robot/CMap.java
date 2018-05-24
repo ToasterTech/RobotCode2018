@@ -29,10 +29,6 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class CMap {
-    //Sendable Choosers
-    public SendableChooser<Integer> autoChooser, positionChooser;
-    public static ToasterDVR mainDVR = new ToasterDVR();
-
     //Autonomous
     public static final String leftPos   = "Left",
                       centerPos = "Middle",
@@ -43,7 +39,6 @@ public class CMap {
                       scaleOnly  = "Scale",
                       normal     = "Normal";
 
-    //public static ToasterDVR toasterDVR = new ToasterDVR();
     //Input Devices - Joysticks
     public static Joystick gamepad          = new Joystick(0);
     public static Joystick operatorJoystick = new Joystick(1);
@@ -93,10 +88,6 @@ public class CMap {
     public static int elevatorMotor2 = 5;
     public static int elevatorMotor3 = 6;
 
-    //DIO Ports
-    public static int windowMotorLimitSwitchA = 2;
-    public static int windowMotorLimitSwitchB = 3;
-
     public static int leftDriveEncoderPortA  = 0;
     public static int leftDriveEncoderPortB  = 1;
     public static int rightDriveEncoderPortA   = 4;
@@ -123,25 +114,6 @@ public class CMap {
 
     //Other Miscellaneous Objects
     public static String plateOwnership = "";
-
-    //Measurements in Inches
-    public static double scaleHeight = 65;
-    public static double switchHeight = 0;
-    public static double fenceWidth = 48;
-    public static double switchLength = 36;
-    public static double distanceToAutoLine = 10;
-    public static double fenceLength = 40;
-    public static double maxChange = 0.5;
-
-    public static double distanceToSwitchFromWall = 20;
-    public static double distanceToBackOfSwitchFromWall = distanceToSwitchFromWall + 5;
-    public static double distanceAcrossBackOfSwitch = 30;
-    public static double distanceToScaleFromWall = 40;
-
-    public static boolean leftTriggerPreviouslyPressed = false,
-            rightTriggerPreviouslyPressed = false,
-            motorsIntaking = false,
-            motorsExpelling = false;
 
     public static void setupJoystickButtons(){
         normalIntakeCubeButton.whileHeld(new NormalIntakeCube());

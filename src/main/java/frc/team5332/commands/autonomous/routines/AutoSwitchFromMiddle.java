@@ -1,5 +1,6 @@
 package main.java.frc.team5332.commands.autonomous.routines;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -12,50 +13,19 @@ import main.java.frc.team5332.commands.elevator.TimeElevator;
 import main.java.frc.team5332.commands.intake.ChangeIntakeState;
 import main.java.frc.team5332.commands.intake.OpenCloseIntakeArms;
 import main.java.frc.team5332.robot.CMap;
+import main.java.frc.team5332.util.PlaybackRecording;
+import main.java.frc.team5332.util.ToasterDVR;
 
 public class AutoSwitchFromMiddle extends CommandGroup {
 
     public AutoSwitchFromMiddle(char platePosition){
-        System.out.println("AUTO SWITCH MIDDLE");
-        SmartDashboard.putString("DB/String 5", "Auto Switch From Middle");
+        DriverStation.reportWarning("Auto Switch Middle (" + platePosition + ") activated", false);
 
-        double turnAngle = (platePosition == 'L') ? 1 : -1;
-
-        System.out.println(platePosition);
-        if(platePosition == 'R'){
-
-
-            addParallel(new TimeElevator(.75, 1));
-            addSequential(new TimeDrive(1.5,  0.8, 0.8));
-            addSequential(new ChangeIntakeState());
-            addSequential(new TimeDrive(3, 0.3, 0.3));
-            addSequential(new TimeExpelBlockCommand(5));
+        if(platePosition == CMap.leftPos.charAt(0)){
+            addSequential(new PlaybackRecording(ToasterDVR.switchMiddleLeft));
         } else {
-            //addSequential(new AutoRun());
-
-            //addSequential(new TimeDrive(0.5, 0 ,0.5));
-
-            addSequential(new TimeDrive(0.7, .5, .5));
-            addSequential(new TimeDrive(1, 0, 0.5));
-            addSequential(new TimeDrive(1.4, 0.5, 0.5));
-            addSequential(new TimeDrive(1.15, 0.4, 0));
-            addSequential(new TimeElevator(.75, .75));
-            addSequential(new ChangeIntakeState());
-            addSequential(new TimeDrive(0.75, 0, 0));
-            addSequential(new TimeDrive(1, 0.4, 0.4));
-            addSequential(new TimeExpelBlockCommand(3 ));
-
-
-            //addParallel(new TimeElevator(.75, 1));
-            /*addSequential(new TimeDrive(1, -.3, .3));
-            addSequential(new TimeDrive(2, .3, .3));
-            addSequential(new TurnToAngle(0));
-            addSequential(new TimeElevator(2, -1));
-            addSequential(new TimeDrive(3, 0.2, 0.2));
-            addSequential(new TimeExpelBlockCommand(5));*/
+            addSequential(new PlaybackRecording(ToasterDVR.switchMiddleRight));
         }
-
-
 
 
     }

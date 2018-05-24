@@ -16,13 +16,24 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class ToasterDVR {
-    private File recordingsDir;
+    //Recording Name Constants
+    public final static String autoRun = "AutoRun.csv",
+                        switchSameLeft = "SwitchSameLeft.csv",
+                        switchSameRight = "SwitchSameRight.csv",
+                        switchMiddleLeft = "SwitchMiddleLeft.csv",
+                        switchMiddleRight = "SwitchMiddleRight.csv",
+                        scaleSameLeft = "ScaleSameLeft.csv",
+                        scaleSameRight = "ScaleSameRight.csv";
+
+
+
+    private File recordingsDir = new File("/home/lvuser", "Recordings");;
 
     private String[] variableNames = {"leftJoystickValue", "rightJoystickValue", "elevatorJoystickValue"};
     private CellProcessor[] cellProcessors = {new ParseDouble(), new ParseDouble(), new ParseDouble()};
 
-    public ToasterDVR(){
-        recordingsDir = new File("/home/lvuser", "Recordings");
+    private ToasterDVR(){
+
 
     }
 
