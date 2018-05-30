@@ -44,6 +44,12 @@ public class PlaybackRecording extends Command{
         Cycle currentCycle = playbackCycles.get(cycleIndex);
         CMap.drive.tankDrive(-currentCycle.leftJoystickValue, -currentCycle.rightJoystickValue);
         CMap.elevator.setMotorSpeed(currentCycle.elevatorJoystickValue);
+        CMap.carriage.setCarriageMotor(currentCycle.getCarriageMotorValues());
+        CMap.intake.spinRollers(currentCycle.getIntakeMotorValues());
+        CMap.intake.changeIntakeArmState(currentCycle.getIntakeArmsDown());
+        CMap.intake.changeOpenCloseIntakeState(currentCycle.getIntakeArmsOpen());
+
+
         cycleIndex += 1;
 
     }

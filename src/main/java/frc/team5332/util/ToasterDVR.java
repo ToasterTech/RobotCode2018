@@ -1,7 +1,10 @@
 package main.java.frc.team5332.util;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
+import org.supercsv.cellprocessor.ParseBool;
 import org.supercsv.cellprocessor.ParseDouble;
+import org.supercsv.cellprocessor.ParseEnum;
 import org.supercsv.cellprocessor.ParseInt;
 import org.supercsv.cellprocessor.ift.CellProcessor;
 import org.supercsv.io.CsvBeanReader;
@@ -27,10 +30,10 @@ public class ToasterDVR {
 
 
 
-    private static File recordingsDir = new File("/home/lvuser", "Recordings");;
+    private static File recordingsDir = new File("/home/lvuser", "Recordings");
 
-    private static String[] variableNames = {"leftJoystickValue", "rightJoystickValue", "elevatorJoystickValue"};
-    private static CellProcessor[] cellProcessors = {new ParseDouble(), new ParseDouble(), new ParseDouble()};
+    private static String[] variableNames = {"leftJoystickValue", "rightJoystickValue", "elevatorJoystickValue", "carriageMotorValues", "intakeMotorValues", "intakeArmsOpen", "intakeArmsDown"};
+    private static CellProcessor[] cellProcessors = {new ParseDouble(), new ParseDouble(), new ParseDouble(), new ParseDouble(), new ParseDouble(), new ParseEnum(DoubleSolenoid.Value.class), new ParseBool()};
 
     private ToasterDVR(){
 
@@ -60,7 +63,12 @@ public class ToasterDVR {
         }
         File path = new File(recordingsDir, recordingName);
 
+
         ArrayList<Cycle> cycles = new ArrayList<>();
+
+        if(!path.exists()){
+            DriverStation.reportError("File does not exist.", false);
+        }
 
         ICsvBeanReader reader = new CsvBeanReader(new FileReader(path), CsvPreference.STANDARD_PREFERENCE);
 

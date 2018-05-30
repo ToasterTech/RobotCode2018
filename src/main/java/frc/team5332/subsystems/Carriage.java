@@ -31,6 +31,13 @@ public class Carriage extends Subsystem {
     }
 
     /**
+     * This method should be used when we are setting the motor to custom values.
+     */
+    public void setCarriageMotor(double motorValue){
+        carriageMotor.set(motorValue);
+    }
+
+    /**
      * This method takes in the cube.
      */
     public void intakeCube(){
@@ -43,6 +50,8 @@ public class Carriage extends Subsystem {
     public void expelCube(){
         carriageMotor.set(-1);
     }
+
+    public double getMotorSpeed(){ return carriageMotor.get(); }
 
     public void expelCube(double speed){
         carriageMotor.set(speed);
@@ -63,13 +72,4 @@ public class Carriage extends Subsystem {
         normalMotor.set(speed);
     }
 
-    /**
-     * This method returns the status of the limit switch. If the switch
-     * is pressed, then the method returns true.
-     *
-     * @return
-     */
-    public boolean cubeIsIn(){
-        return false;
-    }
 }

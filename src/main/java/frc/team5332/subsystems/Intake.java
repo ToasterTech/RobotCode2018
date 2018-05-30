@@ -39,6 +39,8 @@ public class Intake extends Subsystem{
         rightIntakeRoller.set(speed);
     }
 
+    public double getRollerSpeed() {return (leftIntakeRoller.get() + rightIntakeRoller.get())/2.0; }
+
     public void spinLeftRoller(double speed){
         leftIntakeRoller.setSpeed(speed);
     }
@@ -68,8 +70,26 @@ public class Intake extends Subsystem{
         }
     }
 
-    public boolean getIntakeArmState(){
+    public void changeOpenCloseIntakeState(DoubleSolenoid.Value newValue){
+        openCloseSolenoid.set(newValue);
+    }
+
+    /**
+     * Return the state of the solenoid that controls the arms being up or down.
+     *
+     * @return Whether the arms are up or down.
+     */
+    public boolean getIntakeArmUpOrDownState(){
         return intakeSolenoids.get();
+    }
+
+    /**
+     * Return the state of the solenoid that controls the arms being open or closed.
+     *
+     * @return Whehter the arms are open or closed.
+     */
+    public DoubleSolenoid.Value getIntakeArmOpenOrClosedState(){
+        return openCloseSolenoid.get();
     }
 
 }

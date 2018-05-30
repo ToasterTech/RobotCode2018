@@ -22,7 +22,10 @@ public class RecordPath extends Command{
             DriverStation.reportWarning("Recording Starting", false);
             warningIssued = true;
         }
-        recordingCycles.add(new Cycle(CMap.gamepad.getRawAxis(CMap.leftYAXis), CMap.gamepad.getRawAxis(CMap.rightYAxis), CMap.operatorJoystick.getY()));
+
+        recordingCycles.add(new Cycle(CMap.gamepad.getRawAxis(CMap.leftYAXis), CMap.gamepad.getRawAxis(CMap.rightYAxis),
+                CMap.operatorJoystick.getY(), CMap.carriage.getMotorSpeed(), CMap.intake.getRollerSpeed(),
+                CMap.intake.getIntakeArmOpenOrClosedState(), CMap.intake.getIntakeArmUpOrDownState()));
 
     }
 
