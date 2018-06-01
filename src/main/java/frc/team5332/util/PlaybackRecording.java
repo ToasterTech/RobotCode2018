@@ -46,7 +46,7 @@ public class PlaybackRecording extends Command{
         CMap.elevator.setMotorSpeed(currentCycle.elevatorJoystickValue);
         CMap.carriage.setCarriageMotor(currentCycle.getCarriageMotorValues());
         CMap.intake.spinRollers(currentCycle.getIntakeMotorValues());
-        CMap.intake.changeIntakeArmState(currentCycle.getIntakeArmsDown());
+        CMap.intake.changeIntakeArmState(Boolean.parseBoolean(currentCycle.getIntakeArmsDown()));
         CMap.intake.changeOpenCloseIntakeState(currentCycle.getIntakeArmsOpen());
 
 

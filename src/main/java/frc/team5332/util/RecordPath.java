@@ -25,7 +25,7 @@ public class RecordPath extends Command{
 
         recordingCycles.add(new Cycle(CMap.gamepad.getRawAxis(CMap.leftYAXis), CMap.gamepad.getRawAxis(CMap.rightYAxis),
                 CMap.operatorJoystick.getY(), CMap.carriage.getMotorSpeed(), CMap.intake.getRollerSpeed(),
-                CMap.intake.getIntakeArmOpenOrClosedState(), CMap.intake.getIntakeArmUpOrDownState()));
+                CMap.intake.getIntakeArmOpenOrClosedState(), String.valueOf(CMap.intake.getIntakeArmUpOrDownState())));
 
     }
 
@@ -39,6 +39,7 @@ public class RecordPath extends Command{
         warningIssued = false;
         try {
             ToasterDVR.writePath(recordingCycles, fileName);
+            recordingCycles = new ArrayList<>();
         } catch (Exception e){
             DriverStation.reportError("Recording Saving Failed", e.getStackTrace());
         }

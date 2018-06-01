@@ -39,7 +39,7 @@ public class Intake extends Subsystem{
         rightIntakeRoller.set(speed);
     }
 
-    public double getRollerSpeed() {return (leftIntakeRoller.get() + rightIntakeRoller.get())/2.0; }
+    public double getRollerSpeed() {return leftIntakeRoller.get(); }
 
     public void spinLeftRoller(double speed){
         leftIntakeRoller.setSpeed(speed);

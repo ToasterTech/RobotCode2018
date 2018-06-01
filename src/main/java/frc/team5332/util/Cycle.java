@@ -12,7 +12,7 @@ public class Cycle {
     double intakeMotorValues;
 
     DoubleSolenoid.Value intakeArmsOpen;
-    boolean intakeArmsDown;
+    String intakeArmsDown;
 
     public Cycle(){
 
@@ -20,14 +20,14 @@ public class Cycle {
 
 
     public Cycle(double leftJoystickValue, double rightJoystickValue, double elevatorJoystickValue,
-                 double carriageMotorValues, double intakeMotorValues, DoubleSolenoid.Value intakeArmsOpen, boolean intakeArmsDown) {
+                 double carriageMotorValues, double intakeMotorValues, DoubleSolenoid.Value intakeArmsOpen, String intakeArmsDown) {
         this.leftJoystickValue = leftJoystickValue;
         this.rightJoystickValue = rightJoystickValue;
         this.elevatorJoystickValue = elevatorJoystickValue;
         this.carriageMotorValues = carriageMotorValues;
         this.intakeMotorValues = intakeMotorValues;
         this.intakeArmsOpen = intakeArmsOpen;
-        this.intakeArmsDown = intakeArmsDown;
+        this.intakeArmsDown = String.valueOf(intakeArmsDown);
     }
 
     public double getLeftJoystickValue() {
@@ -78,11 +78,11 @@ public class Cycle {
         this.intakeArmsOpen = intakeArmsOpen;
     }
 
-    public boolean getIntakeArmsDown() {
-        return intakeArmsDown;
+    public String getIntakeArmsDown() {
+        return this.intakeArmsDown;
     }
 
-    public void setIntakeArmsDown(boolean intakeArmsDown) {
-        this.intakeArmsDown = intakeArmsDown;
+    public void setIntakeArmsDown(Boolean intakeArmsDown) {
+        this.intakeArmsDown = String.valueOf(intakeArmsDown);
     }
 }

@@ -31,9 +31,11 @@ public class ToasterDVR {
 
 
     private static File recordingsDir = new File("/home/lvuser", "Recordings");
-
     private static String[] variableNames = {"leftJoystickValue", "rightJoystickValue", "elevatorJoystickValue", "carriageMotorValues", "intakeMotorValues", "intakeArmsOpen", "intakeArmsDown"};
     private static CellProcessor[] cellProcessors = {new ParseDouble(), new ParseDouble(), new ParseDouble(), new ParseDouble(), new ParseDouble(), new ParseEnum(DoubleSolenoid.Value.class), new ParseBool()};
+
+    //private static String[] variableNames = {"intakeArmsDown"};
+    //private static CellProcessor[] cellProcessors = {new ParseBool()};
 
     private ToasterDVR(){
 
