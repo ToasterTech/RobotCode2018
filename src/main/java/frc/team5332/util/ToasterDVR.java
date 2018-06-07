@@ -21,11 +21,13 @@ import java.util.ArrayList;
 public class ToasterDVR {
     //Recording Name Constants
     public final static String autoRun = "AutoRun.csv",
-                        switchSameLeft = "SwitchSameLeft.csv",
+                        SwitchSameLeft = "leftSwitchSameLeft.csv",
                         switchSameRight = "SwitchSameRight.csv",
                         switchMiddleLeft = "SwitchMiddleLeft.csv",
                         switchMiddleRight = "SwitchMiddleRight.csv",
                         scaleSameLeft = "ScaleSameLeft.csv",
+                        scaleOppositeLeft = "ScaleOppositeLeft.csv",
+                        scaleOppositeRight = "ScaleOppositeRight.csv",
                         scaleSameRight = "ScaleSameRight.csv";
 
 

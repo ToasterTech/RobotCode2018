@@ -126,8 +126,8 @@ public class CMap {
 
         slowOutakeButton.whileHeld(new SlowExpelBlockCommand());
 
-        recordingToggle.toggleWhenPressed(new RecordPath("Swagness3.csv"));
-        playbackToggle.toggleWhenPressed(new PlaybackRecording("Swagness3.csv"));
+        recordingToggle.toggleWhenPressed(new RecordPath(ToasterDVR.scaleSameLeft));
+        playbackToggle.toggleWhenPressed(new PlaybackRecording(ToasterDVR.scaleSameLeft));
     }
 
 
