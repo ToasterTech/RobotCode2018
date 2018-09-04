@@ -5,7 +5,9 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import main.java.frc.team5332.commands.autonomous.routines.AutoSwitchSameSide;
 import main.java.frc.team5332.commands.drive.JoystickDrive;
+import main.java.frc.team5332.commands.drive.TimeDrive;
 import main.java.frc.team5332.commands.elevator.JoystickElevator;
 import main.java.frc.team5332.commands.intake.TriggerSpinCubeInIntake;
 
@@ -31,6 +33,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Position Chooser", positionChooser);
 
         CMap.compressor.setClosedLoopControl(true);
+
+
+
     }
 
     public void disabledPeriodic(){
@@ -46,6 +51,8 @@ public class Robot extends IterativeRobot {
 
         System.out.println(autoChooser.getSelected());
         System.out.println(positionChooser.getSelected());
+
+        Scheduler.getInstance().add(new AutoSwitchSameSide('R'));
     }
 
     public void autonomousPeriodic(){
@@ -59,6 +66,8 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().add(new JoystickDrive());
         Scheduler.getInstance().add(new JoystickElevator());
         Scheduler.getInstance().add(new TriggerSpinCubeInIntake());
+
+        //Scheduler.getInstance().add(new TimeDrive(200, 1, 1));
         //Scheduler.getInstance().add(new RecordCommand());
     }
 

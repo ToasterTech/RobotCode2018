@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class ToasterDVR {
     //Recording Name Constants
     public final static String autoRun = "AutoRun.csv",
-                        SwitchSameLeft = "leftSwitchSameLeft.csv",
+                        switchSameLeft = "SwitchSameLeft.csv",
                         switchSameRight = "SwitchSameRight.csv",
                         switchMiddleLeft = "SwitchMiddleLeft.csv",
                         switchMiddleRight = "SwitchMiddleRight.csv",
