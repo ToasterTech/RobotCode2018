@@ -36,11 +36,12 @@ public class ToasterDVR {
     private static String[] variableNames = {"leftJoystickValue", "rightJoystickValue", "elevatorJoystickValue", "carriageMotorValues", "intakeMotorValues", "intakeArmsOpen", "intakeArmsDown"};
     private static CellProcessor[] cellProcessors = {new ParseDouble(), new ParseDouble(), new ParseDouble(), new ParseDouble(), new ParseDouble(), new ParseEnum(DoubleSolenoid.Value.class), new ParseBool()};
 
+    private static boolean enabled = false;
     //private static String[] variableNames = {"intakeArmsDown"};
     //private static CellProcessor[] cellProcessors = {new ParseBool()};
 
     private ToasterDVR(){
-
+        enabled = false;
 
     }
 
@@ -84,6 +85,8 @@ public class ToasterDVR {
 
         return cycles;
     }
+
+    public static boolean isEnabled(){ return enabled; }
 
 
 

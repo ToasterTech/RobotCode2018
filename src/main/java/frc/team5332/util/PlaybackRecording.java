@@ -29,28 +29,33 @@ public class PlaybackRecording extends Command{
 
     @Override
     protected void execute() {
-        if(!warningIssued){
-            warningIssued = true;
-            DriverStation.reportWarning("Playback Starting", false);
-        }
-        if(playbackCycles.size() == 0){
-            try{
-                playbackCycles = ToasterDVR.readPath(fileName);
-            } catch (Exception e){
-                DriverStation.reportError("Unable to Get Cycles", e.getStackTrace());
+        if(ToasterDVR.isEnabled()) {
+            if (!warningIssued) {
+                warningIssued = true;
+                DriverStation.reportWarning("Playback Starting", false);
             }
+            if (playbackCycles.size() == 0) {
+                try {
+                    playbackCycles = ToasterDVR.readPath(fileName);
+                } catch (Exception e) {
+                    DriverStation.reportError("Unable to Get Cycles", e.getStackTrace());
+                }
+            }
+
+            Cycle currentCycle = playbackCycles.get(cycleIndex);
+            CMap.drive.tankDrive(-currentCycle.leftJoystickValue, -currentCycle.rightJoystickValue);
+            CMap.elevator.setMotorSpeed(currentCycle.elevatorJoystickValue);
+            CMap.carriage.setCarriageMotor(currentCycle.getCarriageMotorValues());
+            CMap.intake.spinRollers(currentCycle.getIntakeMotorValues());
+            CMap.intake.changeIntakeArmState(Boolean.parseBoolean(currentCycle.getIntakeArmsDown()));
+            CMap.intake.changeOpenCloseIntakeState(currentCycle.getIntakeArmsOpen());
+
+
+            cycleIndex += 1;
+        } else {
+            DriverStation.reportError("Toaster DVR is Disabled. Please enable it before trying again", false);
+            end();
         }
-
-        Cycle currentCycle = playbackCycles.get(cycleIndex);
-        CMap.drive.tankDrive(-currentCycle.leftJoystickValue, -currentCycle.rightJoystickValue);
-        CMap.elevator.setMotorSpeed(currentCycle.elevatorJoystickValue);
-        CMap.carriage.setCarriageMotor(currentCycle.getCarriageMotorValues());
-        CMap.intake.spinRollers(currentCycle.getIntakeMotorValues());
-        CMap.intake.changeIntakeArmState(Boolean.parseBoolean(currentCycle.getIntakeArmsDown()));
-        CMap.intake.changeOpenCloseIntakeState(currentCycle.getIntakeArmsOpen());
-
-
-        cycleIndex += 1;
 
     }
 

@@ -15,7 +15,7 @@ public class Elevator extends Subsystem {
     public Elevator(){
         super("Elevator");
         //VictorSP motorA = new VictorSP(7);
-        motor = new SpeedControllerGroup(new VictorSP(CMap.elevatorMotor1), new VictorSP(CMap.elevatorMotor2), new Victor(CMap.elevatorMotor3));
+        motor = new SpeedControllerGroup(new VictorSP(CMap.elevatorMotor1), new VictorSP(CMap.elevatorMotor2), new VictorSP(CMap.elevatorMotor3));
         //motor = new SpeedControllerGroup(motorA);
     }
 

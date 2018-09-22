@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import main.java.frc.team5332.commands.autonomous.preMatchActions.GetAutoRoutine;
 import main.java.frc.team5332.commands.autonomous.routines.AutoSwitchSameSide;
 import main.java.frc.team5332.commands.drive.JoystickDrive;
 import main.java.frc.team5332.commands.drive.TimeDrive;
@@ -40,12 +41,10 @@ public class Robot extends IterativeRobot {
     public void autonomousInit(){
 
         //Scheduler.getInstance().add(new ChangeIntakeState());
-        //Scheduler.getInstance().add(new GetAutoRoutine()); //Get the Autonomous Routine based on Placement and Switch Assignments
+        Scheduler.getInstance().add(new GetAutoRoutine()); //Get the Autonomous Routine based on Placement and Switch Assignments
 
-        System.out.println(autoChooser.getSelected());
-        System.out.println(positionChooser.getSelected());
 
-        Scheduler.getInstance().add(new AutoSwitchSameSide('R'));
+        //Scheduler.getInstance().add(new AutoSwitchSameSide('R'));
     }
 
     public void autonomousPeriodic(){

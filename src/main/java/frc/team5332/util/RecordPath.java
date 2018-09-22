@@ -18,15 +18,19 @@ public class RecordPath extends Command{
 
     @Override
     protected void execute() {
-        if(!warningIssued){
-            DriverStation.reportWarning("Recording Starting", false);
-            warningIssued = true;
+        if(ToasterDVR.isEnabled()) {
+            if (!warningIssued) {
+                DriverStation.reportWarning("Recording Starting", false);
+                warningIssued = true;
+            }
+
+            recordingCycles.add(new Cycle(CMap.gamepad.getRawAxis(CMap.leftYAXis), CMap.gamepad.getRawAxis(CMap.rightYAxis),
+                    CMap.operatorJoystick.getY(), CMap.carriage.getMotorSpeed(), CMap.intake.getRollerSpeed(),
+                    CMap.intake.getIntakeArmOpenOrClosedState(), String.valueOf(CMap.intake.getIntakeArmUpOrDownState())));
+        } else {
+            DriverStation.reportError("Toaster DVR is Disabled. Please enable it before trying again", false);
+            end();
         }
-
-        recordingCycles.add(new Cycle(CMap.gamepad.getRawAxis(CMap.leftYAXis), CMap.gamepad.getRawAxis(CMap.rightYAxis),
-                CMap.operatorJoystick.getY(), CMap.carriage.getMotorSpeed(), CMap.intake.getRollerSpeed(),
-                CMap.intake.getIntakeArmOpenOrClosedState(), String.valueOf(CMap.intake.getIntakeArmUpOrDownState())));
-
     }
 
     @Override
