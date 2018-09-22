@@ -12,25 +12,18 @@ import main.java.frc.team5332.commands.elevator.JoystickElevator;
 import main.java.frc.team5332.commands.intake.TriggerSpinCubeInIntake;
 
 public class Robot extends IterativeRobot {
-    private SendableChooser<String> autoChooser, positionChooser;
 
     @Override
     public void robotInit() {
         CMap.setupJoystickButtons();
 
-        autoChooser = new SendableChooser<>();
-        autoChooser.addDefault("Auto Run", CMap.autoRun);
-        autoChooser.addObject("Switch Only", CMap.switchOnly);
-        autoChooser.addObject("Scale Only", CMap.scaleOnly);
-        autoChooser.addObject("Normal Auto", CMap.normal);
+        SmartDashboard.putString("DB/String 0", "Normal");
+        SmartDashboard.putString("DB/String 1", "Scale");
+        SmartDashboard.putString("DB/String 2", "Switch");
+        SmartDashboard.putString("DB/String 3", "Auto Run");
 
-        positionChooser = new SendableChooser<>();
-        positionChooser.addDefault("Center", CMap.centerPos);
-        positionChooser.addObject("Left", CMap.leftPos);
-        positionChooser.addObject("Right", CMap.rightPos);
-
-        SmartDashboard.putData("Auto Chooser", autoChooser);
-        SmartDashboard.putData("Position Chooser", positionChooser);
+        SmartDashboard.putString("DB/String 4", "Waiting for Plates");
+        SmartDashboard.putString("DB/String 5", "'L', 'M', or 'R' below.");
 
         CMap.compressor.setClosedLoopControl(true);
 

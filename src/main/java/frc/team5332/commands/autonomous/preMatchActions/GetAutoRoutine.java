@@ -20,11 +20,7 @@ public class GetAutoRoutine extends Command {
 
     String message;
 
-    private SendableChooser<String> positionSendable, routineSendable;
-
     public GetAutoRoutine(){
-        positionSendable = (SendableChooser<String>)SmartDashboard.getData("Position Chooser");
-        routineSendable = (SendableChooser<String>)SmartDashboard.getData("Auto Chooser");
 
         routinePicked = false;
 
@@ -35,48 +31,28 @@ public class GetAutoRoutine extends Command {
         super.execute();
 
         if(DriverStation.getInstance().getGameSpecificMessage().length() == 3) {
-
-            System.out.println("GOT GAME SPECIFIC MESSAGE");
-            SmartDashboard.putString("DB/String 5", "Saving Message");
-
-            message = DriverStation.getInstance().getGameSpecificMessage();
-            CMap.plateOwnership = message;
-            try {
-                //position = SmartDashboard.getString("DB/String 6", "M").charAt(0);
-                positionSelected = positionSendable.getSelected();
-
-                SmartDashboard.putString("Translated Position", String.valueOf(positionSelected));
-                routineSelected = routineSendable.getSelected();
-
-
-            } catch(Exception e){
-                DriverStation.reportError("Error Getting Selected Position", e.getStackTrace());
-                positionSelected = CMap.centerPos;
-            }
-
             SmartDashboard.putString("DB/String 5", "Received Plates");
-
-            if(routineSelected.equals(CMap.normal)){
-                System.out.println("NORMAL");
-                //normalPreferenceSystem();
+            if (SmartDashboard.getBoolean("DB/Button 0", false)) {
+                SmartDashboard.putString("DB/String 6", "NORMAL PREFERENCE SYSTEM");
+                normalPreferenceSystem();
                 routinePicked = true;
-            } else if(routineSelected.equals(CMap.scaleOnly)){
-                System.out.println("SCALE");
-                //scalePreferenceSystem();
+            } else if (SmartDashboard.getBoolean("DB/Button 1", false)) {
+                SmartDashboard.putString("DB/String 6", "SCALE SYSTEM");
+                scalePreferenceSystem();
                 routinePicked = true;
-            } else if(routineSelected.equals(CMap.switchOnly)) {
-                System.out.println("SWITCH");
-                //switchPreferenceSystem();
+            } else if (SmartDashboard.getBoolean("DB/Button 2", false)) {
+                SmartDashboard.putString("DB/String 6", "SWITCH SYSTEM");
+                switchPreferenceSystem();
                 routinePicked = true;
-            } else {
-                System.out.println("AUTO RUN");
-                // autoRunPreferenceSystem();
+            } else if (SmartDashboard.getBoolean("DB/Button 3", false)) {
+                SmartDashboard.putString("DB/String 6", "AUTO RUN");
+                autoRunPreferenceSystem();
                 routinePicked = true;
             }
-            //switchPreferenceSystem();
-            //Scheduler.getInstance().add(new TimeDrive(.65, 0.3, -0.3));
-            routinePicked = true;
+        } else {
+            SmartDashboard.putString("DB/String 5", "Waiting for Plates");
         }
+
 
     }
 
