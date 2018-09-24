@@ -21,6 +21,7 @@ public class AutoScaleSameSide extends CommandGroup {
     public AutoScaleSameSide(char robotPosition){
         DriverStation.reportWarning("Auto Scale Same Side (" + robotPosition + ") activated", false);
 
+        SmartDashboard.putString("DB/String 6", "Auto Scale Same Side Running");
         if(robotPosition == CMap.leftPos.charAt(0)){
             addSequential(new PlaybackRecording(ToasterDVR.scaleSameLeft));
         } else {
@@ -34,7 +35,7 @@ public class AutoScaleSameSide extends CommandGroup {
     @Override
     protected void end() {
         super.end();
-        SmartDashboard.putString("DB/String 5", "Autonomous Finished");
+        SmartDashboard.putString("DB/String 6", "Autonomous Finished");
     }
 
 

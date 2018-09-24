@@ -15,7 +15,7 @@ import main.java.frc.team5332.util.ToasterDVR;
 
 public class AutoSwitchSameSide extends CommandGroup {
     public AutoSwitchSameSide(char robotPosition){
-        SmartDashboard.putString("DB/String 5", "Auto Switch Same Side Running");
+        SmartDashboard.putString("DB/String 6", "Auto Switch Same Side Running");
 
         addSequential(new TimeDrive(2.0, 0.5, 0.5));
 
@@ -29,6 +29,6 @@ public class AutoSwitchSameSide extends CommandGroup {
     @Override
     protected void end() {
         super.end();
-        SmartDashboard.putString("DB/String 5", "Autonomous Finished");
+        SmartDashboard.putString("DB/String 6", "Autonomous Finished");
     }
 }

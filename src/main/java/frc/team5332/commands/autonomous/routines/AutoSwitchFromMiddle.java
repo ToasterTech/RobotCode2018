@@ -19,7 +19,7 @@ import main.java.frc.team5332.util.ToasterDVR;
 public class AutoSwitchFromMiddle extends CommandGroup {
 
     public AutoSwitchFromMiddle(char platePosition){
-        DriverStation.reportWarning("Auto Switch Middle (" + platePosition + ") activated", false);
+        SmartDashboard.putString("DB/String 6", "Auto Switch From Middle Running");
 
         if(platePosition == CMap.leftPos.charAt(0)){
             addSequential(new PlaybackRecording(ToasterDVR.switchMiddleLeft));
