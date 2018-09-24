@@ -24,7 +24,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putString("DB/String 3", "Auto Run");
 
         SmartDashboard.putString("DB/String 4", "Waiting for Plates");
-        SmartDashboard.putString("DB/String 5", "'L', 'M', or 'R' below.");
+        SmartDashboard.putString("DB/String 8", "'L', 'M', or 'R' below.");
 
         CMap.compressor.setClosedLoopControl(true);
 

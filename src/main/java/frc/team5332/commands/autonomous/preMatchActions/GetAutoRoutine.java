@@ -31,6 +31,9 @@ public class GetAutoRoutine extends Command {
         super.execute();
 
         if(DriverStation.getInstance().getGameSpecificMessage().length() == 3) {
+            CMap.plateOwnership = DriverStation.getInstance().getGameSpecificMessage();
+            positionSelected    = SmartDashboard.getString("DB/String 9", "M").toUpperCase();
+
             SmartDashboard.putString("DB/String 5", "Received Plates");
             if (SmartDashboard.getBoolean("DB/Button 0", false)) {
                 SmartDashboard.putString("DB/String 6", "NORMAL PREFERENCE SYSTEM");
